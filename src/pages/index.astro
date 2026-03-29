@@ -1,16 +1,11 @@
-src/pages/index.astro---
+---
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout
-  title="Paramount World Records — Recognizing the Extraordinary"
-  description="The world's most prestigious record-certification authority. Submit your record, verify certificates, and join a global legacy of extraordinary achievement."
->
+<Layout title="Paramount World Records — Recognizing the Extraordinary">
 
-  <!-- ─── NAVIGATION ─────────────────────────────────────────────── -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
-      <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
         <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center">
           <span class="text-gold font-display font-bold text-lg leading-none">P</span>
@@ -21,7 +16,6 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </a>
 
-      <!-- Desktop Links -->
       <ul class="hidden md:flex items-center gap-8 text-sm font-sans tracking-widest uppercase text-white/70">
         <li><a href="#about" class="hover:text-gold transition-colors duration-300">About</a></li>
         <li><a href="#process" class="hover:text-gold transition-colors duration-300">Process</a></li>
@@ -33,482 +27,50 @@ import Layout from '../layouts/Layout.astro';
           </a>
         </li>
       </ul>
-
-      <!-- Mobile Hamburger -->
-      <button id="mobile-menu-btn" class="md:hidden text-white/70 hover:text-gold transition-colors" aria-label="Open menu">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
     </div>
   </nav>
 
-  <!-- ─── HERO ───────────────────────────────────────────────────── -->
-  <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-24 pb-16">
-
-    <!-- Background: deep navy radial + subtle lines -->
-    <div class="absolute inset-0 bg-navy-900">
-      <div class="absolute inset-0" style="background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(212,175,55,0.07) 0%, transparent 70%);"></div>
-      <!-- Decorative horizontal lines -->
-      <div class="absolute inset-x-0 top-1/3 h-px bg-gold/10"></div>
-      <div class="absolute inset-x-0 top-2/3 h-px bg-gold/5"></div>
-      <!-- Corner ornaments -->
-      <div class="absolute top-24 left-10 w-16 h-16 border-l border-t border-gold/20"></div>
-      <div class="absolute top-24 right-10 w-16 h-16 border-r border-t border-gold/20"></div>
-      <div class="absolute bottom-16 left-10 w-16 h-16 border-l border-b border-gold/20"></div>
-      <div class="absolute bottom-16 right-10 w-16 h-16 border-r border-b border-gold/20"></div>
-    </div>
-
-    <div class="relative z-10 max-w-5xl mx-auto px-6 hero-content">
-      <!-- Overline -->
-      <p class="text-gold/80 text-xs tracking-[0.4em] uppercase font-sans mb-6 animate-fade-in">
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-24 pb-16 bg-slate-900">
+    <div class="relative z-10 max-w-5xl mx-auto px-6">
+      <p class="text-gold/80 text-xs tracking-[0.4em] uppercase font-sans mb-6">
         Est. 2024 · Global Record Authority
       </p>
-
-      <!-- Main Title -->
-      <h1 class="font-display text-6xl sm:text-7xl lg:text-9xl font-light text-white leading-none mb-4 animate-fade-up">
+      <h1 class="font-display text-6xl sm:text-7xl lg:text-9xl font-light text-white leading-none mb-4">
         Recognizing<br/>
         <em class="text-gold not-italic font-semibold">the Extraordinary</em>
       </h1>
-
-      <div class="w-24 h-px bg-gold mx-auto my-8 animate-fade-in"></div>
-
-      <p class="font-body text-white/60 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed mb-12 animate-fade-in">
+      <div class="w-24 h-px bg-gold mx-auto my-8"></div>
+      <p class="font-body text-white/60 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
         The world's most trusted registry for human achievement. Where potential becomes legacy, and legacy becomes history.
       </p>
-
-      <!-- Search Registry + Verify -->
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-2xl mx-auto animate-fade-up-delay">
-        <div class="relative flex-1">
-          <input
-            type="text"
-            placeholder="Search the Registry by name, country, or category…"
-            class="w-full bg-white/5 border border-white/20 focus:border-gold text-white placeholder-white/30 px-5 py-4 text-sm font-sans outline-none transition-colors duration-300 rounded-none"
-            aria-label="Search the Paramount World Records Registry"
-          />
-          <svg class="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-          </svg>
+      
+      <div id="founders" class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto mt-20">
+        <div class="border border-gold/20 p-8 text-left">
+          <p class="text-gold text-[10px] tracking-[0.35em] uppercase mb-1">Co-Founder & Chairman</p>
+          <h3 class="text-2xl text-white font-semibold">Mr. Arun</h3>
+          <p class="text-white/55 text-sm mt-4">3× World Record Holder. Built Paramount to ensure the next generation of record-breakers have the platform they deserve.</p>
         </div>
-        <a href="#verify" id="verify"
-           class="bg-gold hover:bg-gold-400 text-navy-900 px-8 py-4 text-xs font-sans font-semibold tracking-[0.2em] uppercase transition-all duration-300 whitespace-nowrap hover:shadow-gold">
-          Verify Certificate ID
-        </a>
+        <div class="border border-gold/20 p-8 text-left">
+          <p class="text-gold text-[10px] tracking-[0.35em] uppercase mb-1">Co-Founder & Director</p>
+          <h3 class="text-2xl text-white font-semibold">Mrs. Preeti Gupta</h3>
+          <p class="text-white/55 text-sm mt-4">World Record Holder. Bringing vision and global operational excellence to the most prestigious registry.</p>
+        </div>
       </div>
-
-      <!-- Stats Row -->
-      <div class="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-8 border-t border-white/10 pt-12">
-        {[
-          { num: '1,200+', label: 'Certified Records' },
-          { num: '80+',    label: 'Countries Represented' },
-          { num: '100%',   label: 'Certificate Authenticity' },
-          { num: '4x',     label: 'Founding Record Holders' },
-        ].map(stat => (
-          <div class="text-center">
-            <p class="font-display text-4xl lg:text-5xl text-gold font-light">{stat.num}</p>
-            <p class="text-white/40 text-xs tracking-widest uppercase font-sans mt-2">{stat.label}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-      <svg class="text-gold/40 w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-        <path stroke-linecap="round" d="M19 9l-7 7-7-7"/>
-      </svg>
     </div>
   </section>
 
-  <!-- ─── DIVIDER ────────────────────────────────────────────────── -->
-  <div class="flex items-center gap-4 max-w-7xl mx-auto px-6 py-2">
-    <div class="flex-1 h-px bg-gold/20"></div>
-    <svg class="text-gold w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2L14.09 8.26L21 9.27L16.5 13.64L17.73 20.64L12 17.27L6.27 20.64L7.5 13.64L3 9.27L9.91 8.26L12 2Z"/>
-    </svg>
-    <div class="flex-1 h-px bg-gold/20"></div>
-  </div>
-
-  <!-- ─── ABOUT US ───────────────────────────────────────────────── -->
-  <section id="about" class="py-28 px-6 max-w-7xl mx-auto">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <!-- Left: Text -->
-      <div>
-        <p class="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-4">About Paramount</p>
-        <h2 class="font-display text-5xl lg:text-6xl font-light text-white leading-tight mb-6">
-          Record-Breakers<br/>
-          <em class="text-gold">Supporting<br/>Record-Makers</em>
-        </h2>
-        <div class="w-12 h-px bg-gold mb-8"></div>
-        <p class="text-white/60 leading-relaxed mb-6 font-body">
-          Paramount World Records was founded on a singular belief: extraordinary human achievement deserves extraordinary recognition. We are not merely a certification body — we are the global custodians of human potential.
+  <footer class="border-t border-gold/10 py-12 px-6 bg-slate-950">
+    <div class="max-w-7xl mx-auto text-center">
+        <p class="text-white/25 text-xs font-sans">
+          © 2026 Paramount World Records. Founded by Mr. Arun & Mrs. Preeti Gupta. All rights reserved.
         </p>
-        <p class="text-white/60 leading-relaxed mb-10 font-body">
-          Born from the ambition of those who have themselves shattered limits, our mission is to provide a rigorous, transparent, and prestigious pathway for record-setters worldwide — from all walks of life, across every continent.
-        </p>
-        <a href="#process" class="inline-flex items-center gap-3 text-gold text-sm tracking-widest uppercase font-sans border-b border-gold/30 pb-1 hover:border-gold transition-colors duration-300 group">
-          How We Certify
-          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" d="M17 8l4 4-4 4M3 12h18"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Right: Decorative Frame -->
-      <div class="relative">
-        <div class="border border-gold/20 p-10 relative">
-          <!-- Corner marks -->
-          <div class="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-gold"></div>
-          <div class="absolute -top-1 -right-1 w-4 h-4 border-r-2 border-t-2 border-gold"></div>
-          <div class="absolute -bottom-1 -left-1 w-4 h-4 border-l-2 border-b-2 border-gold"></div>
-          <div class="absolute -bottom-1 -right-1 w-4 h-4 border-r-2 border-b-2 border-gold"></div>
-
-          <div class="text-center mb-8">
-            <div class="inline-block border border-gold/30 px-8 py-2 mb-6">
-              <p class="text-gold/70 text-xs tracking-[0.35em] uppercase font-sans">Official Charter</p>
-            </div>
-            <p class="font-display text-xl text-white/80 italic leading-relaxed">
-              "We exist to illuminate the<br/>heights of human endeavour<br/>and enshrine them for eternity."
-            </p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
-            <div class="text-center p-4 bg-white/3 border border-white/5">
-              <p class="text-gold text-2xl font-display mb-1">Global</p>
-              <p class="text-white/40 text-xs tracking-wider uppercase font-sans">Reach</p>
-            </div>
-            <div class="text-center p-4 bg-white/3 border border-white/5">
-              <p class="text-gold text-2xl font-display mb-1">Rigorous</p>
-              <p class="text-white/40 text-xs tracking-wider uppercase font-sans">Process</p>
-            </div>
-            <div class="text-center p-4 bg-white/3 border border-white/5">
-              <p class="text-gold text-2xl font-display mb-1">Trusted</p>
-              <p class="text-white/40 text-xs tracking-wider uppercase font-sans">Authority</p>
-            </div>
-            <div class="text-center p-4 bg-white/3 border border-white/5">
-              <p class="text-gold text-2xl font-display mb-1">Eternal</p>
-              <p class="text-white/40 text-xs tracking-wider uppercase font-sans">Legacy</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── FOUNDERS ──────────────────────────────────────────────── -->
-  <section id="founders" class="py-24 bg-navy-800/40 border-y border-gold/10">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <p class="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-4">Leadership</p>
-        <h2 class="font-display text-5xl lg:text-6xl font-light text-white">The Founders</h2>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-        <!-- Founder 1: Arun -->
-        <div class="relative group">
-          <div class="border border-gold/20 group-hover:border-gold/50 transition-colors duration-500 p-8">
-            <div class="absolute -top-px left-8 right-8 h-px bg-gold/50 group-hover:bg-gold transition-colors duration-500"></div>
-
-            <div class="flex items-start gap-5">
-              <div class="w-16 h-16 rounded-full bg-gold/10 border-2 border-gold flex items-center justify-center flex-shrink-0">
-                <span class="font-display text-gold text-2xl font-semibold">A</span>
-              </div>
-              <div>
-                <p class="text-gold text-[10px] tracking-[0.35em] uppercase font-sans mb-1">Co-Founder & Chairman</p>
-                <h3 class="font-display text-2xl text-white font-semibold mb-0.5">Mr. Arun</h3>
-                <p class="text-gold/60 text-sm font-sans italic">"Bigguy Arun"</p>
-              </div>
-            </div>
-
-            <div class="mt-6 flex items-center gap-2 mb-4">
-              {[1,2,3].map(() => (
-                <svg class="text-gold w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2L14.09 8.26L21 9.27L16.5 13.64L17.73 20.64L12 17.27L6.27 20.64L7.5 13.64L3 9.27L9.91 8.26L12 2Z"/>
-                </svg>
-              ))}
-              <span class="text-gold/70 text-xs font-sans tracking-wider ml-1">3× World Record Holder</span>
-            </div>
-
-            <p class="text-white/55 text-sm font-body leading-relaxed">
-              A trailblazer who has stood atop the pinnacle of achievement three times over. Mr. Arun built Paramount World Records to ensure that the world's next record-breakers have the platform they deserve.
-            </p>
-          </div>
-        </div>
-
-        <!-- Founder 2: Preeti -->
-        <div class="relative group">
-          <div class="border border-gold/20 group-hover:border-gold/50 transition-colors duration-500 p-8">
-            <div class="absolute -top-px left-8 right-8 h-px bg-gold/50 group-hover:bg-gold transition-colors duration-500"></div>
-
-            <div class="flex items-start gap-5">
-              <div class="w-16 h-16 rounded-full bg-gold/10 border-2 border-gold flex items-center justify-center flex-shrink-0">
-                <span class="font-display text-gold text-2xl font-semibold">P</span>
-              </div>
-              <div>
-                <p class="text-gold text-[10px] tracking-[0.35em] uppercase font-sans mb-1">Co-Founder & Director</p>
-                <h3 class="font-display text-2xl text-white font-semibold mb-0.5">Mrs. Preeti Gupta</h3>
-                <p class="text-gold/60 text-sm font-sans italic">World Record Holder</p>
-              </div>
-            </div>
-
-            <div class="mt-6 flex items-center gap-2 mb-4">
-              {[1].map(() => (
-                <svg class="text-gold w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2L14.09 8.26L21 9.27L16.5 13.64L17.73 20.64L12 17.27L6.27 20.64L7.5 13.64L3 9.27L9.91 8.26L12 2Z"/>
-                </svg>
-              ))}
-              <span class="text-gold/70 text-xs font-sans tracking-wider ml-1">1× World Record Holder</span>
-            </div>
-
-            <p class="text-white/55 text-sm font-body leading-relaxed">
-              Mrs. Preeti Gupta brings vision, rigor, and global operational excellence to Paramount. Her personal experience navigating record-certification processes inspired a fairer, more accessible registry for all.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── PROCESS ───────────────────────────────────────────────── -->
-  <section id="process" class="py-28 px-6 max-w-7xl mx-auto">
-    <div class="text-center mb-20">
-      <p class="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-4">How It Works</p>
-      <h2 class="font-display text-5xl lg:text-6xl font-light text-white">
-        The Path to<br/><em class="text-gold">Certification</em>
-      </h2>
-    </div>
-
-    <div class="relative">
-      <!-- Connector Line (desktop) -->
-      <div class="hidden lg:block absolute top-16 left-[calc(16.66%+2rem)] right-[calc(16.66%+2rem)] h-px bg-gold/20"></div>
-
-      <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
-        {[
-          {
-            step: '01',
-            title: 'Idea Submission',
-            subtitle: 'Propose Your Record',
-            desc: 'Submit your record concept through our digital portal. Our specialists evaluate feasibility, uniqueness, and global significance within 5 business days. A dedicated advisor is assigned to your application.',
-            icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
-          },
-          {
-            step: '02',
-            title: 'Evidence Review',
-            subtitle: 'Rigorous Verification',
-            desc: 'Submit photographic, video, and witness documentation. Our international panel of judges and subject-matter experts scrutinizes every detail to ensure complete authenticity and compliance with our standards.',
-            icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
-          },
-          {
-            step: '03',
-            title: 'Official Certification',
-            subtitle: 'Your Legacy Enshrined',
-            desc: 'Receive your official Paramount World Records certificate, unique QR-verified ID, press kit, and permanent entry in the Global Registry. Your achievement is now part of history — forever.',
-            icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z',
-          },
-        ].map((item) => (
-          <div class="relative group text-center lg:text-left">
-            <!-- Step number -->
-            <div class="relative inline-flex lg:flex items-center justify-center w-14 h-14 border border-gold/40 group-hover:border-gold group-hover:bg-gold/5 transition-all duration-400 mb-6 mx-auto lg:mx-0">
-              <span class="text-gold font-display text-xl font-semibold">{item.step}</span>
-            </div>
-
-            <div class="mb-3">
-              <p class="text-gold/60 text-[10px] tracking-[0.35em] uppercase font-sans mb-1">{item.subtitle}</p>
-              <h3 class="font-display text-2xl text-white">{item.title}</h3>
-            </div>
-
-            <p class="text-white/50 text-sm font-body leading-relaxed">{item.desc}</p>
-
-            <div class="mt-6 w-8 h-px bg-gold/30 group-hover:w-16 group-hover:bg-gold transition-all duration-500 mx-auto lg:mx-0"></div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <div class="text-center mt-16">
-      <a href="#contact" class="inline-block bg-transparent border border-gold text-gold hover:bg-gold hover:text-navy-900 px-10 py-4 text-xs font-sans font-semibold tracking-[0.25em] uppercase transition-all duration-300 hover:shadow-gold">
-        Begin Your Application
-      </a>
-    </div>
-  </section>
-
-  <!-- ─── CONTACT ───────────────────────────────────────────────── -->
-  <section id="contact" class="py-28 bg-navy-800/50 border-t border-gold/10">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <p class="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-4">Get in Touch</p>
-        <h2 class="font-display text-5xl lg:text-6xl font-light text-white">
-          Business & Media<br/><em class="text-gold">Inquiries</em>
-        </h2>
-        <p class="text-white/50 mt-6 max-w-xl mx-auto font-body leading-relaxed">
-          Whether you're pursuing a record, seeking press accreditation, or exploring a partnership — our team responds within 48 hours.
-        </p>
-      </div>
-
-      <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-        <!-- Contact Form -->
-        <div class="relative border border-gold/20 p-8">
-          <div class="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-gold"></div>
-          <div class="absolute -top-1 -right-1 w-4 h-4 border-r-2 border-t-2 border-gold"></div>
-          <div class="absolute -bottom-1 -left-1 w-4 h-4 border-l-2 border-b-2 border-gold"></div>
-          <div class="absolute -bottom-1 -right-1 w-4 h-4 border-r-2 border-b-2 border-gold"></div>
-
-          <h3 class="font-display text-2xl text-white mb-6">Send a Message</h3>
-
-          <form class="space-y-4" action="#" method="POST">
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label class="text-gold/60 text-xs tracking-widest uppercase font-sans block mb-2">Full Name</label>
-                <input type="text" placeholder="Your Name"
-                       class="w-full bg-white/5 border border-white/15 focus:border-gold text-white placeholder-white/25 px-4 py-3 text-sm font-sans outline-none transition-colors duration-300" />
-              </div>
-              <div>
-                <label class="text-gold/60 text-xs tracking-widest uppercase font-sans block mb-2">Country</label>
-                <input type="text" placeholder="Your Country"
-                       class="w-full bg-white/5 border border-white/15 focus:border-gold text-white placeholder-white/25 px-4 py-3 text-sm font-sans outline-none transition-colors duration-300" />
-              </div>
-            </div>
-            <div>
-              <label class="text-gold/60 text-xs tracking-widest uppercase font-sans block mb-2">Email Address</label>
-              <input type="email" placeholder="your@email.com"
-                     class="w-full bg-white/5 border border-white/15 focus:border-gold text-white placeholder-white/25 px-4 py-3 text-sm font-sans outline-none transition-colors duration-300" />
-            </div>
-            <div>
-              <label class="text-gold/60 text-xs tracking-widest uppercase font-sans block mb-2">Inquiry Type</label>
-              <select class="w-full bg-navy-800 border border-white/15 focus:border-gold text-white/70 px-4 py-3 text-sm font-sans outline-none transition-colors duration-300 appearance-none">
-                <option value="">Select inquiry type…</option>
-                <option>Record Application</option>
-                <option>Certificate Verification</option>
-                <option>Media & Press</option>
-                <option>Corporate Partnership</option>
-                <option>General Inquiry</option>
-              </select>
-            </div>
-            <div>
-              <label class="text-gold/60 text-xs tracking-widest uppercase font-sans block mb-2">Message</label>
-              <textarea rows="4" placeholder="Tell us about your record attempt or inquiry…"
-                        class="w-full bg-white/5 border border-white/15 focus:border-gold text-white placeholder-white/25 px-4 py-3 text-sm font-sans outline-none transition-colors duration-300 resize-none"></textarea>
-            </div>
-            <button type="submit"
-                    class="w-full bg-gold hover:bg-gold-300 text-navy-900 py-4 text-xs font-sans font-semibold tracking-[0.25em] uppercase transition-all duration-300 hover:shadow-gold">
-              Submit Inquiry
-            </button>
-          </form>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="flex flex-col gap-6">
-          {[
-            {
-              label: 'General Inquiries',
-              value: 'info@paramountworldrecords.com',
-              sub: 'Responses within 48 hours',
-              icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-            },
-            {
-              label: 'Media & Press Relations',
-              value: 'press@paramountworldrecords.com',
-              sub: 'Priority response for journalists',
-              icon: 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z',
-            },
-            {
-              label: 'Partnerships & Sponsorships',
-              value: 'partners@paramountworldrecords.com',
-              sub: 'Global collaboration opportunities',
-              icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
-            },
-          ].map(contact => (
-            <div class="border border-white/10 hover:border-gold/30 transition-colors duration-300 p-6 flex gap-5 items-start">
-              <div class="w-10 h-10 border border-gold/30 flex items-center justify-center flex-shrink-0">
-                <svg class="text-gold w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d={contact.icon}/>
-                </svg>
-              </div>
-              <div>
-                <p class="text-gold/70 text-[10px] tracking-[0.35em] uppercase font-sans mb-1">{contact.label}</p>
-                <p class="text-white font-sans text-sm mb-1">{contact.value}</p>
-                <p class="text-white/40 text-xs font-sans">{contact.sub}</p>
-              </div>
-            </div>
-          ))}
-
-          <!-- Social / Global presence note -->
-          <div class="border border-gold/20 p-6 mt-2 bg-gold/3">
-            <p class="text-gold/70 text-[10px] tracking-[0.35em] uppercase font-sans mb-3">Global Registry</p>
-            <p class="text-white/60 text-sm font-body leading-relaxed">
-              Paramount World Records operates globally, with record adjudicators stationed across six continents. Applications are accepted in all languages.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
-  <footer class="border-t border-gold/10 py-12 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-full border border-gold flex items-center justify-center">
-            <span class="text-gold font-display font-bold text-sm">P</span>
-          </div>
-          <div>
-            <p class="text-white font-display text-sm tracking-wide">Paramount World Records</p>
-            <p class="text-gold/50 text-[10px] tracking-widest uppercase font-sans">Global Record Authority</p>
-          </div>
-        </div>
-        <p class="text-white/25 text-xs font-sans text-center">
-          © {new Date().getFullYear()} Paramount World Records. Founded by Mr. Arun & Mrs. Preeti Gupta. All rights reserved.
-        </p>
-        <div class="flex gap-6 text-xs font-sans tracking-wider uppercase text-white/30">
-          <a href="#" class="hover:text-gold/70 transition-colors">Privacy</a>
-          <a href="#" class="hover:text-gold/70 transition-colors">Terms</a>
-          <a href="#" class="hover:text-gold/70 transition-colors">Sitemap</a>
-        </div>
-      </div>
     </div>
   </footer>
 
 </Layout>
 
 <style>
-  /* Sticky nav background on scroll */
-  nav.scrolled {
-    background: rgba(0, 21, 47, 0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.12);
-  }
-
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-fade-in { animation: fade-in 1.2s ease forwards; }
-  .animate-fade-up { animation: fade-up 1s ease forwards; }
-  .animate-fade-up-delay { animation: fade-up 1s 0.3s ease both; }
+  .text-gold { color: #C5A059; }
+  .border-gold { border-color: #C5A059; }
+  .bg-gold { background-color: #C5A059; }
 </style>
-
-<script>
-  // Navbar scroll effect
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar?.classList.toggle('scrolled', window.scrollY > 40);
-  });
-
-  // Intersection observer for section reveals
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('section').forEach(el => observer.observe(el));
-</script>
