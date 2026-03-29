@@ -2,18 +2,73 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Paramount World Records">
-	<main class="min-h-screen flex flex-col items-center justify-center text-center px-4">
-		<div class="border-4 border-[#D4AF37] p-12 max-w-4xl shadow-2xl">
-			<h1 class="text-6xl font-bold text-[#D4AF37] mb-4 uppercase tracking-tighter">
-				Paramount <span class="text-white">World Records</span>
+	<main class="hero">
+		<section class="card">
+			<h1>
+				Paramount <span>World Records</span>
 			</h1>
-			<div class="h-1 w-20 bg-[#D4AF37] mx-auto mb-8"></div>
-			<p class="text-2xl text-white font-light italic mb-10">
-				Official World Record Registry
-			</p>
-			<button class="bg-[#D4AF37] text-[#002147] px-10 py-4 font-bold uppercase hover:bg-white transition-all">
-				Apply for Record
-			</button>
-		</div>
+			<div class="divider"></div>
+			<p>Official World Record Registry</p>
+			<a class="cta" href="#">Apply for Record</a>
+		</section>
 	</main>
+	<style>
+		.hero {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 1.25rem;
+		}
+
+		.card {
+			width: min(980px, 100%);
+			border: 4px solid #d4af37;
+			padding: clamp(1.25rem, 4vw, 3rem);
+			text-align: center;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+		}
+
+		h1 {
+			margin: 0 0 0.75rem;
+			color: #d4af37;
+			text-transform: uppercase;
+			letter-spacing: 0.02em;
+			line-height: 1.05;
+			font-size: clamp(2rem, 6vw, 4.2rem);
+		}
+
+		h1 span {
+			color: #ffffff;
+		}
+
+		.divider {
+			height: 4px;
+			width: 96px;
+			margin: 0 auto 1.25rem;
+			background: #d4af37;
+		}
+
+		p {
+			margin: 0 0 2rem;
+			font-size: clamp(1rem, 3vw, 1.7rem);
+		}
+
+		.cta {
+			display: inline-block;
+			padding: 0.85rem 1.4rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.03em;
+			text-decoration: none;
+			background: #d4af37;
+			color: #002147;
+			transition: transform 0.15s ease, background-color 0.15s ease;
+		}
+
+		.cta:hover {
+			background: #ffffff;
+			transform: translateY(-1px);
+		}
+	</style>
 </Layout>
