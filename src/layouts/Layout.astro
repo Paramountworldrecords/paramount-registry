@@ -1,0 +1,87 @@
+src/layouts/Layout.astro---
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = 'Paramount World Records — Recognizing the Extraordinary',
+  description = 'The world\'s most prestigious record-certification authority. Submit your record attempt, verify certificates, and join a global legacy of extraordinary achievement.',
+  ogImage = '/og-image.jpg',
+  canonicalURL = Astro.url.href,
+} = Astro.props;
+
+const siteName = 'Paramount World Records';
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Paramount World Records" />
+    <meta name="keywords" content="world records, record certification, world record attempt, Guinness alternative, global record registry, official certificate, Paramount World Records, Arun Bigguy, record verification" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Paramount World Records",
+        "url": "https://paramountworldrecords.com",
+        "logo": "https://paramountworldrecords.com/logo.png",
+        "description": "The world's most prestigious global record-certification authority.",
+        "foundingDate": "2024",
+        "founders": [
+          { "@type": "Person", "name": "Arun (Bigguy Arun)", "description": "3x World Record Holder" },
+          { "@type": "Person", "name": "Preeti Gupta", "description": "1x World Record Holder" }
+        ],
+        "sameAs": []
+      }
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#002147" />
+  </head>
+
+  <body class="bg-navy-900 text-white font-body antialiased overflow-x-hidden">
+    <slot />
+
+    <!-- Global subtle grain overlay -->
+    <div class="pointer-events-none fixed inset-0 z-50 opacity-[0.025]"
+         style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg=='); background-repeat: repeat;">
+    </div>
+  </body>
+</html>
