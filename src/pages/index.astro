@@ -45,7 +45,7 @@ import Layout from '../layouts/Layout.astro';
 		</section>
 
 		<section id="about" class="section">
-			<div class="container panel">
+			<div class="container panel about-panel">
 				<h2>About Us</h2>
 				<p>
 					Paramount World Records is an independent record registry focused on integrity, transparent review,
@@ -408,6 +408,25 @@ import Layout from '../layouts/Layout.astro';
 			background: rgba(11, 27, 53, 0.92);
 			border: 1px solid rgba(212, 175, 55, 0.3);
 			padding: 1.2rem;
+		}
+
+		.about-panel {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.about-panel::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: url("/images/logo.png") center/340px no-repeat;
+			opacity: 0.08;
+			pointer-events: none;
+		}
+
+		.about-panel > * {
+			position: relative;
+			z-index: 1;
 		}
 
 		.grid {
