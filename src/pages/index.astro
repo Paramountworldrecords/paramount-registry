@@ -4,7 +4,10 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Paramount World Records">
 	<header class="site-header">
 		<div class="container nav-wrap">
-			<a class="brand" href="#home">Paramount World Records</a>
+			<a class="brand" href="#home">
+				<img src="/images/logo.png" alt="Paramount World Records logo" />
+				<span>Paramount World Records</span>
+			</a>
 			<nav class="top-nav">
 				<a href="#about">About Us</a>
 				<a href="#apply">Apply For A Record</a>
@@ -263,12 +266,21 @@ import Layout from '../layouts/Layout.astro';
 		}
 
 		.brand {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.55rem;
 			text-decoration: none;
 			color: #d4af37;
 			font-weight: 700;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 			font-size: 0.92rem;
+		}
+
+		.brand img {
+			height: 34px;
+			width: auto;
+			display: block;
 		}
 
 		.top-nav {
