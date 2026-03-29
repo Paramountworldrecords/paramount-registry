@@ -2,75 +2,31 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Paramount World Records — Recognizing the Extraordinary">
+<Layout title="Paramount World Records">
+	<main class="min-h-screen bg-[#002147] flex flex-col items-center justify-center text-center px-4">
+		<div class="border-4 border-[#D4AF37] p-8 md:p-16 max-w-4xl bg-[#002147]/50 backdrop-blur-sm shadow-2xl">
+			<h1 class="text-5xl md:text-7xl font-bold text-[#D4AF37] mb-6 tracking-tighter">
+				PARAMOUNT <br/> <span class="text-white">WORLD RECORDS</span>
+			</h1>
+			
+			<div class="h-1 w-24 bg-[#D4AF37] mx-auto mb-8"></div>
+			
+			<p class="text-xl md:text-2xl text-gray-200 mb-10 font-light italic">
+				"Where Excellence Meets Global Recognition"
+			</p>
+			
+			<div class="flex flex-wrap justify-center gap-4">
+				<a href="#" class="bg-[#D4AF37] text-[#002147] px-8 py-3 font-bold hover:bg-white transition-all uppercase tracking-widest">
+					Apply Now
+				</a>
+				<a href="#" class="border border-[#D4AF37] text-[#D4AF37] px-8 py-3 font-bold hover:bg-[#D4AF37] hover:text-[#002147] transition-all uppercase tracking-widest">
+					Official Registry
+				</a>
+			</div>
+		</div>
 
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500">
-    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center">
-          <span class="text-gold font-display font-bold text-lg leading-none">P</span>
-        </div>
-        <div class="leading-tight">
-          <p class="text-white font-display font-semibold text-sm tracking-[0.12em] uppercase">Paramount</p>
-          <p class="text-gold text-[10px] tracking-[0.25em] uppercase font-sans">World Records</p>
-        </div>
-      </a>
-
-      <ul class="hidden md:flex items-center gap-8 text-sm font-sans tracking-widest uppercase text-white/70">
-        <li><a href="#about" class="hover:text-gold transition-colors duration-300">About</a></li>
-        <li><a href="#process" class="hover:text-gold transition-colors duration-300">Process</a></li>
-        <li><a href="#founders" class="hover:text-gold transition-colors duration-300">Founders</a></li>
-        <li><a href="#contact" class="hover:text-gold transition-colors duration-300">Contact</a></li>
-        <li>
-          <a href="#verify" class="ml-4 px-5 py-2 border border-gold text-gold hover:bg-gold hover:text-navy-900 transition-all duration-300 text-xs tracking-widest">
-            Verify Record
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-24 pb-16 bg-slate-900">
-    <div class="relative z-10 max-w-5xl mx-auto px-6">
-      <p class="text-gold/80 text-xs tracking-[0.4em] uppercase font-sans mb-6">
-        Est. 2024 · Global Record Authority
-      </p>
-      <h1 class="font-display text-6xl sm:text-7xl lg:text-9xl font-light text-white leading-none mb-4">
-        Recognizing<br/>
-        <em class="text-gold not-italic font-semibold">the Extraordinary</em>
-      </h1>
-      <div class="w-24 h-px bg-gold mx-auto my-8"></div>
-      <p class="font-body text-white/60 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed mb-12">
-        The world's most trusted registry for human achievement. Where potential becomes legacy, and legacy becomes history.
-      </p>
-      
-      <div id="founders" class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto mt-20">
-        <div class="border border-gold/20 p-8 text-left">
-          <p class="text-gold text-[10px] tracking-[0.35em] uppercase mb-1">Co-Founder & Chairman</p>
-          <h3 class="text-2xl text-white font-semibold">Mr. Arun</h3>
-          <p class="text-white/55 text-sm mt-4">3× World Record Holder. Built Paramount to ensure the next generation of record-breakers have the platform they deserve.</p>
-        </div>
-        <div class="border border-gold/20 p-8 text-left">
-          <p class="text-gold text-[10px] tracking-[0.35em] uppercase mb-1">Co-Founder & Director</p>
-          <h3 class="text-2xl text-white font-semibold">Mrs. Preeti Gupta</h3>
-          <p class="text-white/55 text-sm mt-4">World Record Holder. Bringing vision and global operational excellence to the most prestigious registry.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="border-t border-gold/10 py-12 px-6 bg-slate-950">
-    <div class="max-w-7xl mx-auto text-center">
-        <p class="text-white/25 text-xs font-sans">
-          © 2026 Paramount World Records. Founded by Mr. Arun & Mrs. Preeti Gupta. All rights reserved.
-        </p>
-    </div>
-  </footer>
-
+		<footer class="mt-12 text-[#D4AF37]/60 text-sm tracking-widest uppercase">
+			Official World Record Registry • 2026
+		</footer>
+	</main>
 </Layout>
-
-<style>
-  .text-gold { color: #C5A059; }
-  .border-gold { border-color: #C5A059; }
-  .bg-gold { background-color: #C5A059; }
-</style>
