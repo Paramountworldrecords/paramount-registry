@@ -1,32 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-
 <Layout title="Paramount World Records">
-	<main class="min-h-screen bg-[#002147] flex flex-col items-center justify-center text-center px-4">
-		<div class="border-4 border-[#D4AF37] p-8 md:p-16 max-w-4xl bg-[#002147]/50 backdrop-blur-sm shadow-2xl">
-			<h1 class="text-5xl md:text-7xl font-bold text-[#D4AF37] mb-6 tracking-tighter">
-				PARAMOUNT <br/> <span class="text-white">WORLD RECORDS</span>
+	<main class="min-h-screen flex flex-col items-center justify-center text-center px-4">
+		<div class="border-4 border-[#D4AF37] p-12 max-w-4xl shadow-2xl">
+			<h1 class="text-6xl font-bold text-[#D4AF37] mb-4 uppercase tracking-tighter">
+				Paramount <span class="text-white">World Records</span>
 			</h1>
-			
-			<div class="h-1 w-24 bg-[#D4AF37] mx-auto mb-8"></div>
-			
-			<p class="text-xl md:text-2xl text-gray-200 mb-10 font-light italic">
-				"Where Excellence Meets Global Recognition"
+			<div class="h-1 w-20 bg-[#D4AF37] mx-auto mb-8"></div>
+			<p class="text-2xl text-white font-light italic mb-10">
+				Official World Record Registry
 			</p>
-			
-			<div class="flex flex-wrap justify-center gap-4">
-				<a href="#" class="bg-[#D4AF37] text-[#002147] px-8 py-3 font-bold hover:bg-white transition-all uppercase tracking-widest">
-					Apply Now
-				</a>
-				<a href="#" class="border border-[#D4AF37] text-[#D4AF37] px-8 py-3 font-bold hover:bg-[#D4AF37] hover:text-[#002147] transition-all uppercase tracking-widest">
-					Official Registry
-				</a>
-			</div>
+			<button class="bg-[#D4AF37] text-[#002147] px-10 py-4 font-bold uppercase hover:bg-white transition-all">
+				Apply for Record
+			</button>
 		</div>
-
-		<footer class="mt-12 text-[#D4AF37]/60 text-sm tracking-widest uppercase">
-			Official World Record Registry • 2026
-		</footer>
 	</main>
 </Layout>
