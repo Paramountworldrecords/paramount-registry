@@ -1,42 +1,18 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="canonical" href={canonicalURL} />
-
-    <title>{title}</title>
-    <meta name="description" content={description} />
-
+    <meta name="viewport" content="width=device-width" />
+    <title>Paramount World Records</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
-
-    <style is:global>
-      :root {
-        --navy: #0A1D37;
-        --gold: #C5A059;
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: '#002147',
+              gold: '#D4AF37',
+            }
+          }
+        }
       }
-      body {
-        background-color: var(--navy);
-        color: white;
-        margin: 0;
-        font-family: 'Source Sans 3', sans-serif;
-      }
-      h1, h2, h3, .font-display {
-        font-family: 'Cormorant Garamond', serif;
-      }
-      /* Adding this to make sure Tailwind knows your specific gold color */
-      @layer base {
-        .text-gold { color: var(--gold); }
-        .border-gold { border-color: var(--gold); }
-      }
-    </style>
-  </head>
-
-  <body>
-    <slot />
-  </body>
-</html>
+    </script>
+</head>
