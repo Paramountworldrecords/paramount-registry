@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Search Records">
+	<main class="section">
+		<div class="container panel" data-reveal>
+			<h2>Search Records</h2>
+			<p style="margin-top: -0.4rem; color: #d8e0ef; line-height: 1.6;">
+				Initial phase: record suggestions. Later, connect this page to your records database or registry listing.
+			</p>
+
+			<label style="display: block; margin-top: 1rem; color: #d8e0ef;">
+				Search suggestions
+				<input
+					type="search"
+					placeholder="Type a keyword (e.g., marathon, speed write)"
+					style="width: 100%; margin-top: 0.5rem; border: 1px solid rgba(212,175,55,0.35); background: rgba(3,12,26,0.8); color: #fff; padding: 0.8rem; border-radius: 2px;"
+					oninput="(function(el){ if(!window.__prSuggestions) return; const v=(el.value||'').toLowerCase(); const items=document.querySelectorAll('[data-suggestion]'); items.forEach(i=>{ const t=(i.getAttribute('data-text')||'').toLowerCase(); i.style.display = v && t.indexOf(v)===-1 ? 'none' : ''; }); })(this)"
+				/>
+			</label>
+
+			<ul class="suggestions" style="margin-top: 1.1rem;">
+				<li data-suggestion data-text="Most participants in a synchronized performance">Most participants in a synchronized performance</li>
+				<li data-suggestion data-text="Fastest completion of a themed innovation challenge">Fastest completion of a themed innovation challenge</li>
+				<li data-suggestion data-text="Largest verified educational awareness campaign">Largest verified educational awareness campaign</li>
+			</ul>
+
+			<p style="margin-top: 1.2rem; color:#d8e0ef; line-height: 1.6;">
+				Want real registry searching? Tell me what platform you will use to store records (Google Sheets, Airtable, custom database, etc.).
+			</p>
+		</div>
+
+		<script>
+			// Flag used by the inline search filter above.
+			window.__prSuggestions = true;
+		</script>
+	</main>
+</Layout>
+

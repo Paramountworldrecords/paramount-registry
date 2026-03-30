@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Apply For A Record">
+	<main class="section">
+		<div class="container panel about-panel" data-reveal>
+			<h2>Apply For A Record</h2>
+			<p style="margin-top: -0.4rem; color: #d8e0ef; line-height: 1.6; max-width: 900px;">
+				Submit your profile and record concept here. This category supports both <strong>new record creation</strong> and
+				<strong>existing record breaking</strong> attempts.
+			</p>
+
+			<form class="apply-form" id="applyForm" action="#" method="post">
+				<label>
+					Full Name
+					<input type="text" name="fullName" required placeholder="Enter your full name" />
+				</label>
+				<label>
+					Email Address
+					<input type="email" name="email" required placeholder="Enter your email" />
+				</label>
+				<label>
+					Phone / WhatsApp
+					<input type="tel" name="phone" required placeholder="+91..." />
+				</label>
+				<label>
+					City
+					<input type="text" name="city" required placeholder="Your city" />
+				</label>
+				<label>
+					Attempt Type
+					<select name="attemptType" required>
+						<option value="New Record Creation">New Record Creation</option>
+						<option value="Existing Record Breaking">Existing Record Breaking</option>
+					</select>
+				</label>
+
+				<label class="full">
+					Applicant Overview
+					<textarea name="overview" rows="4" required placeholder="Tell us about yourself and your achievement background"></textarea>
+				</label>
+				<label class="full">
+					Record Attempt Details
+					<textarea name="recordDetails" rows="5" required placeholder="Describe the proposed record, methodology and expected outcome"></textarea>
+				</label>
+
+				<label class="full" style="margin-top: 0.3rem;">
+					<input type="checkbox" name="consent" required />
+					I confirm that the information provided is accurate and I agree to be contacted by Paramount World Records.
+				</label>
+
+				<div class="full" style="margin-top: 0.4rem; display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center;">
+					<button type="submit" class="btn btn-primary">Submit Application</button>
+					<a class="btn btn-ghost" href="mailto:admin@paramountworldrecords.com">Email Admin Instead</a>
+				</div>
+			</form>
+
+			<p id="applyStatus" style="margin-top: 1rem; color: #d8e0ef; display: none;"></p>
+		</div>
+	</main>
+
+	<script>
+		(function () {
+			const form = document.getElementById("applyForm");
+			const statusEl = document.getElementById("applyStatus");
+			if (!form) return;
+
+			form.addEventListener("submit", (e) => {
+				e.preventDefault();
+
+				const data = new FormData(form);
+				const to = "admin@paramountworldrecords.com";
+				const subject = "Paramount World Records - New Application";
+
+				const bodyLines = [];
+				bodyLines.push("Full Name: " + (data.get("fullName") || ""));
+				bodyLines.push("Email Address: " + (data.get("email") || ""));
+				bodyLines.push("Phone / WhatsApp: " + (data.get("phone") || ""));
+				bodyLines.push("City: " + (data.get("city") || ""));
+				bodyLines.push("Attempt Type: " + (data.get("attemptType") || ""));
+				bodyLines.push("");
+				bodyLines.push("Applicant Overview:");
+				bodyLines.push(data.get("overview") || "");
+				bodyLines.push("");
+				bodyLines.push("Record Attempt Details:");
+				bodyLines.push(data.get("recordDetails") || "");
+
+				const body = bodyLines.join("\n");
+
+				const url =
+					"mailto:" +
+					to +
+					"?subject=" +
+					encodeURIComponent(subject) +
+					"&body=" +
+					encodeURIComponent(body);
+
+				// Opens the visitor's email composer with pre-filled content.
+				window.location.href = url;
+				if (statusEl) {
+					statusEl.style.display = "block";
+					statusEl.textContent = "If your email app opened, send the message to complete the application.";
+				}
+			});
+		})();
+	</script>
+</Layout>
+

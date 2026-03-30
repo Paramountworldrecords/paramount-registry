@@ -1,0 +1,47 @@
+---
+const links = {
+	about: "/about",
+	founders: "/founders",
+	apply: "/apply",
+	departments: "/departments",
+	vision: "/vision-mission",
+	achievers: "/achievers",
+	press: "/press-media",
+	gallery: "/gallery",
+	records: "/records",
+	clients: "/clients",
+	work: "/work",
+	contact: "/contact",
+};
+---
+
+<header class="site-header">
+	<div class="container nav-wrap">
+		<a class="brand" href="/">
+			<img src="/images/logo.png" alt="Paramount World Records logo" />
+			<span>Paramount World Records</span>
+		</a>
+
+		<nav class="top-nav" aria-label="Primary">
+			<a href={links.about}>About Us</a>
+			<a href={links.founders}>Founders</a>
+			<a href={links.apply}>Apply For A Record</a>
+			<a href={links.departments}>Departments & Process</a>
+			<a href={links.vision}>Vision & Mission</a>
+			<a href={links.achievers}>World Record Achievers</a>
+			<a href={links.contact}>Contact Us</a>
+
+			<details class="menu">
+				<summary>More</summary>
+				<div class="dropdown" role="menu" aria-label="More pages">
+					<a href={links.press}>Press & Media Release</a>
+					<a href={links.gallery}>Gallery</a>
+					<a href={links.records}>Search Records</a>
+					<a href={links.clients}>Our Esteemed Clients</a>
+					<a href={links.work}>Work With Us</a>
+				</div>
+			</details>
+		</nav>
+	</div>
+</header>
+

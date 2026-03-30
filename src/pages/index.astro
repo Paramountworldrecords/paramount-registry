@@ -1,28 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Paramount World Records">
+<Layout title="Paramount World Records" showChrome={false}>
 	<header class="site-header">
 		<div class="container nav-wrap">
-			<a class="brand" href="#home">
+			<a class="brand" href="/">
 				<img src="/images/logo.png" alt="Paramount World Records logo" />
 				<span>Paramount World Records</span>
 			</a>
 			<nav class="top-nav">
-				<a href="#about">About Us</a>
-				<a href="#apply">Apply For A Record</a>
-				<a href="#departments">Departments & Process</a>
-				<a href="#vision">Vision & Mission</a>
-				<a href="#achievers">World Record Achievers</a>
-				<a href="#contact">Contact Us</a>
+				<a href="/about">About Us</a>
+				<a href="/founders">Founders</a>
+				<a href="/apply">Apply For A Record</a>
+				<a href="/departments">Departments & Process</a>
+				<a href="/vision-mission">Vision & Mission</a>
+				<a href="/achievers">World Record Achievers</a>
+				<a href="/contact">Contact Us</a>
 				<details class="menu">
 					<summary>More</summary>
 					<div class="dropdown">
-						<a href="#media">Press & Media Release</a>
-						<a href="#gallery">Gallery</a>
-						<a href="#records">Search Records</a>
-						<a href="#clients">Our Esteemed Clients</a>
-						<a href="#work">Work With Us</a>
+						<a href="/press-media">Press & Media Release</a>
+						<a href="/gallery">Gallery</a>
+						<a href="/records">Search Records</a>
+						<a href="/clients">Our Esteemed Clients</a>
+						<a href="/work">Work With Us</a>
 					</div>
 				</details>
 			</nav>
@@ -31,26 +32,29 @@ import Layout from '../layouts/Layout.astro';
 
 	<main id="home">
 		<section class="hero section">
-			<div class="container hero-card">
+			<div class="container hero-card" data-reveal>
 				<p class="tag">Elite Global Record Authority</p>
 				<h1>Paramount <span>World Records</span></h1>
 				<p class="lead">
 					Guinness-style record authorisation, adjudication, verification, certification and publishing.
 				</p>
 				<div class="hero-actions">
-					<a class="btn btn-primary" href="mailto:apply@paramountworldrecords.com">Apply For Record</a>
-					<a class="btn btn-ghost" href="#records">Search Record Suggestions</a>
+					<a class="btn btn-primary" href="/apply">Apply For A Record</a>
+					<a class="btn btn-ghost" href="/records">Search Record Suggestions</a>
 				</div>
 			</div>
 		</section>
 
 		<section id="about" class="section">
-			<div class="container panel about-panel">
+			<div class="container panel about-panel" data-reveal>
 				<h2>About Us</h2>
 				<p>
-					Paramount World Records is an independent record registry focused on integrity, transparent review,
-					and global recognition. Our panel combines event validation standards with modern documentation to
-					deliver trusted record outcomes.
+					Paramount World Records is an independent record registry and a <strong>Pvt. Ltd.</strong> company headquartered in
+					Mumbai. We operate with branches in Chennai, Coimbatore and Kancheepuram—and we are continuously expanding.
+				</p>
+				<p>
+					Our registry is built to support authenticity and excellence through transparent validation, expert verification,
+					and trusted certification—so every extraordinary effort receives global recognition.
 				</p>
 			</div>
 		</section>
