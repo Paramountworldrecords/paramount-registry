@@ -17,8 +17,12 @@ const { title, showChrome = true } = Astro.props;
 		<title>{title}</title>
 		<style is:global>
 			:root {
-				--navy: #002147;
+				--navy: #070707;
 				--gold: #d4af37;
+				--gold-soft: #f2d27a;
+				--gold-deep: #9f7621;
+				--panel: rgba(20, 20, 20, 0.88);
+				--panel-2: rgba(12, 12, 12, 0.92);
 				--white: #ffffff;
 			}
 
@@ -34,7 +38,10 @@ const { title, showChrome = true } = Astro.props;
 
 			body {
 				min-height: 100vh;
-				background: var(--navy);
+				background:
+					radial-gradient(circle at 16% -4%, rgba(212, 175, 55, 0.16), transparent 32%),
+					radial-gradient(circle at 90% 6%, rgba(212, 175, 55, 0.1), transparent 28%),
+					linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
 				color: var(--white);
 				font-family: Arial, Helvetica, sans-serif;
 			}
@@ -48,7 +55,7 @@ const { title, showChrome = true } = Astro.props;
 				position: sticky;
 				top: 0;
 				z-index: 20;
-				background: rgba(5, 18, 38, 0.92);
+				background: linear-gradient(180deg, rgba(16, 16, 16, 0.96) 0%, rgba(8, 8, 8, 0.94) 100%);
 				backdrop-filter: blur(8px);
 				border-bottom: 1px solid rgba(212, 175, 55, 0.25);
 			}
@@ -115,7 +122,7 @@ const { title, showChrome = true } = Astro.props;
 				gap: 0.35rem;
 				min-width: 240px;
 				padding: 0.7rem;
-				background: #0c1d39;
+				background: linear-gradient(180deg, #161616 0%, #0d0d0d 100%);
 				border: 1px solid rgba(212, 175, 55, 0.35);
 			}
 
@@ -124,7 +131,7 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.panel {
-				background: rgba(11, 27, 53, 0.92);
+				background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%);
 				border: 1px solid rgba(212, 175, 55, 0.3);
 				padding: 1.2rem;
 				border-radius: 2px;
@@ -193,8 +200,8 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.btn-primary {
-				background: #d4af37;
-				color: #061736;
+				background: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold) 48%, var(--gold-deep) 100%);
+				color: #141414;
 			}
 
 			.btn-ghost {
@@ -208,7 +215,7 @@ const { title, showChrome = true } = Astro.props;
 
 			.btn-ghost:hover {
 				background: #ffffff;
-				color: #061736;
+				color: #101010;
 			}
 
 			.grid {
@@ -244,7 +251,7 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			a {
-				color: #f0d98a;
+				color: #f4d889;
 			}
 
 			.site-footer {
@@ -347,7 +354,7 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.profile-card {
-				background: rgba(11, 27, 53, 0.92);
+				background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%);
 				border: 1px solid rgba(212, 175, 55, 0.3);
 				padding: 1.2rem;
 				border-radius: 2px;
@@ -361,7 +368,7 @@ const { title, showChrome = true } = Astro.props;
 				place-items: center;
 				margin-bottom: 0.9rem;
 				background: radial-gradient(circle at top, rgba(212, 175, 55, 0.35), rgba(0, 0, 0, 0) 60%),
-					#0c1d39;
+					#141414;
 				border: 1px solid rgba(212, 175, 55, 0.35);
 				color: #d4af37;
 				font-weight: 800;
