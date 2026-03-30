@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Create account">
+	<main class="section">
+		<div class="container panel about-panel" style="max-width: 640px; margin: 0 auto;" data-reveal>
+			<h2>Create account</h2>
+			<p style="margin-top: -0.35rem; color: #a8b4c8; line-height: 1.6; font-size: 0.92rem;">
+				New users: register with your details. You will use your <strong>username</strong> and <strong>password</strong> to sign in. Complete the captcha before submitting.
+			</p>
+
+			<p id="regMsg" class="form-msg" hidden></p>
+
+			<form id="registerForm" class="apply-form" novalidate>
+				<label>
+					Username
+					<input type="text" name="username" required autocomplete="username" minlength="3" maxlength="32" pattern="[a-zA-Z0-9_.-]+" title="Letters, numbers, dot, underscore, hyphen" placeholder="Choose a login name" />
+				</label>
+				<label>
+					Full name
+					<input type="text" name="name" required autocomplete="name" placeholder="Your full name" />
+				</label>
+				<label>
+					Age
+					<input type="number" name="age" required min="1" max="120" placeholder="Age" />
+				</label>
+				<label>
+					Gender
+					<select name="gender" required>
+						<option value="">Select</option>
+						<option value="Female">Female</option>
+						<option value="Male">Male</option>
+						<option value="Other">Other</option>
+						<option value="Prefer not to say">Prefer not to say</option>
+					</select>
+				</label>
+				<label class="full">
+					Email
+					<input type="email" name="email" required autocomplete="email" placeholder="email@example.com" />
+				</label>
+				<label>
+					Phone
+					<input type="tel" name="phone" required autocomplete="tel" placeholder="+91..." />
+				</label>
+				<label class="full">
+					Address
+					<textarea name="address" rows="3" required placeholder="Street, city, state, PIN"></textarea>
+				</label>
+				<label>
+					Password
+					<input type="password" name="password" required autocomplete="new-password" minlength="8" placeholder="Min. 8 characters" />
+				</label>
+				<label>
+					Confirm password
+					<input type="password" name="password2" required autocomplete="new-password" minlength="8" placeholder="Repeat password" />
+				</label>
+
+				<div class="full captcha-block">
+					<span class="records-label" style="margin-bottom: 0.35rem;">Security check</span>
+					<div class="captcha-row">
+						<label class="captcha-question" id="regCaptchaLabel">Loading captcha…</label>
+						<input type="number" name="captchaAnswer" id="regCaptchaInput" required inputmode="numeric" placeholder="Answer" />
+						<button type="button" class="btn-ghost-sm" id="regCaptchaRefresh" aria-label="New captcha">New question</button>
+					</div>
+				</div>
+
+				<div class="full" style="margin-top: 0.5rem;">
+					<button type="submit" class="btn btn-primary">Create account</button>
+					<a href="/login" style="margin-left: 0.75rem; font-size: 0.9rem;">Already have an account? Login</a>
+				</div>
+			</form>
+		</div>
+	</main>
+
+	<script>
+		(function () {
+			var cap = { a: 0, b: 0, answer: 0 };
+
+			function renderCaptcha() {
+				if (!window.ParamountAuth) return;
+				cap = window.ParamountAuth.newMathCaptcha();
+				var el = document.getElementById("regCaptchaLabel");
+				var input = document.getElementById("regCaptchaInput");
+				if (el) el.textContent = "What is " + cap.a + " + " + cap.b + "?";
+				if (input) input.value = "";
+			}
+
+			function showMsg(text, ok) {
+				var m = document.getElementById("regMsg");
+				if (!m) return;
+				m.textContent = text;
+				m.hidden = !text;
+				m.style.color = ok ? "#a8e6cf" : "#ffb4b4";
+			}
+
+			document.getElementById("regCaptchaRefresh")?.addEventListener("click", renderCaptcha);
+
+			document.getElementById("registerForm")?.addEventListener("submit", async function (e) {
+				e.preventDefault();
+				showMsg("", true);
+				var form = e.target;
+				var fd = new FormData(form);
+				var username = (fd.get("username") || "").trim();
+				var name = (fd.get("name") || "").trim();
+				var age = parseInt(String(fd.get("age") || "0"), 10);
+				var gender = fd.get("gender");
+				var email = (fd.get("email") || "").trim();
+				var phone = (fd.get("phone") || "").trim();
+				var address = (fd.get("address") || "").trim();
+				var password = fd.get("password");
+				var password2 = fd.get("password2");
+				var captchaAns = parseInt(String(fd.get("captchaAnswer") || ""), 10);
+
+				if (!window.ParamountAuth) {
+					showMsg("Auth script failed to load. Refresh the page.", false);
+					return;
+				}
+				if (Number.isNaN(captchaAns) || captchaAns !== cap.answer) {
+					showMsg("Captcha is incorrect. Try again.", false);
+					renderCaptcha();
+					return;
+				}
+				if (password !== password2) {
+					showMsg("Passwords do not match.", false);
+					return;
+				}
+				if (password.length < 8) {
+					showMsg("Password must be at least 8 characters.", false);
+					return;
+				}
+
+				try {
+					var newUser = await window.ParamountAuth.registerUser({
+						username: username,
+						name: name,
+						age: age,
+						gender: gender,
+						email: email,
+						phone: phone,
+						address: address,
+						password: password
+					});
+					window.ParamountAuth.setSession({
+						username: newUser.username,
+						name: newUser.name
+					});
+					showMsg("Account created. Redirecting…", true);
+					window.ParamountAuth.updateNav();
+					setTimeout(function () {
+						window.location.href = "/home";
+					}, 600);
+				} catch (err) {
+					showMsg(err.message || "Registration failed.", false);
+					renderCaptcha();
+				}
+			});
+
+			renderCaptcha();
+		})();
+	</script>
+
+	<style>
+		.records-label {
+			display: block;
+			font-size: 0.82rem;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+			color: #a8bdd8;
+		}
+		.form-msg {
+			margin: 1rem 0 0;
+			padding: 0.65rem 0.75rem;
+			border-radius:2px;
+			background: rgba(0,0,0,.25);
+			font-size: 0.9rem;
+		}
+		.captcha-block {
+			margin-top: 0.25rem;
+		}
+		.captcha-row {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0.65rem;
+		}
+		.captcha-question {
+			flex: 1;
+			min-width: 180px;
+			margin: 0;
+			color: #d2dae6;
+			font-size: 0.95rem;
+		}
+		.captcha-row input[type="number"] {
+			width: 100px;
+		}
+		.btn-ghost-sm {
+			cursor: pointer;
+			border: 1px solid rgba(196, 194, 188, 0.5);
+			background: transparent;
+			color: #e8e6e1;
+			padding: 0.5rem 0.75rem;
+			font-size: 0.78rem;
+			border-radius: 2px;
+			font-family: inherit;
+		}
+		.btn-ghost-sm:hover {
+			background: rgba(255,255,255,.08);
+		}
+	</style>
+</Layout>

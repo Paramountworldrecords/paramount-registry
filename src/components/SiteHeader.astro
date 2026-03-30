@@ -31,6 +31,17 @@ const links = {
 			<a href={links.achievers}>World Record Achievers</a>
 			<a href={links.contact}>Contact Us</a>
 
+			<span id="authNavGuest" class="auth-nav-guest">
+				<a href="/register">Register</a>
+				<a href="/login">Login</a>
+			</span>
+			<span id="authNavUser" class="auth-nav-user" hidden>
+				<span class="auth-welcome"
+					>Hi, <strong id="authDisplayName"></strong></span
+				>
+				<button type="button" id="authLogoutBtn" class="auth-logout">Logout</button>
+			</span>
+
 			<details class="menu">
 				<summary>More</summary>
 				<div class="dropdown" role="menu" aria-label="More pages">

@@ -105,6 +105,36 @@ const { title, showChrome = true } = Astro.props;
 				cursor: pointer;
 			}
 
+			.auth-nav-guest,
+			.auth-nav-user {
+				display: inline-flex;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 0.65rem;
+			}
+
+			.auth-welcome {
+				color: var(--accent-heading);
+				font-size: 0.85rem;
+				white-space: nowrap;
+			}
+
+			.auth-logout {
+				cursor: pointer;
+				border: 1px solid rgba(196, 194, 188, 0.45);
+				background: rgba(12, 12, 12, 0.85);
+				color: #e8e6e1;
+				padding: 0.35rem 0.75rem;
+				font-size: 0.78rem;
+				border-radius: 2px;
+				font-family: inherit;
+			}
+
+			.auth-logout:hover {
+				border-color: rgba(168, 189, 216, 0.6);
+				color: #fff;
+			}
+
 			.menu {
 				position: relative;
 			}
@@ -454,6 +484,8 @@ const { title, showChrome = true } = Astro.props;
 		{showChrome ? <SiteHeader /> : null}
 		<slot />
 		{showChrome ? <SiteFooter /> : null}
+
+		<script is:inline src="/js/paramount-auth.js"></script>
 
 		<script>
 			(() => {
