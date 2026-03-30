@@ -4,37 +4,403 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Search Records">
 	<main class="section">
-		<div class="container panel" data-reveal>
-			<h2>Search Records</h2>
-			<p style="margin-top: -0.4rem; color: #d8e0ef; line-height: 1.6;">
-				Initial phase: record suggestions. Later, connect this page to your records database or registry listing.
+		<div class="container panel about-panel" data-reveal>
+			<h2>Paramount 1000 — Record Suggestions</h2>
+			<p class="records-lead">
+				We have developed the <strong>Paramount 1000</strong>—a proprietary index of records across{' '}
+				<strong>10 industries</strong> that focuses on modern metrics like speed, volume, and digital mastery. We aren’t
+				just looking for the “tallest” or “oldest”; we are looking for the <strong>highest performance in the 21st century</strong>.
+			</p>
+			<p class="records-lead" style="margin-top: 0.75rem;">
+				Use <strong>Category Filter</strong> below to browse suggestions, then search by keyword.
 			</p>
 
-			<label style="display: block; margin-top: 1rem; color: #d8e0ef;">
-				Search suggestions
-				<input
-					type="search"
-					placeholder="Type a keyword (e.g., marathon, speed write)"
-					style="width: 100%; margin-top: 0.5rem; border: 1px solid rgba(212,175,55,0.35); background: rgba(3,12,26,0.8); color: #fff; padding: 0.8rem; border-radius: 2px;"
-					oninput="(function(el){ if(!window.__prSuggestions) return; const v=(el.value||'').toLowerCase(); const items=document.querySelectorAll('[data-suggestion]'); items.forEach(i=>{ const t=(i.getAttribute('data-text')||'').toLowerCase(); i.style.display = v && t.indexOf(v)===-1 ? 'none' : ''; }); })(this)"
-				/>
-			</label>
+			<div class="records-controls">
+				<div class="records-filter-block">
+					<span class="records-label">Category filter</span>
+					<div class="record-filter-chips" id="recordFilterChips" role="group" aria-label="Filter by category">
+						<button type="button" class="filter-chip is-active" data-category="all">All categories</button>
+						<button type="button" class="filter-chip" data-category="endurance">Human Endurance &amp; Gym (100)</button>
+						<button type="button" class="filter-chip" data-category="digital">Digital &amp; Tech (100)</button>
+						<button type="button" class="filter-chip" data-category="arts">Arts &amp; Creative Speed (150)</button>
+						<button type="button" class="filter-chip" data-category="indian">Traditional Indian Strength &amp; Culture (100)</button>
+						<button type="button" class="filter-chip" data-category="mental">Mental Agility &amp; Memory (100)</button>
+						<button type="button" class="filter-chip" data-category="culinary">Culinary &amp; Food Arts (100)</button>
+						<button type="button" class="filter-chip" data-category="science">Science &amp; Innovation (50)</button>
+						<button type="button" class="filter-chip" data-category="kids">Kids &amp; Prodigies (150)</button>
+						<button type="button" class="filter-chip" data-category="reallife">Real Life &amp; Unique Skills (100)</button>
+						<button type="button" class="filter-chip" data-category="environmental">Environmental &amp; Social (50)</button>
+						<button type="button" class="filter-chip" data-category="general">General registry (legacy)</button>
+					</div>
+				</div>
+				<label class="records-search-wrap">
+					<span class="records-label">Search suggestions</span>
+					<input
+						type="search"
+						id="recordSearchInput"
+						class="records-search-input"
+						placeholder="Keyword (e.g., burpee, Rubik, chapati)"
+						autocomplete="off"
+					/>
+				</label>
+			</div>
 
-			<ul class="suggestions" style="margin-top: 1.1rem;">
-				<li data-suggestion data-text="Most participants in a synchronized performance">Most participants in a synchronized performance</li>
-				<li data-suggestion data-text="Fastest completion of a themed innovation challenge">Fastest completion of a themed innovation challenge</li>
-				<li data-suggestion data-text="Largest verified educational awareness campaign">Largest verified educational awareness campaign</li>
+			<ul class="records-list" id="recordSuggestionsList">
+				<!-- Human Endurance & Gym -->
+				<li data-suggestion data-category="endurance" data-text="Max Hindu Push-ups in 5 minutes">
+					<span class="records-cat-tag">Human Endurance &amp; Gym</span> Max Hindu Push-ups in 5 minutes.
+				</li>
+				<li data-suggestion data-category="endurance" data-text="Fastest time to perform 1000 Bodyweight Squats">
+					<span class="records-cat-tag">Human Endurance &amp; Gym</span> Fastest time to perform 1000 Bodyweight Squats.
+				</li>
+				<li data-suggestion data-category="endurance" data-text="Max Deadlift Volume Total kg in 10 minutes using 1x bodyweight">
+					<span class="records-cat-tag">Human Endurance &amp; Gym</span> Max Deadlift Volume (Total kg) in 10 minutes (using 1× bodyweight).
+				</li>
+				<li data-suggestion data-category="endurance" data-text="Longest Wall Sit with a 20kg plate">
+					<span class="records-cat-tag">Human Endurance &amp; Gym</span> Longest Wall Sit with a 20kg plate.
+				</li>
+				<li data-suggestion data-category="endurance" data-text="Max Burpees with a 10kg Vest in 3 minutes">
+					<span class="records-cat-tag">Human Endurance &amp; Gym</span> Max Burpees with a 10kg Vest in 3 minutes.
+				</li>
+				<li data-suggestion data-category="endurance" data-text="Variations major lifts Bench Clean Snatch Leg Press 1 3 5 10 minute intervals">
+					<span class="records-cat-tag">Human Endurance &amp; Gym</span> Repeat structured variations for every major lift (Bench, Clean, Snatch, Leg Press) for 1, 3, 5, and 10-minute intervals—mirroring the index design for power-to-weight and high-intensity performance.
+				</li>
+
+				<!-- Digital & Tech -->
+				<li data-suggestion data-category="digital" data-text="Fastest time to type the English Alphabet on a smartphone one-handed">
+					<span class="records-cat-tag">Digital &amp; Tech</span> Fastest time to type the English Alphabet on a smartphone (one-handed).
+				</li>
+				<li data-suggestion data-category="digital" data-text="Most AI-generated images created from unique prompts in 10 minutes">
+					<span class="records-cat-tag">Digital &amp; Tech</span> Most AI-generated images created from unique prompts in 10 minutes.
+				</li>
+				<li data-suggestion data-category="digital" data-text="Fastest time to assemble a PC from scratch">
+					<span class="records-cat-tag">Digital &amp; Tech</span> Fastest time to assemble a PC from scratch.
+				</li>
+				<li data-suggestion data-category="digital" data-text="Longest continuous live stream by a solo gamer">
+					<span class="records-cat-tag">Digital &amp; Tech</span> Longest continuous live stream by a solo gamer.
+				</li>
+				<li data-suggestion data-category="digital" data-text="Fastest coding of a functional To-Do List app HTML CSS JS">
+					<span class="records-cat-tag">Digital &amp; Tech</span> Fastest coding of a functional To-Do List app (HTML/CSS/JS).
+				</li>
+
+				<!-- Arts & Creative Speed -->
+				<li data-suggestion data-category="arts" data-text="Most portraits sketched in 60 minutes must be recognizable">
+					<span class="records-cat-tag">Arts &amp; Creative Speed</span> Most portraits sketched in 60 minutes (must be recognizable).
+				</li>
+				<li data-suggestion data-category="arts" data-text="Fastest time to paint a 1-meter canvas landscape theme">
+					<span class="records-cat-tag">Arts &amp; Creative Speed</span> Fastest time to paint a 1-meter canvas (landscape theme).
+				</li>
+				<li data-suggestion data-category="arts" data-text="Most origami cranes folded in 10 minutes">
+					<span class="records-cat-tag">Arts &amp; Creative Speed</span> Most origami cranes folded in 10 minutes.
+				</li>
+				<li data-suggestion data-category="arts" data-text="Fastest 1000-word short story written on a typewriter">
+					<span class="records-cat-tag">Arts &amp; Creative Speed</span> Fastest 1000-word short story written on a typewriter.
+				</li>
+				<li data-suggestion data-category="arts" data-text="Most digital caricatures created in 2 hours">
+					<span class="records-cat-tag">Arts &amp; Creative Speed</span> Most digital caricatures created in 2 hours.
+				</li>
+				<li data-suggestion data-category="arts" data-text="Longest continuous Poetry Recitation original works">
+					<span class="records-cat-tag">Arts &amp; Creative Speed</span> Longest continuous Poetry Recitation (original works).
+				</li>
+
+				<!-- Traditional Indian Strength & Culture -->
+				<li data-suggestion data-category="indian" data-text="Max Gada Mace Swings in 2 minutes">
+					<span class="records-cat-tag">Traditional Indian Strength &amp; Culture</span> Max Gada (Mace) Swings in 2 minutes.
+				</li>
+				<li data-suggestion data-category="indian" data-text="Longest Yoga Plank Kumbhakasana hold">
+					<span class="records-cat-tag">Traditional Indian Strength &amp; Culture</span> Longest Yoga Plank (Kumbhakasana) hold.
+				</li>
+				<li data-suggestion data-category="indian" data-text="Most Suryanamaskars in 30 minutes">
+					<span class="records-cat-tag">Traditional Indian Strength &amp; Culture</span> Most Suryanamaskars in 30 minutes.
+				</li>
+				<li data-suggestion data-category="indian" data-text="Fastest 100-meter sprint wearing traditional Dhoti Saree">
+					<span class="records-cat-tag">Traditional Indian Strength &amp; Culture</span> Fastest 100-meter sprint wearing a traditional Dhoti/Saree.
+				</li>
+				<li data-suggestion data-category="indian" data-text="Most Coconut Breaks with a single hand in 60 seconds">
+					<span class="records-cat-tag">Traditional Indian Strength &amp; Culture</span> Most Coconut Breaks with a single hand in 60 seconds.
+				</li>
+
+				<!-- Mental Agility & Memory -->
+				<li data-suggestion data-category="mental" data-text="Most Random Numbers memorized and recited in 2 minutes">
+					<span class="records-cat-tag">Mental Agility &amp; Memory</span> Most Random Numbers memorized and recited in 2 minutes.
+				</li>
+				<li data-suggestion data-category="mental" data-text="Fastest time to solve 5 Rubik's Cubes different sizes">
+					<span class="records-cat-tag">Mental Agility &amp; Memory</span> Fastest time to solve 5 Rubik’s Cubes (different sizes).
+				</li>
+				<li data-suggestion data-category="mental" data-text="Most National Flags identified in 60 seconds">
+					<span class="records-cat-tag">Mental Agility &amp; Memory</span> Most National Flags identified in 60 seconds.
+				</li>
+				<li data-suggestion data-category="mental" data-text="Fastest Mental Math 100 additions of 3-digit numbers">
+					<span class="records-cat-tag">Mental Agility &amp; Memory</span> Fastest Mental Math (100 additions of 3-digit numbers).
+				</li>
+				<li data-suggestion data-category="mental" data-text="Longest Blindfolded Chess Game won">
+					<span class="records-cat-tag">Mental Agility &amp; Memory</span> Longest Blindfolded Chess Game (won).
+				</li>
+
+				<!-- Culinary & Food Arts -->
+				<li data-suggestion data-category="culinary" data-text="Most Chapatis Rotis rolled and cooked in 15 minutes">
+					<span class="records-cat-tag">Culinary &amp; Food Arts</span> Most Chapatis/Rotis rolled and cooked in 15 minutes.
+				</li>
+				<li data-suggestion data-category="culinary" data-text="Fastest time to peel 10kg of Onions">
+					<span class="records-cat-tag">Culinary &amp; Food Arts</span> Fastest time to peel 10kg of Onions.
+				</li>
+				<li data-suggestion data-category="culinary" data-text="Tallest Stack of Pancakes in 5 minutes">
+					<span class="records-cat-tag">Culinary &amp; Food Arts</span> Tallest Stack of Pancakes in 5 minutes.
+				</li>
+				<li data-suggestion data-category="culinary" data-text="Most Latte Art designs created in 10 minutes">
+					<span class="records-cat-tag">Culinary &amp; Food Arts</span> Most Latte Art designs created in 10 minutes.
+				</li>
+				<li data-suggestion data-category="culinary" data-text="Fastest Vegetable Carving Swan from a Carrot">
+					<span class="records-cat-tag">Culinary &amp; Food Arts</span> Fastest Vegetable Carving (Swan from a Carrot).
+				</li>
+
+				<!-- Science & Innovation -->
+				<li data-suggestion data-category="science" data-text="Tallest Spaghetti and Marshmallow Tower self-standing">
+					<span class="records-cat-tag">Science &amp; Innovation</span> Tallest Spaghetti &amp; Marshmallow Tower (self-standing).
+				</li>
+				<li data-suggestion data-category="science" data-text="Most Chemical Elements recited in 30 seconds">
+					<span class="records-cat-tag">Science &amp; Innovation</span> Most Chemical Elements recited in 30 seconds.
+				</li>
+				<li data-suggestion data-category="science" data-text="Longest flight of a paper airplane indoor">
+					<span class="records-cat-tag">Science &amp; Innovation</span> Longest flight of a paper airplane (indoor).
+				</li>
+				<li data-suggestion data-category="science" data-text="Fastest Microscope Slide preparation 10 samples">
+					<span class="records-cat-tag">Science &amp; Innovation</span> Fastest Microscope Slide preparation (10 samples).
+				</li>
+
+				<!-- Kids & Prodigies -->
+				<li data-suggestion data-category="kids" data-text="Youngest to Identify 100 Dinosaurs">
+					<span class="records-cat-tag">Kids &amp; Prodigies</span> Youngest to Identify 100 Dinosaurs.
+				</li>
+				<li data-suggestion data-category="kids" data-text="Fastest Alphabet Recitation backwards by a child under 8">
+					<span class="records-cat-tag">Kids &amp; Prodigies</span> Fastest Alphabet Recitation (backwards) by a child under 8.
+				</li>
+				<li data-suggestion data-category="kids" data-text="Most Hula Hoop spins in 1 minute Kids category">
+					<span class="records-cat-tag">Kids &amp; Prodigies</span> Most Hula Hoop spins in 1 minute (Kids category).
+				</li>
+				<li data-suggestion data-category="kids" data-text="Fastest 1km Bicycle Ride Age 5-7">
+					<span class="records-cat-tag">Kids &amp; Prodigies</span> Fastest 1km Bicycle Ride (Age 5–7).
+				</li>
+				<li data-suggestion data-category="kids" data-text="Most Mental Abacus calculations in 2 minutes">
+					<span class="records-cat-tag">Kids &amp; Prodigies</span> Most Mental Abacus calculations in 2 minutes.
+				</li>
+
+				<!-- Real Life & Unique Skills -->
+				<li data-suggestion data-category="reallife" data-text="Fastest time to iron 10 formal shirts">
+					<span class="records-cat-tag">Real Life &amp; Unique Skills</span> Fastest time to iron 10 formal shirts.
+				</li>
+				<li data-suggestion data-category="reallife" data-text="Most Steps climbed in 5 minutes stairwell">
+					<span class="records-cat-tag">Real Life &amp; Unique Skills</span> Most Steps climbed in 5 minutes (stairwell).
+				</li>
+				<li data-suggestion data-category="reallife" data-text="Longest Single-leg balance Eyes closed">
+					<span class="records-cat-tag">Real Life &amp; Unique Skills</span> Longest Single-leg balance (Eyes closed).
+				</li>
+				<li data-suggestion data-category="reallife" data-text="Fastest Tyre Change on a standard car solo">
+					<span class="records-cat-tag">Real Life &amp; Unique Skills</span> Fastest Tyre Change on a standard car (solo).
+				</li>
+				<li data-suggestion data-category="reallife" data-text="Most clippings in a Scrapbook made in 1 hour">
+					<span class="records-cat-tag">Real Life &amp; Unique Skills</span> Most clippings in a Scrapbook made in 1 hour.
+				</li>
+
+				<!-- Environmental & Social -->
+				<li data-suggestion data-category="environmental" data-text="Most Trees planted by an individual in 24 hours">
+					<span class="records-cat-tag">Environmental &amp; Social</span> Most Trees planted by an individual in 24 hours.
+				</li>
+				<li data-suggestion data-category="environmental" data-text="Largest Trash collection kg by a solo volunteer in 1 hour">
+					<span class="records-cat-tag">Environmental &amp; Social</span> Largest Trash collection (kg) by a solo volunteer in 1 hour.
+				</li>
+				<li data-suggestion data-category="environmental" data-text="Longest continuous teaching session Non-stop lecture">
+					<span class="records-cat-tag">Environmental &amp; Social</span> Longest continuous teaching session (Non-stop lecture).
+				</li>
+				<li data-suggestion data-category="environmental" data-text="Most Handshakes in 60 seconds Social engagement">
+					<span class="records-cat-tag">Environmental &amp; Social</span> Most Handshakes in 60 seconds (Social engagement).
+				</li>
+
+				<!-- General (legacy) -->
+				<li data-suggestion data-category="general" data-text="Most participants in a synchronized performance">
+					<span class="records-cat-tag">General</span> Most participants in a synchronized performance.
+				</li>
+				<li data-suggestion data-category="general" data-text="Fastest completion of a themed innovation challenge">
+					<span class="records-cat-tag">General</span> Fastest completion of a themed innovation challenge.
+				</li>
+				<li data-suggestion data-category="general" data-text="Largest verified educational awareness campaign">
+					<span class="records-cat-tag">General</span> Largest verified educational awareness campaign.
+				</li>
 			</ul>
 
-			<p style="margin-top: 1.2rem; color:#d8e0ef; line-height: 1.6;">
-				Want real registry searching? Tell me what platform you will use to store records (Google Sheets, Airtable, custom database, etc.).
+			<p id="recordsEmpty" class="records-empty" hidden>No suggestions match your filter and search.</p>
+
+			<p class="records-footnote">
+				Full Paramount 1000 categories scale to the record counts shown (100 / 150 / 50 per industry). Official rulebooks and adjudication apply for certification.
 			</p>
 		</div>
 
 		<script>
-			// Flag used by the inline search filter above.
-			window.__prSuggestions = true;
+			(function () {
+				const chips = document.querySelectorAll("#recordFilterChips .filter-chip");
+				const input = document.getElementById("recordSearchInput");
+				const list = document.getElementById("recordSuggestionsList");
+				const empty = document.getElementById("recordsEmpty");
+				if (!chips.length || !list) return;
+
+				let activeCategory = "all";
+
+				function normalize(s) {
+					return (s || "").toLowerCase();
+				}
+
+				function applyFilters() {
+					const q = normalize(input && input.value);
+					const items = list.querySelectorAll("[data-suggestion]");
+					let visible = 0;
+					items.forEach(function (el) {
+						const cat = el.getAttribute("data-category") || "";
+						const text = normalize(el.getAttribute("data-text") || el.textContent || "");
+						const catOk = activeCategory === "all" || cat === activeCategory;
+						const searchOk = !q || text.indexOf(q) !== -1;
+						const show = catOk && searchOk;
+						el.style.display = show ? "" : "none";
+						if (show) visible++;
+					});
+					if (empty) {
+						empty.hidden = visible > 0;
+					}
+				}
+
+				chips.forEach(function (btn) {
+					btn.addEventListener("click", function () {
+						activeCategory = btn.getAttribute("data-category") || "all";
+						chips.forEach(function (b) {
+							b.classList.toggle("is-active", b === btn);
+						});
+						applyFilters();
+					});
+				});
+
+				if (input) {
+					input.addEventListener("input", applyFilters);
+				}
+
+				applyFilters();
+			})();
 		</script>
 	</main>
 </Layout>
 
+<style>
+	.records-lead {
+		margin-top: -0.35rem;
+		color: #d8e0ef;
+		line-height: 1.65;
+		max-width: 920px;
+	}
+
+	.records-controls {
+		margin-top: 1.35rem;
+		display: grid;
+		gap: 1.1rem;
+	}
+
+	.records-label {
+		display: block;
+		font-size: 0.82rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #d4af37;
+		margin-bottom: 0.45rem;
+	}
+
+	.records-filter-block {
+		display: block;
+	}
+
+	.record-filter-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.filter-chip {
+		cursor: pointer;
+		border: 1px solid rgba(212, 175, 55, 0.45);
+		background: rgba(8, 8, 8, 0.75);
+		color: #f0e6c8;
+		padding: 0.45rem 0.65rem;
+		font-size: 0.78rem;
+		border-radius: 2px;
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			color 0.15s ease;
+	}
+
+	.filter-chip:hover {
+		border-color: rgba(212, 175, 55, 0.75);
+		color: #fff;
+	}
+
+	.filter-chip.is-active {
+		background: linear-gradient(135deg, #f2d27a 0%, #d4af37 55%, #9f7621 100%);
+		color: #141414;
+		border-color: rgba(212, 175, 55, 0.9);
+		font-weight: 700;
+	}
+
+	.records-search-wrap {
+		display: block;
+	}
+
+	.records-search-input {
+		width: 100%;
+		border: 1px solid rgba(212, 175, 55, 0.35);
+		background: rgba(12, 12, 12, 0.85);
+		color: #fff;
+		padding: 0.8rem;
+		border-radius: 2px;
+		font: inherit;
+	}
+
+	.records-list {
+		list-style: none;
+		margin: 1.25rem 0 0;
+		padding: 0;
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.records-list li {
+		padding: 0.65rem 0.75rem;
+		background: rgba(14, 14, 14, 0.72);
+		border: 1px solid rgba(212, 175, 55, 0.22);
+		border-radius: 2px;
+		line-height: 1.5;
+		color: #e9f0ff;
+		font-size: 0.95rem;
+	}
+
+	.records-cat-tag {
+		display: inline-block;
+		margin-right: 0.35rem;
+		padding: 0.15rem 0.4rem;
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: #141414;
+		background: linear-gradient(135deg, #f2d27a 0%, #d4af37 100%);
+		border-radius: 2px;
+		vertical-align: middle;
+	}
+
+	.records-empty {
+		margin-top: 1rem;
+		color: #f0d98a;
+		font-size: 0.95rem;
+	}
+
+	.records-footnote {
+		margin-top: 1.25rem;
+		color: #a8b4c8;
+		font-size: 0.88rem;
+		line-height: 1.55;
+	}
+</style>
