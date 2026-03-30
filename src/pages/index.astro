@@ -1,537 +1,117 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Paramount World Records" showChrome={false}>
-	<header class="site-header">
-		<div class="container nav-wrap">
-			<a class="brand" href="/">
-				<img src="/images/logo.png" alt="Paramount World Records logo" />
-				<span>Paramount World Records</span>
-			</a>
-			<nav class="top-nav">
-				<a href="/about">About Us</a>
-				<a href="/founders">Founders</a>
-				<a href="/apply">Apply For A Record</a>
-				<a href="/departments">Departments & Process</a>
-				<a href="/vision-mission">Vision & Mission</a>
-				<a href="/achievers">World Record Achievers</a>
-				<a href="/contact">Contact Us</a>
-				<details class="menu">
-					<summary>More</summary>
-					<div class="dropdown">
-						<a href="/press-media">Press & Media Release</a>
-						<a href="/gallery">Gallery</a>
-						<a href="/records">Search Records</a>
-						<a href="/clients">Our Esteemed Clients</a>
-						<a href="/work">Work With Us</a>
-					</div>
-				</details>
-			</nav>
+
+<Layout title="Paramount World Records — Welcome" showChrome={false}>
+	<main class="splash">
+		<div class="splash-vignette" aria-hidden="true"></div>
+		<div class="splash-inner">
+			<img src="/images/logo.png" alt="" class="splash-logo" width="120" height="120" />
+			<p class="splash-tag">Elite Global Record Authority</p>
+			<h1 class="splash-title">Paramount <span>World Records</span></h1>
+			<p class="splash-line">Authorisation · Adjudication · Verification · Certification · Publishing</p>
+			<a class="splash-enter" href="/home">Enter</a>
+			<p class="splash-hint">Official registry — private entry</p>
 		</div>
-	</header>
-
-	<main id="home">
-		<section class="hero section">
-			<div class="container hero-card" data-reveal>
-				<p class="tag">Elite Global Record Authority</p>
-				<h1>Paramount <span>World Records</span></h1>
-				<p class="lead">
-					Guinness-style record authorisation, adjudication, verification, certification and publishing.
-				</p>
-				<div class="hero-actions">
-					<a class="btn btn-primary" href="/apply">Apply For A Record</a>
-					<a class="btn btn-ghost" href="/records">Search Record Suggestions</a>
-				</div>
-			</div>
-		</section>
-
-		<section id="about" class="section">
-			<div class="container panel about-panel" data-reveal>
-				<h2>About Us</h2>
-				<p>
-					Paramount World Records is an independent record registry and a <strong>Pvt. Ltd.</strong> company headquartered in
-					Mumbai. We operate with branches in Chennai, Coimbatore and Kancheepuram—and we are continuously expanding.
-				</p>
-				<p>
-					Our registry is built to support authenticity and excellence through transparent validation, expert verification,
-					and trusted certification—so every extraordinary effort receives global recognition.
-				</p>
-			</div>
-		</section>
-
-		<section id="apply" class="section">
-			<div class="container panel">
-				<h2>Apply For A Record</h2>
-				<p>
-					Submit your profile and record concept here. This category is for both new record creation and
-					existing record breaking attempts.
-				</p>
-				<form class="apply-form" action="#" method="post">
-					<label>
-						Full Name
-						<input type="text" name="fullName" placeholder="Enter your full name" />
-					</label>
-					<label>
-						Email Address
-						<input type="email" name="email" placeholder="Enter your email" />
-					</label>
-					<label>
-						Phone / WhatsApp
-						<input type="tel" name="phone" placeholder="+91..." />
-					</label>
-					<label>
-						City
-						<input type="text" name="city" placeholder="Your city" />
-					</label>
-					<label>
-						Attempt Type
-						<select name="attemptType">
-							<option>New Record Creation</option>
-							<option>Existing Record Breaking</option>
-						</select>
-					</label>
-					<label class="full">
-						Applicant Overview
-						<textarea name="overview" rows="4" placeholder="Tell us about yourself and your achievement background"></textarea>
-					</label>
-					<label class="full">
-						Record Attempt Details
-						<textarea name="recordDetails" rows="5" placeholder="Describe the proposed record, methodology and expected outcome"></textarea>
-					</label>
-					<div class="full">
-						<button type="submit" class="btn btn-primary">Submit Application</button>
-					</div>
-				</form>
-			</div>
-		</section>
-
-		<section id="departments" class="section">
-			<div class="container">
-				<h2>Our Departments & Verification Process</h2>
-				<div class="grid two">
-					<article class="panel">
-						<h3>Core Departments</h3>
-						<ul class="suggestions">
-							<li>Application Screening & Eligibility</li>
-							<li>Event Adjudication & Compliance</li>
-							<li>Evidence Audit & Verification</li>
-							<li>Certification & Publication</li>
-							<li>Press, Partnerships & Client Relations</li>
-						</ul>
-					</article>
-					<article class="panel">
-						<h3>Verification Process</h3>
-						<ol class="steps">
-							<li>Application submission and initial suitability review</li>
-							<li>Rulebook issue and attempt protocol confirmation</li>
-							<li>Live/recorded evidence collection and witness checks</li>
-							<li>Expert adjudication and authenticity audit</li>
-							<li>Final certification, registry listing and media release</li>
-						</ol>
-					</article>
-				</div>
-			</div>
-		</section>
-
-		<section id="vision" class="section">
-			<div class="container grid two">
-				<article class="panel">
-					<h2>Our Vision</h2>
-					<p>
-						To become the most respected elite platform for celebrating extraordinary human achievement
-						with authenticity and dignity.
-					</p>
-				</article>
-				<article class="panel">
-					<h2>Our Mission</h2>
-					<p>
-						To identify, verify, certify and publish world records through clear protocols, expert
-						adjudication, and a premium candidate experience.
-					</p>
-				</article>
-			</div>
-		</section>
-
-		<section id="achievers" class="section">
-			<div class="container">
-				<h2>World Record Achievers</h2>
-				<div class="grid three">
-					<article class="panel card-item">
-						<h3>Longest Classical Dance Marathon</h3>
-						<p>Mumbai, India - Certified by Paramount review board.</p>
-					</article>
-					<article class="panel card-item">
-						<h3>Largest STEM Student Workshop</h3>
-						<p>Chennai, India - Multi-city participant audit completed.</p>
-					</article>
-					<article class="panel card-item">
-						<h3>Fastest Community Plantation Drive</h3>
-						<p>Coimbatore, India - Adjudicated and archived for publication.</p>
-					</article>
-				</div>
-			</div>
-		</section>
-
-		<section id="media" class="section">
-			<div class="container panel">
-				<h2>Press & Media Release</h2>
-				<p>
-					Official statements, event coverage, and certification announcements will be published here. For
-					media enquiries, contact us at
-					<a href="mailto:admin@paramountworldrecords.com">admin@paramountworldrecords.com</a>.
-				</p>
-			</div>
-		</section>
-
-		<section id="gallery" class="section">
-			<div class="container">
-				<h2>Gallery</h2>
-				<div class="grid three">
-					<div class="panel placeholder">Event Highlights</div>
-					<div class="panel placeholder">Adjudication Moments</div>
-					<div class="panel placeholder">Certification Ceremonies</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="records" class="section">
-			<div class="container panel">
-				<h2>Search Records</h2>
-				<p class="muted">Initial phase: record suggestions</p>
-				<ul class="suggestions">
-					<li>Most participants in a synchronized performance</li>
-					<li>Fastest completion of a themed innovation challenge</li>
-					<li>Largest verified educational awareness campaign</li>
-				</ul>
-			</div>
-		</section>
-
-		<section id="clients" class="section">
-			<div class="container panel">
-				<h2>Our Esteemed Clients</h2>
-				<p>
-					Corporate groups, schools, universities, NGOs and cultural institutions trust our certification
-					workflow for high-credibility record attempts.
-				</p>
-			</div>
-		</section>
-
-		<section id="work" class="section">
-			<div class="container panel">
-				<h2>Work With Us</h2>
-				<p>
-					Partner with us as adjudicators, event associates, city coordinators, and media collaborators
-					across Mumbai, Chennai, Coimbatore and Kancheepuram.
-				</p>
-			</div>
-		</section>
-
-		<section id="contact" class="section">
-			<div class="container panel">
-				<h2>Contact Us</h2>
-				<p><strong>Phone:</strong> +91 7550015677</p>
-				<p><strong>Phone:</strong> +91 9987814980</p>
-				<p><strong>WhatsApp:</strong> +91 7550015677</p>
-				<p><strong>Email:</strong> <a href="mailto:admin@paramountworldrecords.com">admin@paramountworldrecords.com</a></p>
-				<p><strong>HQ:</strong> Mumbai, Chennai, Coimbatore and Kancheepuram</p>
-			</div>
-		</section>
 	</main>
 
-	<footer class="site-footer">
-		<div class="container footer-links">
-			<a href="#">Sitemap</a>
-			<a href="#">Cookies Policy</a>
-			<a href="#">Privacy Policy</a>
-			<a href="#">Terms of Use</a>
-		</div>
-	</footer>
-
 	<style>
-		.container {
-			width: min(1120px, 92%);
-			margin: 0 auto;
-		}
-
-		.site-header {
-			position: sticky;
-			top: 0;
-			z-index: 20;
-			background: linear-gradient(180deg, rgba(16, 16, 16, 0.96) 0%, rgba(8, 8, 8, 0.94) 100%);
-			backdrop-filter: blur(8px);
-			border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-		}
-
-		.nav-wrap {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 1rem;
-			padding: 1rem 0;
-		}
-
-		.brand {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.55rem;
-			text-decoration: none;
-			color: #d4af37;
-			font-weight: 700;
-			letter-spacing: 0.04em;
-			text-transform: uppercase;
-			font-size: 0.92rem;
-		}
-
-		.brand img {
-			height: 34px;
-			width: auto;
-			display: block;
-		}
-
-		.top-nav {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: flex-end;
-			gap: 0.8rem;
-		}
-
-		.top-nav a,
-		.menu summary {
-			color: #ffffff;
-			text-decoration: none;
-			font-size: 0.9rem;
-			cursor: pointer;
-		}
-
-		.menu {
-			position: relative;
-		}
-
-		.menu summary {
-			list-style: none;
-		}
-
-		.menu summary::-webkit-details-marker {
-			display: none;
-		}
-
-		.dropdown {
-			position: absolute;
-			right: 0;
-			top: 1.4rem;
-			display: grid;
-			gap: 0.35rem;
-			min-width: 240px;
-			padding: 0.7rem;
-			background: linear-gradient(180deg, #161616 0%, #0d0d0d 100%);
-			border: 1px solid rgba(212, 175, 55, 0.35);
-		}
-
-		.section {
-			padding: 4.5rem 0 1.5rem;
-		}
-
-		.hero {
-			padding-top: 5.5rem;
-		}
-
-		.hero-card {
-			border: 1px solid rgba(212, 175, 55, 0.5);
-			padding: clamp(1.4rem, 4vw, 3rem);
-			background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.13), transparent 45%);
-			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-			text-align: center;
-		}
-
-		.tag {
-			margin: 0;
-			text-transform: uppercase;
-			font-size: 0.75rem;
-			letter-spacing: 0.08em;
-			color: #d4af37;
-		}
-
-		h1,
-		h2,
-		h3 {
-			margin: 0 0 0.8rem;
-		}
-
-		h1 {
-			font-size: clamp(2.2rem, 6vw, 4.8rem);
-			line-height: 1.03;
-			text-transform: uppercase;
-			color: #d4af37;
-		}
-
-		h1 span {
-			color: #ffffff;
-		}
-
-		h2 {
-			font-size: clamp(1.5rem, 3vw, 2rem);
-			color: #d4af37;
-		}
-
-		.lead {
-			font-size: clamp(1rem, 2.7vw, 1.4rem);
-			max-width: 850px;
-			margin: 0.6rem auto 0;
-		}
-
-		.hero-actions {
-			display: flex;
-			justify-content: center;
-			flex-wrap: wrap;
-			gap: 0.8rem;
-			margin-top: 1.4rem;
-		}
-
-		.btn {
-			display: inline-block;
-			padding: 0.8rem 1.1rem;
-			text-decoration: none;
-			border-radius: 2px;
-			font-weight: 700;
-			text-transform: uppercase;
-			font-size: 0.82rem;
-			letter-spacing: 0.04em;
-		}
-
-		.btn-primary {
-			background: linear-gradient(135deg, #f2d27a 0%, #d4af37 48%, #9f7621 100%);
-			color: #141414;
-		}
-
-		.btn-ghost {
-			border: 1px solid rgba(212, 175, 55, 0.5);
-			color: #ffffff;
-		}
-
-		.panel {
-			background: linear-gradient(160deg, rgba(20, 20, 20, 0.88) 0%, rgba(12, 12, 12, 0.92) 100%);
-			border: 1px solid rgba(212, 175, 55, 0.3);
-			padding: 1.2rem;
-		}
-
-		.about-panel {
-			position: relative;
-			overflow: hidden;
-		}
-
-		.about-panel::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background: url("/images/logo.png") center/340px no-repeat;
-			opacity: 0.08;
-			pointer-events: none;
-		}
-
-		.about-panel > * {
-			position: relative;
-			z-index: 1;
-		}
-
-		.grid {
-			display: grid;
-			gap: 1rem;
-		}
-
-		.two {
-			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		}
-
-		.three {
-			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-		}
-
-		.placeholder {
+		.splash {
+			min-height: 100vh;
 			display: grid;
 			place-items: center;
-			min-height: 120px;
+			padding: 2rem 1.25rem;
+			position: relative;
+			background:
+				radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196, 194, 188, 0.14), transparent 50%),
+				radial-gradient(circle at 80% 80%, rgba(168, 189, 216, 0.08), transparent 45%),
+				linear-gradient(180deg, #0a0a0a 0%, #030303 100%);
+		}
+
+		.splash-vignette {
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.55) 100%);
+		}
+
+		.splash-inner {
+			position: relative;
+			z-index: 1;
 			text-align: center;
+			max-width: 560px;
 		}
 
-		.muted {
-			color: #d8e0ef;
-			font-size: 0.95rem;
+		.splash-logo {
+			display: block;
+			margin: 0 auto 1.25rem;
+			filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.5));
 		}
 
-		.suggestions {
-			margin: 0.7rem 0 0;
-			padding-left: 1rem;
-			display: grid;
-			gap: 0.55rem;
+		.splash-tag {
+			margin: 0 0 0.5rem;
+			font-size: 0.72rem;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			color: #a8bdd8;
 		}
 
-		.steps {
-			margin: 0.8rem 0 0;
-			padding-left: 1.1rem;
-			display: grid;
-			gap: 0.5rem;
+		.splash-title {
+			margin: 0 0 0.75rem;
+			font-size: clamp(1.85rem, 5.5vw, 2.75rem);
+			font-weight: 700;
+			line-height: 1.08;
+			text-transform: uppercase;
+			letter-spacing: 0.02em;
+			color: #e8e6e1;
+			text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
 		}
 
-		.apply-form {
-			margin-top: 1rem;
-			display: grid;
-			grid-template-columns: repeat(2, minmax(180px, 1fr));
-			gap: 0.8rem;
+		.splash-title span {
+			display: block;
+			color: #c4c2bc;
+			background: linear-gradient(180deg, #ece9e4 0%, #9e9b95 100%);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
 		}
 
-		.apply-form label {
-			display: grid;
-			gap: 0.35rem;
-			font-size: 0.92rem;
+		.splash-line {
+			margin: 0 0 2rem;
+			color: #9aa3b0;
+			font-size: 0.88rem;
+			letter-spacing: 0.06em;
 		}
 
-		.apply-form input,
-		.apply-form select,
-		.apply-form textarea {
-			width: 100%;
-			border: 1px solid rgba(212, 175, 55, 0.35);
-			background: rgba(3, 12, 26, 0.8);
-			color: #ffffff;
-			padding: 0.7rem;
-			font: inherit;
+		.splash-enter {
+			display: inline-block;
+			padding: 1rem 2.75rem;
+			text-decoration: none;
+			border-radius: 3px;
+			font-weight: 700;
+			text-transform: uppercase;
+			font-size: 0.88rem;
+			letter-spacing: 0.2em;
+			background: linear-gradient(145deg, #ece9e4 0%, #b0aca4 45%, #5e5c57 100%);
+			color: #0a0a0a;
+			box-shadow:
+				0 4px 20px rgba(0, 0, 0, 0.35),
+				inset 0 1px 0 rgba(255, 255, 255, 0.35);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
 		}
 
-		.apply-form .full {
-			grid-column: 1 / -1;
+		.splash-enter:hover {
+			transform: translateY(-2px);
+			box-shadow:
+				0 8px 28px rgba(0, 0, 0, 0.4),
+				inset 0 1px 0 rgba(255, 255, 255, 0.4);
 		}
 
-		a {
-			color: #f4d889;
-		}
-
-		.site-footer {
-			padding: 2.1rem 0;
-			border-top: 1px solid rgba(212, 175, 55, 0.25);
-			margin-top: 2.2rem;
-		}
-
-		.footer-links {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 1rem;
-			justify-content: center;
-		}
-
-		@media (max-width: 880px) {
-			.nav-wrap {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-
-			.dropdown {
-				left: 0;
-				right: auto;
-			}
-
-			.apply-form {
-				grid-template-columns: 1fr;
-			}
+		.splash-hint {
+			margin: 1.5rem 0 0;
+			font-size: 0.75rem;
+			color: #5c6470;
+			letter-spacing: 0.04em;
 		}
 	</style>
 </Layout>

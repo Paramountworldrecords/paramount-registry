@@ -18,12 +18,15 @@ const { title, showChrome = true } = Astro.props;
 		<style is:global>
 			:root {
 				--navy: #070707;
-				--gold: #d4af37;
-				--gold-soft: #f2d27a;
-				--gold-deep: #9f7621;
+				--accent: #b0aca4;
+				--accent-soft: #ebe8e3;
+				--accent-deep: #5e5c57;
+				--accent-heading: #c4c2bc;
+				--accent-glow: rgba(196, 194, 188, 0.18);
 				--panel: rgba(20, 20, 20, 0.88);
 				--panel-2: rgba(12, 12, 12, 0.92);
 				--white: #ffffff;
+				--link: #a8bdd8;
 			}
 
 			* {
@@ -39,8 +42,8 @@ const { title, showChrome = true } = Astro.props;
 			body {
 				min-height: 100vh;
 				background:
-					radial-gradient(circle at 16% -4%, rgba(212, 175, 55, 0.16), transparent 32%),
-					radial-gradient(circle at 90% 6%, rgba(212, 175, 55, 0.1), transparent 28%),
+					radial-gradient(circle at 16% -4%, var(--accent-glow), transparent 32%),
+					radial-gradient(circle at 90% 6%, rgba(168, 189, 216, 0.1), transparent 30%),
 					linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
 				color: var(--white);
 				font-family: Arial, Helvetica, sans-serif;
@@ -57,7 +60,7 @@ const { title, showChrome = true } = Astro.props;
 				z-index: 20;
 				background: linear-gradient(180deg, rgba(16, 16, 16, 0.96) 0%, rgba(8, 8, 8, 0.94) 100%);
 				backdrop-filter: blur(8px);
-				border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+				border-bottom: 1px solid rgba(196, 194, 188, 0.3);
 			}
 
 			.nav-wrap {
@@ -73,7 +76,7 @@ const { title, showChrome = true } = Astro.props;
 				align-items: center;
 				gap: 0.55rem;
 				text-decoration: none;
-				color: #d4af37;
+				color: var(--accent-heading);
 				font-weight: 700;
 				letter-spacing: 0.04em;
 				text-transform: uppercase;
@@ -123,7 +126,7 @@ const { title, showChrome = true } = Astro.props;
 				min-width: 240px;
 				padding: 0.7rem;
 				background: linear-gradient(180deg, #161616 0%, #0d0d0d 100%);
-				border: 1px solid rgba(212, 175, 55, 0.35);
+				border: 1px solid rgba(196, 194, 188, 0.38);
 			}
 
 			.section {
@@ -132,16 +135,16 @@ const { title, showChrome = true } = Astro.props;
 
 			.panel {
 				background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%);
-				border: 1px solid rgba(212, 175, 55, 0.3);
+				border: 1px solid rgba(196, 194, 188, 0.32);
 				padding: 1.2rem;
 				border-radius: 2px;
 				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 10px 24px rgba(0, 0, 0, 0.34);
 			}
 
 			.hero-card {
-				border: 1px solid rgba(212, 175, 55, 0.5);
+				border: 1px solid rgba(196, 194, 188, 0.5);
 				padding: clamp(1.4rem, 4vw, 3rem);
-				background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.13), transparent 45%);
+				background: radial-gradient(circle at top right, rgba(196, 194, 188, 0.1), transparent 45%);
 				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 				text-align: center;
 				border-radius: 2px;
@@ -157,7 +160,7 @@ const { title, showChrome = true } = Astro.props;
 				text-transform: uppercase;
 				font-size: 0.75rem;
 				letter-spacing: 0.08em;
-				color: #d4af37;
+				color: #a8bdd8;
 			}
 
 			h1,
@@ -170,7 +173,7 @@ const { title, showChrome = true } = Astro.props;
 				font-size: clamp(2.2rem, 6vw, 4.8rem);
 				line-height: 1.03;
 				text-transform: uppercase;
-				color: #d4af37;
+				color: var(--accent-heading);
 			}
 
 			h1 span {
@@ -179,7 +182,7 @@ const { title, showChrome = true } = Astro.props;
 
 			h2 {
 				font-size: clamp(1.5rem, 3vw, 2rem);
-				color: #d4af37;
+				color: var(--accent-heading);
 			}
 
 			.lead {
@@ -201,7 +204,7 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.btn-primary {
-				background: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold) 48%, var(--gold-deep) 100%);
+				background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent) 48%, var(--accent-deep) 100%);
 				color: #141414;
 				position: relative;
 				overflow: hidden;
@@ -221,12 +224,12 @@ const { title, showChrome = true } = Astro.props;
 					rgba(255, 255, 255, 0.55) 50%,
 					rgba(255, 255, 255, 0) 100%
 				);
-				animation: goldShine 4s ease-in-out infinite;
+				animation: accentShine 4s ease-in-out infinite;
 				pointer-events: none;
 			}
 
 			.btn-ghost {
-				border: 1px solid rgba(212, 175, 55, 0.5);
+				border: 1px solid rgba(196, 194, 188, 0.5);
 				color: #ffffff;
 			}
 
@@ -272,12 +275,12 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			a {
-				color: #f4d889;
+				color: var(--link);
 			}
 
 			.site-footer {
 				padding: 2.1rem 0;
-				border-top: 1px solid rgba(212, 175, 55, 0.25);
+				border-top: 1px solid rgba(196, 194, 188, 0.3);
 				margin-top: 2.2rem;
 			}
 
@@ -313,7 +316,7 @@ const { title, showChrome = true } = Astro.props;
 			.apply-form select,
 			.apply-form textarea {
 				width: 100%;
-				border: 1px solid rgba(212, 175, 55, 0.35);
+				border: 1px solid rgba(196, 194, 188, 0.38);
 				background: rgba(3, 12, 26, 0.8);
 				color: #ffffff;
 				padding: 0.7rem;
@@ -376,7 +379,7 @@ const { title, showChrome = true } = Astro.props;
 
 			.profile-card {
 				background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%);
-				border: 1px solid rgba(212, 175, 55, 0.3);
+				border: 1px solid rgba(196, 194, 188, 0.32);
 				padding: 1.2rem;
 				border-radius: 2px;
 				box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -389,17 +392,17 @@ const { title, showChrome = true } = Astro.props;
 				display: grid;
 				place-items: center;
 				margin-bottom: 0.9rem;
-				background: radial-gradient(circle at top, rgba(212, 175, 55, 0.35), rgba(0, 0, 0, 0) 60%),
+				background: radial-gradient(circle at top, rgba(196, 194, 188, 0.32), rgba(0, 0, 0, 0) 60%),
 					#141414;
-				border: 1px solid rgba(212, 175, 55, 0.35);
-				color: #d4af37;
+				border: 1px solid rgba(196, 194, 188, 0.38);
+				color: var(--accent-heading);
 				font-weight: 800;
 				letter-spacing: 0.04em;
 				text-transform: uppercase;
 			}
 
 			.profile-role {
-				color: #d4af37;
+				color: var(--accent-heading);
 				font-weight: 700;
 				margin: 0 0 0.6rem;
 			}
@@ -428,7 +431,7 @@ const { title, showChrome = true } = Astro.props;
 				pointer-events: none;
 			}
 
-			@keyframes goldShine {
+			@keyframes accentShine {
 				0% {
 					left: -38%;
 					opacity: 0;
