@@ -40,62 +40,93 @@ import Layout from '../layouts/Layout.astro';
 	</main>
 
 	<script>
-		(function () {
-			var cap = { a: 0, b: 0, answer: 0 };
+		import { getSupabase } from "../lib/supabaseBrowser";
 
-			function renderCaptcha() {
-				if (!window.ParamountAuth) return;
-				cap = window.ParamountAuth.newMathCaptcha();
-				var el = document.getElementById("loginCaptchaLabel");
-				var input = document.getElementById("loginCaptchaInput");
-				if (el) el.textContent = "What is " + cap.a + " + " + cap.b + "?";
-				if (input) input.value = "";
+		function newMathCaptcha() {
+			const a = Math.floor(Math.random() * 9) + 1;
+			const b = Math.floor(Math.random() * 9) + 1;
+			return { a, b, answer: a + b };
+		}
+
+		let cap = newMathCaptcha();
+
+		function renderCaptcha() {
+			cap = newMathCaptcha();
+			const el = document.getElementById("loginCaptchaLabel");
+			const input = document.getElementById("loginCaptchaInput");
+			if (el) el.textContent = "What is " + cap.a + " + " + cap.b + "?";
+			if (input) input.value = "";
+		}
+
+		function showMsg(text, ok) {
+			const m = document.getElementById("loginMsg");
+			if (!m) return;
+			m.textContent = text;
+			m.hidden = !text;
+			m.style.color = ok ? "#a8e6cf" : "#ffb4b4";
+		}
+
+		document.getElementById("loginCaptchaRefresh")?.addEventListener("click", renderCaptcha);
+
+		document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			showMsg("", true);
+			const form = e.target;
+			if (!(form instanceof HTMLFormElement)) return;
+			const fd = new FormData(form);
+			const username = (fd.get("username") || "").toString().trim();
+			const password = (fd.get("password") || "").toString();
+			const captchaAns = parseInt(String(fd.get("captchaAnswer") || ""), 10);
+
+			const supabase = getSupabase();
+			if (!supabase) {
+				showMsg(
+					"Supabase is not configured. Add PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in Vercel (or .env) and redeploy.",
+					false
+				);
+				return;
+			}
+			if (Number.isNaN(captchaAns) || captchaAns !== cap.answer) {
+				showMsg("Captcha is incorrect. Try again.", false);
+				renderCaptcha();
+				return;
+			}
+			if (!username || !password) {
+				showMsg("Enter username and password.", false);
+				return;
 			}
 
-			function showMsg(text, ok) {
-				var m = document.getElementById("loginMsg");
-				if (!m) return;
-				m.textContent = text;
-				m.hidden = !text;
-				m.style.color = ok ? "#a8e6cf" : "#ffb4b4";
-			}
-
-			document.getElementById("loginCaptchaRefresh")?.addEventListener("click", renderCaptcha);
-
-			document.getElementById("loginForm")?.addEventListener("submit", async function (e) {
-				e.preventDefault();
-				showMsg("", true);
-				var fd = new FormData(e.target);
-				var username = (fd.get("username") || "").trim();
-				var password = fd.get("password");
-				var captchaAns = parseInt(String(fd.get("captchaAnswer") || ""), 10);
-
-				if (!window.ParamountAuth) {
-					showMsg("Auth script failed to load. Refresh the page.", false);
-					return;
-				}
-				if (Number.isNaN(captchaAns) || captchaAns !== cap.answer) {
-					showMsg("Captcha is incorrect. Try again.", false);
-					renderCaptcha();
-					return;
-				}
-
-				try {
-					var user = await window.ParamountAuth.verifyLogin(username, password);
-					window.ParamountAuth.setSession(user);
-					showMsg("Success. Redirecting…", true);
-					window.ParamountAuth.updateNav();
-					setTimeout(function () {
-						window.location.href = "/home";
-					}, 400);
-				} catch (err) {
-					showMsg(err.message || "Login failed.", false);
-					renderCaptcha();
-				}
+			const { data: email, error: rpcErr } = await supabase.rpc("login_email_for_username", {
+				p_username: username,
 			});
+			if (rpcErr) {
+				showMsg(rpcErr.message, false);
+				renderCaptcha();
+				return;
+			}
+			if (!email || String(email).trim() === "") {
+				showMsg("Invalid username or password.", false);
+				renderCaptcha();
+				return;
+			}
 
-			renderCaptcha();
-		})();
+			const { error: signErr } = await supabase.auth.signInWithPassword({
+				email: String(email).trim(),
+				password,
+			});
+			if (signErr) {
+				showMsg("Invalid username or password.", false);
+				renderCaptcha();
+				return;
+			}
+
+			showMsg("Success. Redirecting…", true);
+			setTimeout(() => {
+				window.location.href = "/home";
+			}, 400);
+		});
+
+		renderCaptcha();
 	</script>
 
 	<style>

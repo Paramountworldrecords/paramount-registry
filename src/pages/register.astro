@@ -74,90 +74,110 @@ import Layout from '../layouts/Layout.astro';
 	</main>
 
 	<script>
-		(function () {
-			var cap = { a: 0, b: 0, answer: 0 };
+		import { getSupabase } from "../lib/supabaseBrowser";
 
-			function renderCaptcha() {
-				if (!window.ParamountAuth) return;
-				cap = window.ParamountAuth.newMathCaptcha();
-				var el = document.getElementById("regCaptchaLabel");
-				var input = document.getElementById("regCaptchaInput");
-				if (el) el.textContent = "What is " + cap.a + " + " + cap.b + "?";
-				if (input) input.value = "";
+		function newMathCaptcha() {
+			const a = Math.floor(Math.random() * 9) + 1;
+			const b = Math.floor(Math.random() * 9) + 1;
+			return { a, b, answer: a + b };
+		}
+
+		let cap = newMathCaptcha();
+
+		function renderCaptcha() {
+			cap = newMathCaptcha();
+			const el = document.getElementById("regCaptchaLabel");
+			const input = document.getElementById("regCaptchaInput");
+			if (el) el.textContent = "What is " + cap.a + " + " + cap.b + "?";
+			if (input) input.value = "";
+		}
+
+		function showMsg(text, ok) {
+			const m = document.getElementById("regMsg");
+			if (!m) return;
+			m.textContent = text;
+			m.hidden = !text;
+			m.style.color = ok ? "#a8e6cf" : "#ffb4b4";
+		}
+
+		document.getElementById("regCaptchaRefresh")?.addEventListener("click", renderCaptcha);
+
+		document.getElementById("registerForm")?.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			showMsg("", true);
+			const form = e.target;
+			if (!(form instanceof HTMLFormElement)) return;
+			const fd = new FormData(form);
+			const username = (fd.get("username") || "").toString().trim();
+			const name = (fd.get("name") || "").toString().trim();
+			const age = parseInt(String(fd.get("age") || "0"), 10);
+			const gender = (fd.get("gender") || "").toString();
+			const email = (fd.get("email") || "").toString().trim();
+			const phone = (fd.get("phone") || "").toString().trim();
+			const address = (fd.get("address") || "").toString().trim();
+			const password = (fd.get("password") || "").toString();
+			const password2 = (fd.get("password2") || "").toString();
+			const captchaAns = parseInt(String(fd.get("captchaAnswer") || ""), 10);
+
+			const supabase = getSupabase();
+			if (!supabase) {
+				showMsg(
+					"Supabase is not configured. Add PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in Vercel (or .env) and redeploy.",
+					false
+				);
+				return;
+			}
+			if (Number.isNaN(captchaAns) || captchaAns !== cap.answer) {
+				showMsg("Captcha is incorrect. Try again.", false);
+				renderCaptcha();
+				return;
+			}
+			if (password !== password2) {
+				showMsg("Passwords do not match.", false);
+				return;
+			}
+			if (password.length < 8) {
+				showMsg("Password must be at least 8 characters.", false);
+				return;
 			}
 
-			function showMsg(text, ok) {
-				var m = document.getElementById("regMsg");
-				if (!m) return;
-				m.textContent = text;
-				m.hidden = !text;
-				m.style.color = ok ? "#a8e6cf" : "#ffb4b4";
-			}
-
-			document.getElementById("regCaptchaRefresh")?.addEventListener("click", renderCaptcha);
-
-			document.getElementById("registerForm")?.addEventListener("submit", async function (e) {
-				e.preventDefault();
-				showMsg("", true);
-				var form = e.target;
-				var fd = new FormData(form);
-				var username = (fd.get("username") || "").trim();
-				var name = (fd.get("name") || "").trim();
-				var age = parseInt(String(fd.get("age") || "0"), 10);
-				var gender = fd.get("gender");
-				var email = (fd.get("email") || "").trim();
-				var phone = (fd.get("phone") || "").trim();
-				var address = (fd.get("address") || "").trim();
-				var password = fd.get("password");
-				var password2 = fd.get("password2");
-				var captchaAns = parseInt(String(fd.get("captchaAnswer") || ""), 10);
-
-				if (!window.ParamountAuth) {
-					showMsg("Auth script failed to load. Refresh the page.", false);
-					return;
-				}
-				if (Number.isNaN(captchaAns) || captchaAns !== cap.answer) {
-					showMsg("Captcha is incorrect. Try again.", false);
-					renderCaptcha();
-					return;
-				}
-				if (password !== password2) {
-					showMsg("Passwords do not match.", false);
-					return;
-				}
-				if (password.length < 8) {
-					showMsg("Password must be at least 8 characters.", false);
-					return;
-				}
-
-				try {
-					var newUser = await window.ParamountAuth.registerUser({
-						username: username,
-						name: name,
-						age: age,
-						gender: gender,
-						email: email,
-						phone: phone,
-						address: address,
-						password: password
-					});
-					window.ParamountAuth.setSession({
-						username: newUser.username,
-						name: newUser.name
-					});
-					showMsg("Account created. Redirecting…", true);
-					window.ParamountAuth.updateNav();
-					setTimeout(function () {
-						window.location.href = "/home";
-					}, 600);
-				} catch (err) {
-					showMsg(err.message || "Registration failed.", false);
-					renderCaptcha();
-				}
+			const { data, error } = await supabase.auth.signUp({
+				email,
+				password,
+				options: {
+					data: {
+						username,
+						name,
+						age: String(age),
+						gender,
+						phone,
+						address,
+					},
+				},
 			});
 
-			renderCaptcha();
-		})();
+			if (error) {
+				showMsg(error.message, false);
+				renderCaptcha();
+				return;
+			}
+
+			if (data.user && !data.session) {
+				showMsg(
+					"Account created. Check your email to confirm, then log in. (In Supabase: Authentication - Email - you can turn off Confirm email for instant login.)",
+					true
+				);
+				renderCaptcha();
+				return;
+			}
+
+			showMsg("Account created. Redirecting…", true);
+			setTimeout(() => {
+				window.location.href = "/home";
+			}, 600);
+		});
+
+		renderCaptcha();
 	</script>
 
 	<style>

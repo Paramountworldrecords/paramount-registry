@@ -16,35 +16,43 @@ const links = {
 ---
 
 <header class="site-header">
-	<div class="container nav-wrap">
-		<a class="brand" href="/home">
-			<img src="/images/logo.png" alt="Paramount World Records logo" />
-			<span>Paramount World Records</span>
-		</a>
+	<div class="container header-inner">
+		<div class="nav-top-row">
+			<a class="brand" href="/home">
+				<img src="/images/logo.png" alt="Paramount World Records logo" />
+				<span>Paramount World Records</span>
+			</a>
+			<div class="nav-account-slot">
+				<span id="authNavGuest" class="auth-nav-guest">
+					<a href="/register" class="nav-auth-link">Register</a>
+					<a href="/login" class="nav-auth-link nav-auth-emphasis">Login</a>
+				</span>
+				<span id="authNavUser" class="auth-nav-user" hidden>
+					<span class="auth-welcome"
+						>Hi, <strong id="authDisplayName"></strong></span
+					>
+					<button type="button" id="authLogoutBtn" class="auth-logout">Logout</button>
+				</span>
+			</div>
+		</div>
 
 		<nav class="top-nav" aria-label="Primary">
-			<a href={links.about}>About Us</a>
-			<a href={links.founders}>Founders</a>
-			<a href={links.apply}>Apply For A Record</a>
-			<a href={links.departments}>Departments & Process</a>
-			<a href={links.vision}>Vision & Mission</a>
-			<a href={links.achievers}>World Record Achievers</a>
-			<a href={links.contact}>Contact Us</a>
-
-			<span id="authNavGuest" class="auth-nav-guest">
-				<a href="/register">Register</a>
-				<a href="/login">Login</a>
-			</span>
-			<span id="authNavUser" class="auth-nav-user" hidden>
-				<span class="auth-welcome"
-					>Hi, <strong id="authDisplayName"></strong></span
-				>
-				<button type="button" id="authLogoutBtn" class="auth-logout">Logout</button>
-			</span>
+			<div class="top-nav-primary">
+				<a href={links.about}>About Us</a>
+				<a href={links.founders}>Founders</a>
+				<a href={links.apply}>Apply For A Record</a>
+				<a href={links.departments}>Departments & Process</a>
+				<a href={links.vision}>Vision & Mission</a>
+				<a href={links.achievers}>World Record Achievers</a>
+				<a href={links.contact}>Contact Us</a>
+			</div>
 
 			<details class="menu">
 				<summary>More</summary>
 				<div class="dropdown" role="menu" aria-label="More pages">
+					<a href="/register" class="dropdown-account">Register</a>
+					<a href="/login" class="dropdown-account">Login</a>
+					<hr class="dropdown-rule" />
 					<a href={links.press}>Press & Media Release</a>
 					<a href={links.gallery}>Gallery</a>
 					<a href={links.records}>Search Records</a>
@@ -56,3 +64,91 @@ const links = {
 	</div>
 </header>
 
+<style>
+	.header-inner {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		padding: 0.85rem 0 1rem;
+	}
+
+	.nav-top-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.nav-account-slot {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.65rem;
+		flex-shrink: 0;
+	}
+
+	.top-nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.65rem 1rem;
+		row-gap: 0.5rem;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.top-nav-primary {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.65rem 1rem;
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.nav-auth-link {
+		font-weight: 600;
+	}
+
+	.nav-auth-emphasis {
+		padding: 0.35rem 0.75rem;
+		border-radius: 2px;
+		border: 1px solid rgba(168, 189, 216, 0.55);
+		background: rgba(12, 12, 12, 0.65);
+	}
+
+	.nav-auth-emphasis:hover {
+		border-color: rgba(168, 189, 216, 0.85);
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.dropdown-rule {
+		border: none;
+		border-top: 1px solid rgba(196, 194, 188, 0.25);
+		margin: 0.25rem 0;
+	}
+
+	.dropdown-account {
+		font-weight: 600;
+		color: #dbe4f2 !important;
+	}
+
+	@media (max-width: 640px) {
+		.nav-top-row {
+			flex-wrap: wrap;
+		}
+
+		.nav-account-slot {
+			width: 100%;
+			justify-content: flex-start;
+		}
+
+		.brand span {
+			font-size: 0.78rem;
+		}
+	}
+</style>

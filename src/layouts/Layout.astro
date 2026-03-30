@@ -485,7 +485,72 @@ const { title, showChrome = true } = Astro.props;
 		<slot />
 		{showChrome ? <SiteFooter /> : null}
 
-		<script is:inline src="/js/paramount-auth.js"></script>
+		<script>
+			import { getSupabase } from "../lib/supabaseBrowser";
+
+			async function bindAuthNav() {
+				const supabase = getSupabase();
+				const guest = document.getElementById("authNavGuest");
+				const userEl = document.getElementById("authNavUser");
+				const nameEl = document.getElementById("authDisplayName");
+				const btn = document.getElementById("authLogoutBtn");
+				if (!guest || !userEl) return;
+
+				function setMoreMenuAuth(show) {
+					document.querySelectorAll("a.dropdown-account").forEach((el) => {
+						if (el instanceof HTMLElement) el.hidden = !show;
+					});
+					document.querySelectorAll(".dropdown-rule").forEach((el) => {
+						if (el instanceof HTMLElement) el.hidden = !show;
+					});
+				}
+
+				async function refresh() {
+					if (!supabase) {
+						guest.hidden = false;
+						userEl.hidden = true;
+						setMoreMenuAuth(true);
+						return;
+					}
+					const {
+						data: { session },
+					} = await supabase.auth.getSession();
+					if (session?.user) {
+						guest.hidden = true;
+						userEl.hidden = false;
+						setMoreMenuAuth(false);
+						const meta = session.user.user_metadata ?? {};
+						if (nameEl) {
+							nameEl.textContent =
+								(meta.name || meta.username || session.user.email || "").toString();
+						}
+					} else {
+						guest.hidden = false;
+						userEl.hidden = true;
+						setMoreMenuAuth(true);
+					}
+				}
+
+				await refresh();
+				if (supabase) {
+					supabase.auth.onAuthStateChange(() => {
+						refresh();
+					});
+				}
+				if (btn && !btn.dataset.bound) {
+					btn.dataset.bound = "1";
+					btn.addEventListener("click", async () => {
+						if (supabase) await supabase.auth.signOut();
+						await refresh();
+						if (!["/login", "/register"].includes(location.pathname)) {
+							window.location.href = "/home";
+						}
+					});
+				}
+			}
+
+			document.addEventListener("DOMContentLoaded", bindAuthNav);
+		</script>
 
 		<script>
 			(() => {
