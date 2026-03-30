@@ -135,6 +135,7 @@ const { title, showChrome = true } = Astro.props;
 				border: 1px solid rgba(212, 175, 55, 0.3);
 				padding: 1.2rem;
 				border-radius: 2px;
+				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 10px 24px rgba(0, 0, 0, 0.34);
 			}
 
 			.hero-card {
@@ -202,6 +203,26 @@ const { title, showChrome = true } = Astro.props;
 			.btn-primary {
 				background: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold) 48%, var(--gold-deep) 100%);
 				color: #141414;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.btn-primary::after {
+				content: "";
+				position: absolute;
+				top: -120%;
+				left: -30%;
+				width: 35%;
+				height: 320%;
+				transform: rotate(22deg);
+				background: linear-gradient(
+					90deg,
+					rgba(255, 255, 255, 0) 0%,
+					rgba(255, 255, 255, 0.55) 50%,
+					rgba(255, 255, 255, 0) 100%
+				);
+				animation: goldShine 4s ease-in-out infinite;
+				pointer-events: none;
 			}
 
 			.btn-ghost {
@@ -358,6 +379,7 @@ const { title, showChrome = true } = Astro.props;
 				border: 1px solid rgba(212, 175, 55, 0.3);
 				padding: 1.2rem;
 				border-radius: 2px;
+				box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 			}
 
 			.profile-avatar {
@@ -386,6 +408,42 @@ const { title, showChrome = true } = Astro.props;
 				color: #e9f0ff;
 				line-height: 1.6;
 				font-size: 0.98rem;
+			}
+
+			.card-gloss {
+				position: relative;
+				overflow: hidden;
+			}
+
+			.card-gloss::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					140deg,
+					rgba(255, 255, 255, 0.1) 0%,
+					rgba(255, 255, 255, 0.03) 26%,
+					rgba(255, 255, 255, 0) 62%
+				);
+				pointer-events: none;
+			}
+
+			@keyframes goldShine {
+				0% {
+					left: -38%;
+					opacity: 0;
+				}
+				12% {
+					opacity: 1;
+				}
+				40% {
+					left: 118%;
+					opacity: 0;
+				}
+				100% {
+					left: 118%;
+					opacity: 0;
+				}
 			}
 		</style>
 	</head>
