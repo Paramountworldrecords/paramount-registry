@@ -1,0 +1,154 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const items = [
+	{
+		q: "Who can apply for record recognition?",
+		a: "Individuals, organisations, schools, corporates, and cultural institutions may apply when an attempt fits our published categories and eligibility criteria. We review each submission before formal engagement so expectations are clear.",
+	},
+	{
+		q: "How does verification differ from “claims” or media coverage?",
+		a: "Verification follows our written protocols: evidence design, witnessing where applicable, documentation standards, and adjudicator review. We do not certify on headlines alone; outcomes are tied to the record file.",
+	},
+	{
+		q: "How long does the process typically take?",
+		a: "Timelines depend on attempt complexity, geography, evidence readiness, and adjudicator scheduling. After screening, we outline stages and realistic windows—rushing undermines integrity, so we prioritise accuracy over speed.",
+	},
+	{
+		q: "Do you guarantee that my attempt will become a record?",
+		a: "No serious registry can guarantee an outcome before evidence is assessed. We guarantee a structured process: clear rules, fair review, and a documented decision aligned with our standards.",
+	},
+	{
+		q: "What evidence is usually required?",
+		a: "Requirements vary by record type but commonly include verifiable measurement methods, time-stamped documentation, independent witnesses or officials where specified, and media that meets chain-of-custody expectations. Protocols are confirmed in advance.",
+	},
+	{
+		q: "Are there fees or commercial considerations?",
+		a: "Professional registries incur operational costs—application handling, adjudication, and publication. We discuss fee structures after initial suitability review so you can decide before major commitment. Ask on contact channels for the current schedule.",
+	},
+	{
+		q: "Can an application be declined?",
+		a: "Yes. We may decline attempts that fall outside our scope, pose undue risk, lack verifiability, or cannot meet evidence standards. A decline is not a judgment of personal merit—it reflects fit with registry rules and feasibility.",
+	},
+	{
+		q: "How do I raise questions after certification or if I disagree with a decision?",
+		a: "Use the official contact routes listed on our Contact page. Include your reference details and correspondence will be handled through the appropriate department. Formal dispute paths, if any, are described in our terms as updated from time to time.",
+	},
+];
+---
+
+<Layout title="FAQ — Paramount World Records">
+	<main class="section faq-page">
+		<div class="container narrow about-panel" data-reveal>
+			<p class="tag">Guidance</p>
+			<h1>Frequently asked questions</h1>
+			<p class="faq-intro">
+				Plain answers about how we work. For case-specific guidance, use
+				<a href="/contact">Contact</a> or begin with <a href="/apply">Apply</a>.
+			</p>
+
+			<div class="faq-list">
+				{
+					items.map((item) => (
+						<details class="faq-item">
+							<summary>{item.q}</summary>
+							<p class="faq-answer">{item.a}</p>
+						</details>
+					))
+				}
+			</div>
+
+			<p class="faq-footer">
+				<a href="/departments">Departments &amp; verification process</a>
+				·
+				<a href="/home">Back to home</a>
+			</p>
+		</div>
+	</main>
+
+	<style>
+		.faq-page {
+			padding-top: 3.25rem;
+		}
+
+		.narrow {
+			max-width: 720px;
+		}
+
+		.faq-page h1 {
+			font-size: clamp(1.65rem, 4vw, 2.35rem);
+			margin-bottom: 0.65rem;
+			text-transform: none;
+			letter-spacing: 0.01em;
+			line-height: 1.2;
+		}
+
+		.faq-intro {
+			margin: 0 0 1.75rem;
+			color: #c5cedd;
+			line-height: 1.65;
+			font-size: 0.98rem;
+		}
+
+		.faq-list {
+			display: grid;
+			gap: 0.5rem;
+		}
+
+		.faq-item {
+			border: 1px solid rgba(196, 194, 188, 0.28);
+			border-radius: 2px;
+			background: rgba(0, 0, 0, 0.2);
+			padding: 0;
+			overflow: hidden;
+		}
+
+		.faq-item summary {
+			cursor: pointer;
+			padding: 0.95rem 1.1rem;
+			font-weight: 600;
+			font-size: 0.95rem;
+			line-height: 1.45;
+			color: #ece9e4;
+			list-style: none;
+		}
+
+		.faq-item summary::-webkit-details-marker {
+			display: none;
+		}
+
+		.faq-item summary::after {
+			content: "";
+			float: right;
+			width: 0.5rem;
+			height: 0.5rem;
+			margin-top: 0.35rem;
+			border-right: 2px solid #a8bdd8;
+			border-bottom: 2px solid #a8bdd8;
+			transform: rotate(45deg);
+			transition: transform 0.2s ease;
+			opacity: 0.75;
+		}
+
+		.faq-item[open] summary::after {
+			transform: rotate(-135deg);
+			margin-top: 0.5rem;
+		}
+
+		.faq-answer {
+			margin: 0;
+			padding: 0 1.1rem 1.1rem;
+			color: #aeb8c9;
+			font-size: 0.92rem;
+			line-height: 1.65;
+			border-top: 1px solid rgba(196, 194, 188, 0.12);
+			padding-top: 0.85rem;
+		}
+
+		.faq-footer {
+			margin-top: 2rem;
+			font-size: 0.9rem;
+			color: #8a96a8;
+		}
+	</style>
+</Layout>

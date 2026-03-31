@@ -1,5 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import AuthorityProcess from "../components/AuthorityProcess.astro";
 ---
 <Layout title="Paramount World Records — Home">
 	<main id="home" class="home-landing">
@@ -8,7 +9,8 @@ import Layout from '../layouts/Layout.astro';
 				<p class="tag">Elite Global Record Authority</p>
 				<h1>Paramount <span>World Records</span></h1>
 				<p class="lead">
-					Independent record authorisation, adjudication, verification, certification and publishing.
+					Independent registry for record authorisation and certification—governed by published rules,
+					evidence-led review, and adjudication. Publication follows verified outcomes, not headlines.
 				</p>
 				<div class="hero-actions">
 					<a class="btn btn-primary" href="/apply">Apply For A Record</a>
@@ -16,23 +18,24 @@ import Layout from '../layouts/Layout.astro';
 				</div>
 			</div>
 		</section>
+		<AuthorityProcess />
 	</main>
 
 	<style>
-		/* Single-view home: hero only (other sections live on their own routes: /about, /apply, …) */
 		.home-landing {
-			min-height: calc(100vh - 14rem);
 			display: flex;
 			flex-direction: column;
+			min-height: calc(100vh - 12rem);
 		}
 
 		.home-landing .hero {
 			flex: 1;
-			padding-top: clamp(2rem, 6vh, 3.5rem);
-			padding-bottom: clamp(2rem, 6vh, 3rem);
+			padding-top: clamp(2rem, 5vh, 3.25rem);
+			padding-bottom: clamp(1.25rem, 3vh, 2rem);
 			display: grid;
 			align-items: center;
 			align-content: center;
+			min-height: min(72vh, 720px);
 		}
 
 		.hero-actions {

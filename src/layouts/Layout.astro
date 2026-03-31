@@ -13,20 +13,29 @@ const { title, showChrome = true } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="Official world record registry." />
+		<meta name="description" content="Independent record registry—authorisation, adjudication, verification, and certification." />
 		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+			rel="stylesheet"
+		/>
 		<style is:global>
 			:root {
 				--navy: #070707;
-				--accent: #b0aca4;
-				--accent-soft: #ebe8e3;
-				--accent-deep: #5e5c57;
-				--accent-heading: #c4c2bc;
-				--accent-glow: rgba(196, 194, 188, 0.18);
+				--accent: #6ea7d9;
+				--accent-soft: #c7e2ff;
+				--accent-deep: #2f628f;
+				--accent-heading: #9ec8ef;
+				--accent-glow: rgba(110, 167, 217, 0.24);
 				--panel: rgba(20, 20, 20, 0.88);
 				--panel-2: rgba(12, 12, 12, 0.92);
 				--white: #ffffff;
-				--link: #a8bdd8;
+				--link: #8fc6ff;
+				--font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+				--font-body: "Source Sans 3", system-ui, -apple-system, Segoe UI, sans-serif;
+				--text-muted: #c5cedd;
 			}
 
 			* {
@@ -44,9 +53,13 @@ const { title, showChrome = true } = Astro.props;
 				background:
 					radial-gradient(circle at 16% -4%, var(--accent-glow), transparent 32%),
 					radial-gradient(circle at 90% 6%, rgba(168, 189, 216, 0.1), transparent 30%),
+					radial-gradient(ellipse 120% 80% at 50% 100%, rgba(30, 32, 38, 0.45), transparent 55%),
 					linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
 				color: var(--white);
-				font-family: Arial, Helvetica, sans-serif;
+				font-family: var(--font-body);
+				font-size: 1.02rem;
+				line-height: 1.55;
+				-webkit-font-smoothing: antialiased;
 			}
 
 			.container {
@@ -77,10 +90,11 @@ const { title, showChrome = true } = Astro.props;
 				gap: 0.55rem;
 				text-decoration: none;
 				color: var(--accent-heading);
+				font-family: var(--font-display);
 				font-weight: 700;
-				letter-spacing: 0.04em;
+				letter-spacing: 0.1em;
 				text-transform: uppercase;
-				font-size: 0.92rem;
+				font-size: 0.88rem;
 			}
 
 			.brand img {
@@ -160,7 +174,7 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.section {
-				padding: 4.5rem 0 1.5rem;
+				padding: 5.25rem 0 2.25rem;
 			}
 
 			.panel {
@@ -187,10 +201,12 @@ const { title, showChrome = true } = Astro.props;
 
 			.tag {
 				margin: 0;
+				font-family: var(--font-display);
 				text-transform: uppercase;
-				font-size: 0.75rem;
-				letter-spacing: 0.08em;
+				font-size: 0.72rem;
+				letter-spacing: 0.14em;
 				color: #a8bdd8;
+				font-weight: 600;
 			}
 
 			h1,
@@ -199,11 +215,18 @@ const { title, showChrome = true } = Astro.props;
 				margin: 0 0 0.8rem;
 			}
 
+			h1,
+			h2 {
+				font-family: var(--font-display);
+				font-weight: 700;
+			}
+
 			h1 {
 				font-size: clamp(2.2rem, 6vw, 4.8rem);
 				line-height: 1.03;
 				text-transform: uppercase;
 				color: var(--accent-heading);
+				letter-spacing: 0.02em;
 			}
 
 			h1 span {
@@ -213,12 +236,21 @@ const { title, showChrome = true } = Astro.props;
 			h2 {
 				font-size: clamp(1.5rem, 3vw, 2rem);
 				color: var(--accent-heading);
+				letter-spacing: 0.01em;
+			}
+
+			h3 {
+				font-family: var(--font-body);
+				font-weight: 600;
 			}
 
 			.lead {
-				font-size: clamp(1rem, 2.7vw, 1.4rem);
-				max-width: 850px;
-				margin: 0.6rem auto 0;
+				font-size: clamp(1.02rem, 2.4vw, 1.28rem);
+				max-width: 38rem;
+				margin: 0.75rem auto 0;
+				line-height: 1.65;
+				color: var(--text-muted);
+				font-weight: 400;
 			}
 
 			.btn {
@@ -226,10 +258,11 @@ const { title, showChrome = true } = Astro.props;
 				padding: 0.85rem 1.25rem;
 				text-decoration: none;
 				border-radius: 2px;
+				font-family: var(--font-body);
 				font-weight: 700;
 				text-transform: uppercase;
-				font-size: 0.82rem;
-				letter-spacing: 0.04em;
+				font-size: 0.8rem;
+				letter-spacing: 0.06em;
 				transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 			}
 
@@ -306,6 +339,16 @@ const { title, showChrome = true } = Astro.props;
 
 			a {
 				color: var(--link);
+			}
+
+			a:focus-visible,
+			button:focus-visible,
+			summary:focus-visible,
+			input:focus-visible,
+			select:focus-visible,
+			textarea:focus-visible {
+				outline: 2px solid rgba(168, 189, 216, 0.85);
+				outline-offset: 2px;
 			}
 
 			.site-footer {

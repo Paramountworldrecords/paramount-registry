@@ -1,0 +1,147 @@
+---
+const steps = [
+	{
+		title: "Application & screening",
+		text: "Structured intake, eligibility checks, and alignment with our published attempt categories.",
+	},
+	{
+		title: "Rules & protocol",
+		text: "Clear attempt guidelines, evidence expectations, and timelines issued before you commit resources.",
+	},
+	{
+		title: "Evidence & adjudication",
+		text: "Witnessing, documentation, and expert review so outcomes rest on verifiable fact—not opinion.",
+	},
+	{
+		title: "Certification",
+		text: "Formal recognition when standards are met, with registry-ready documentation.",
+	},
+	{
+		title: "Publication",
+		text: "Listing and coordinated communications so qualified achievements enter the public record with dignity.",
+	},
+];
+---
+
+<section class="authority-strip" aria-labelledby="cert-process-title">
+	<div class="container">
+		<div class="authority-card panel" data-reveal>
+			<p class="tag authority-tag" id="cert-process-title">Certification pathway</p>
+			<h2 class="authority-heading">From application to publication</h2>
+			<p class="authority-deck">
+				Authority is process: predictable stages, written standards, and adjudication you can trace.
+			</p>
+			<ol class="authority-steps">
+				{
+					steps.map((s, i) => (
+						<li class="authority-step">
+							<span class="authority-step-num" aria-hidden="true">
+								{(i + 1).toString().padStart(2, "0")}
+							</span>
+							<div class="authority-step-body">
+								<h3 class="authority-step-title">{s.title}</h3>
+								<p class="authority-step-text">{s.text}</p>
+							</div>
+						</li>
+					))
+				}
+			</ol>
+			<p class="authority-links">
+				<a href="/departments">Departments &amp; full process</a>
+				<span class="authority-links-sep" aria-hidden="true">·</span>
+				<a href="/faq">Frequently asked questions</a>
+			</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.authority-strip {
+		padding: 0 0 3.5rem;
+	}
+
+	.authority-card {
+		padding: clamp(1.35rem, 3vw, 2.25rem);
+	}
+
+	.authority-tag {
+		margin-bottom: 0.5rem;
+	}
+
+	.authority-heading {
+		font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+		margin-bottom: 0.5rem;
+		line-height: 1.2;
+	}
+
+	.authority-deck {
+		margin: 0 0 1.75rem;
+		max-width: 42rem;
+		color: #c5cedd;
+		line-height: 1.65;
+		font-size: 0.98rem;
+	}
+
+	.authority-steps {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	}
+
+	.authority-step {
+		display: flex;
+		gap: 0.85rem;
+		align-items: flex-start;
+		padding: 1rem 1rem 1.05rem;
+		background: rgba(0, 0, 0, 0.22);
+		border: 1px solid rgba(196, 194, 188, 0.2);
+		border-radius: 2px;
+	}
+
+	.authority-step-num {
+		flex-shrink: 0;
+		font-family: var(--font-display, Georgia, serif);
+		font-size: 1.35rem;
+		font-weight: 700;
+		color: var(--accent-heading, #c4c2bc);
+		line-height: 1;
+		opacity: 0.9;
+	}
+
+	.authority-step-body {
+		min-width: 0;
+	}
+
+	.authority-step-title {
+		font-size: 1rem;
+		margin: 0 0 0.35rem;
+		color: #ece9e4;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+	}
+
+	.authority-step-text {
+		margin: 0;
+		font-size: 0.88rem;
+		line-height: 1.6;
+		color: #aeb8c9;
+	}
+
+	.authority-links {
+		margin: 1.75rem 0 0;
+		font-size: 0.92rem;
+		color: #aeb8c9;
+	}
+
+	.authority-links-sep {
+		margin: 0 0.5rem;
+		opacity: 0.5;
+	}
+
+	.authority-links a {
+		font-weight: 600;
+	}
+</style>
