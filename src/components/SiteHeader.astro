@@ -103,11 +103,14 @@ const links = {
 		opacity: 0.92;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		background: linear-gradient(180deg, #fffef7 0%, #f1d592 52%, #d7e4f1 100%);
+		background: linear-gradient(180deg, #fffef8 0%, #f4dd8f 56%, #ca9f38 100%);
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
-		text-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+		-webkit-text-stroke: 0.25px rgba(255, 247, 220, 0.38);
+		text-shadow:
+			0 1px 0 rgba(255, 255, 255, 0.16),
+			0 5px 9px rgba(0, 0, 0, 0.28);
 	}
 
 	.header-actions {
@@ -131,9 +134,9 @@ const links = {
 
 	.nav-pill-muted {
 		border: 0.5px solid rgba(241, 213, 146, 0.7);
-		color: #f5e7be;
+		color: #faedc8;
 		background: rgba(255, 255, 255, 0.04);
-		text-shadow: 0 1px 6px rgba(0, 0, 0, 0.24);
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 3px 6px rgba(0, 0, 0, 0.2);
 	}
 
 	.nav-pill-muted:hover {
@@ -148,11 +151,12 @@ const links = {
 	}
 
 	.auth-welcome {
-		background: linear-gradient(180deg, #ffffff 0%, #f1d592 56%, #b7cbe2 100%);
+		background: linear-gradient(180deg, #ffffff 0%, #f4dd93 58%, #c89c33 100%);
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
-		text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+		-webkit-text-stroke: 0.2px rgba(255, 248, 224, 0.32);
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.14), 0 5px 8px rgba(0, 0, 0, 0.28);
 	}
 
 	.auth-logout {
