@@ -37,6 +37,9 @@ const { title, showChrome = true } = Astro.props;
 				--font-body: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
 				--text-muted: #c5cedd;
 				--radius-premium: 14px;
+				--gloss-top: #ffffff;
+				--gloss-mid: #f1d592;
+				--gloss-base: #b8c9dd;
 			}
 
 			* {
@@ -232,6 +235,11 @@ const { title, showChrome = true } = Astro.props;
 			h2 {
 				font-family: var(--font-display);
 				font-weight: 700;
+				background: linear-gradient(180deg, var(--gloss-top) 0%, var(--gloss-mid) 44%, var(--gloss-base) 100%);
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+				text-shadow: 0 1px 16px rgba(0, 0, 0, 0.42);
 			}
 
 			h1 {
@@ -243,7 +251,10 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			h1 span {
-				color: #ffffff;
+				color: transparent;
+				background: linear-gradient(180deg, #ffffff 0%, #f1d592 52%, #b8c9dd 100%);
+				-webkit-background-clip: text;
+				background-clip: text;
 			}
 
 			h2 {
@@ -360,6 +371,19 @@ const { title, showChrome = true } = Astro.props;
 
 			a {
 				color: var(--link);
+			}
+
+			/* Glossy premium text treatment across key UI labels */
+			.brand,
+			.top-nav a,
+			.menu summary,
+			.btn,
+			.profile-role {
+				background: linear-gradient(180deg, #fffef8 0%, #f1d592 46%, #b6c8de 100%);
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent !important;
+				text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
 			}
 
 			a:focus-visible,
