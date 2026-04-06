@@ -39,7 +39,8 @@ const { title, showChrome = true } = Astro.props;
 				--radius-premium: 14px;
 				--gloss-top: #ffe79a;
 				--gloss-mid: #ffd700;
-				--gloss-base: #c89a00;
+				--gloss-contrast: #d7e6ff;
+				--gloss-base: #9fb6d6;
 			}
 
 			* {
@@ -235,7 +236,13 @@ const { title, showChrome = true } = Astro.props;
 			h2 {
 				font-family: var(--font-display);
 				font-weight: 700;
-				background: linear-gradient(180deg, var(--gloss-top) 0%, var(--gloss-mid) 44%, var(--gloss-base) 100%);
+				background: linear-gradient(
+					180deg,
+					var(--gloss-top) 0%,
+					var(--gloss-mid) 48%,
+					var(--gloss-contrast) 50%,
+					var(--gloss-base) 100%
+				);
 				-webkit-background-clip: text;
 				background-clip: text;
 				color: transparent;
@@ -255,7 +262,7 @@ const { title, showChrome = true } = Astro.props;
 
 			h1 span {
 				color: transparent;
-				background: linear-gradient(180deg, #ffe79a 0%, #ffd700 56%, #c89a00 100%);
+				background: linear-gradient(180deg, #ffe79a 0%, #ffd700 49%, #d7e6ff 51%, #9fb6d6 100%);
 				-webkit-background-clip: text;
 				background-clip: text;
 				-webkit-text-stroke: 0.3px rgba(255, 246, 219, 0.45);
@@ -383,7 +390,7 @@ const { title, showChrome = true } = Astro.props;
 			.menu summary,
 			.btn,
 			.profile-role {
-				background: linear-gradient(180deg, #ffe79a 0%, #ffd700 52%, #c89a00 100%);
+				background: linear-gradient(180deg, #ffe79a 0%, #ffd700 49%, #d7e6ff 51%, #9fb6d6 100%);
 				-webkit-background-clip: text;
 				background-clip: text;
 				color: transparent !important;
