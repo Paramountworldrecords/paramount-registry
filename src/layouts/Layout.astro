@@ -114,12 +114,13 @@ const { title, showChrome = true } = Astro.props;
 				align-items: center;
 				gap: 0.55rem;
 				text-decoration: none;
-				color: var(--text-primary);
+				color: #ffffff;
 				font-family: var(--font-label);
-				font-weight: 500;
-				letter-spacing: 0.2em;
+				font-weight: 600;
+				letter-spacing: 0.22em;
 				text-transform: uppercase;
-				font-size: 0.68rem;
+				font-size: 0.72rem;
+				text-shadow: 0 0 24px rgba(0, 201, 167, 0.3);
 			}
 
 			.brand img {
@@ -138,14 +139,15 @@ const { title, showChrome = true } = Astro.props;
 
 			.top-nav a,
 			.menu summary {
-				color: var(--text-secondary);
+				color: rgba(255, 255, 255, 0.95);
 				text-decoration: none;
-				font-size: 0.72rem;
+				font-size: 0.7rem;
 				cursor: pointer;
-				font-weight: 400;
+				font-weight: 500;
 				font-family: var(--font-label);
 				letter-spacing: 0.2em;
 				text-transform: uppercase;
+				text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 			}
 
 			.auth-nav-guest,
@@ -157,27 +159,32 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.auth-welcome {
-				color: var(--text-secondary);
+				color: rgba(255, 255, 255, 0.88);
 				font-size: 0.85rem;
 				white-space: nowrap;
 			}
 
 			.auth-logout {
 				cursor: pointer;
-				border: 1px solid var(--border-noir);
-				background: var(--surface-noir);
-				color: var(--text-primary);
-				padding: 0.4rem 0.85rem;
-				font-size: 0.72rem;
+				border: 1px solid rgba(0, 201, 167, 0.45);
+				background: rgba(0, 201, 167, 0.14);
+				color: #ffffff;
+				padding: 0.45rem 0.9rem;
+				font-size: 0.64rem;
+				font-weight: 600;
 				border-radius: var(--radius-card);
 				font-family: var(--font-label);
-				letter-spacing: 0.14em;
+				letter-spacing: 0.16em;
 				text-transform: uppercase;
-				transition: border-color 0.2s ease, color 0.2s ease;
+				box-shadow: 0 0 16px rgba(0, 201, 167, 0.12);
+				transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 			}
 
 			.auth-logout:hover {
-				border-color: var(--text-primary);
+				border-color: #00e6c3;
+				color: #bffff6;
+				background: rgba(0, 201, 167, 0.22);
+				box-shadow: 0 0 26px rgba(0, 201, 167, 0.35);
 			}
 
 			.menu {
@@ -404,10 +411,18 @@ const { title, showChrome = true } = Astro.props;
 				opacity: 0.75;
 			}
 
-			.brand:hover,
+			.brand:hover {
+				opacity: 1;
+				text-shadow: 0 0 36px rgba(0, 201, 167, 0.55);
+			}
+
 			.top-nav a:hover,
 			.menu summary:hover {
 				opacity: 1;
+				color: #00e6c3 !important;
+				text-shadow:
+					0 0 20px rgba(0, 201, 167, 0.55),
+					0 1px 3px rgba(0, 0, 0, 0.5);
 			}
 
 			.top-nav a,
@@ -415,9 +430,9 @@ const { title, showChrome = true } = Astro.props;
 				background: none;
 				-webkit-background-clip: unset;
 				background-clip: unset;
-				color: var(--text-secondary) !important;
+				color: rgba(255, 255, 255, 0.95) !important;
 				-webkit-text-stroke: 0;
-				text-shadow: none;
+				text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 			}
 
 			a:focus-visible,
