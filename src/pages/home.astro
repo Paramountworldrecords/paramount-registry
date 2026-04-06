@@ -23,7 +23,7 @@ const serviceCards = [
 
 <Layout title="Paramount World Records — Home">
 	<main id="home" class="home-redesign">
-		<section class="hero-video section">
+		<section class="hero-video section section--flush">
 			<div class="hero-video-bg" aria-hidden="true">
 				<!-- Replace this file with your final hero video: /public/media/home-hero.mp4 -->
 				<video autoplay muted loop playsinline poster="/images/logo.png">
@@ -81,10 +81,15 @@ const serviceCards = [
 			flex-direction: column;
 		}
 
+		.hero-video.section.section--flush {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
 		.hero-video {
 			position: relative;
-			padding-top: clamp(7rem, 12vh, 9.8rem);
-			padding-bottom: clamp(5.2rem, 11vh, 8.2rem);
+			padding-top: clamp(8rem, 14vh, 11rem);
+			padding-bottom: clamp(6rem, 12vh, 9rem);
 			min-height: min(88vh, 860px);
 			overflow: hidden;
 		}
@@ -99,7 +104,7 @@ const serviceCards = [
 
 		.hero-video-bg video {
 			object-fit: cover;
-			filter: saturate(0.78) brightness(0.5);
+			filter: saturate(0.55) brightness(1.05) contrast(0.95);
 			animation: kenBurns 26s ease-in-out infinite alternate;
 		}
 
@@ -107,8 +112,8 @@ const serviceCards = [
 			position: absolute;
 			inset: 0;
 			background:
-				linear-gradient(110deg, rgba(0, 18, 40, 0.9) 10%, rgba(0, 18, 40, 0.7) 43%, rgba(0, 18, 40, 0.84) 100%),
-				radial-gradient(circle at 78% 50%, rgba(212, 175, 55, 0.14), transparent 36%);
+				linear-gradient(105deg, rgba(228, 228, 222, 0.94) 0%, rgba(228, 228, 222, 0.78) 48%, rgba(228, 228, 222, 0.88) 100%),
+				radial-gradient(circle at 85% 40%, rgba(196, 197, 186, 0.35), transparent 42%);
 		}
 
 		.hero-video::after {
@@ -117,67 +122,61 @@ const serviceCards = [
 			left: 0;
 			right: 0;
 			bottom: 0;
-			height: 26%;
-			background: linear-gradient(180deg, rgba(15, 42, 30, 0) 0%, rgba(15, 42, 30, 0.94) 100%);
+			height: 32%;
+			background: linear-gradient(180deg, rgba(228, 228, 222, 0) 0%, rgba(228, 228, 222, 1) 100%);
 			pointer-events: none;
 		}
 
 		.hero-content {
 			position: relative;
 			z-index: 1;
-			max-width: 640px;
+			max-width: 38rem;
 		}
 
 		.hero-kicker {
 			display: inline-block;
 			margin: 0;
-			padding: 0.22rem 0.55rem;
-			font-size: 0.72rem;
-			letter-spacing: 0.12em;
+			padding: 0.35rem 0.75rem;
+			font-size: 0.65rem;
+			letter-spacing: 0.2em;
 			text-transform: uppercase;
-			border: 0.5px solid rgba(241, 213, 146, 0.68);
-			border-radius: 999px;
-			color: #d8ecff;
-			background: rgba(4, 17, 38, 0.62);
+			border: 1px solid var(--border-sage);
+			border-radius: 2px;
+			color: var(--text-secondary);
+			background: rgba(255, 255, 255, 0.45);
 		}
 
 		.hero-content h1 {
-			margin-top: 1rem;
-			font-size: clamp(1.95rem, 5.2vw, 3.8rem);
-			line-height: 1.08;
+			margin-top: 1.35rem;
+			font-size: clamp(2.1rem, 5vw, 3.65rem);
+			line-height: 1.06;
 			text-transform: none;
-			letter-spacing: 0.005em;
-			color: transparent;
-			background: linear-gradient(
-				180deg,
-				var(--gloss-top) 0%,
-				var(--gloss-mid) 49%,
-				var(--gloss-contrast) 51%,
-				var(--gloss-base) 100%
-			);
-			-webkit-background-clip: text;
-			background-clip: text;
-			max-width: 14ch;
+			letter-spacing: -0.03em;
+			color: var(--text-primary);
+			background: none;
+			-webkit-background-clip: unset;
+			background-clip: unset;
+			max-width: 18ch;
 		}
 
 		.hero-text {
-			margin: 1.15rem 0 0;
-			max-width: 34rem;
-			font-size: clamp(0.96rem, 1.35vw, 1.02rem);
-			line-height: 1.8;
-			color: #c8d9ea;
+			margin: 1.35rem 0 0;
+			max-width: 36rem;
+			font-size: clamp(0.98rem, 1.4vw, 1.06rem);
+			line-height: 1.85;
+			color: var(--text-secondary);
 		}
 
 		.hero-cta-row {
 			display: flex;
 			flex-wrap: wrap;
-			gap: 0.95rem;
-			margin-top: 1.95rem;
+			gap: 1rem;
+			margin-top: 2.25rem;
 		}
 
 		.hero-metrics {
 			list-style: none;
-			margin: 2rem 0 0;
+			margin: 2.5rem 0 0;
 			padding: 0;
 			display: flex;
 			gap: 1rem;
@@ -186,79 +185,89 @@ const serviceCards = [
 
 		.hero-metrics li {
 			display: grid;
-			gap: 0.12rem;
-			padding: 0.72rem 0.9rem;
-			min-width: 118px;
-			border-radius: 12px;
-			border: 0.5px solid rgba(241, 213, 146, 0.52);
-			background: rgba(6, 20, 45, 0.48);
+			gap: 0.2rem;
+			padding: 1rem 1.15rem;
+			min-width: 124px;
+			border-radius: 2px;
+			border: 1px solid var(--border-sage);
+			background: linear-gradient(165deg, var(--bg-sage) 0%, var(--bg-sage-deep) 100%);
+			box-shadow: var(--shadow-soft-sm);
 		}
 
 		.hero-metrics strong {
-			font-size: 1rem;
+			font-size: 1.05rem;
 			font-family: var(--font-display);
-			color: #edf7ff;
+			font-weight: 600;
+			color: var(--text-primary);
 		}
 
 		.hero-metrics span {
-			font-size: 0.78rem;
-			color: #a9bfd6;
+			font-size: 0.72rem;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+			color: var(--text-secondary);
 		}
 
 		.home-services {
-			padding-top: 4.8rem;
+			padding-top: clamp(2rem, 5vw, 3rem);
 		}
 
 		.home-services h2 {
-			font-size: clamp(1.55rem, 3.3vw, 2.35rem);
+			font-size: clamp(1.65rem, 3.3vw, 2.35rem);
 			max-width: 760px;
 			text-transform: none;
-			line-height: 1.15;
+			line-height: 1.2;
 		}
 
 		.home-services-intro {
 			max-width: 650px;
-			margin: 1.15rem 0 2rem;
-			font-size: 1rem;
-			line-height: 1.72;
-			color: #c9b8c0;
+			margin: 1.25rem 0 2.5rem;
+			font-size: 1.05rem;
+			line-height: 1.8;
+			color: var(--text-secondary);
 		}
 
 		.service-grid {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-			gap: 1.25rem;
+			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+			gap: 1.75rem;
 		}
 
 		.service-card {
 			position: relative;
 			overflow: hidden;
-			border-radius: 18px;
-			background:
-				linear-gradient(160deg, rgba(44, 14, 26, 0.9) 0%, rgba(18, 6, 12, 0.94) 100%),
-				linear-gradient(160deg, rgba(92, 26, 48, 0.24) 0%, rgba(48, 12, 28, 0.22) 100%),
-				radial-gradient(circle at 100% -10%, rgba(212, 175, 55, 0.09), transparent 46%);
-			border: 0.5px solid rgba(212, 175, 55, 0.32);
+			border-radius: 2px;
+			min-height: 100%;
 		}
 
 		.service-card h3 {
 			margin: 0;
-			font-size: 1.06rem;
-			color: #f5ecf0;
+			font-size: 1.08rem;
+			font-family: var(--font-display);
+			font-weight: 600;
+			color: var(--text-primary);
 		}
 
 		.service-card p {
-			margin: 0.75rem 0 1.2rem;
-			font-size: 0.9rem;
-			line-height: 1.72;
-			color: #c8b4be;
+			margin: 0.85rem 0 1.5rem;
+			font-size: 0.92rem;
+			line-height: 1.75;
+			color: var(--text-secondary);
 		}
 
 		.service-card a {
-			font-size: 0.86rem;
-			font-weight: 700;
+			font-size: 0.72rem;
+			font-weight: 600;
 			text-transform: uppercase;
-			letter-spacing: 0.05em;
+			letter-spacing: 0.14em;
+			color: var(--text-primary);
+			border-bottom: 1px solid var(--border-sage);
+			padding-bottom: 0.15rem;
+		}
+
+		.service-card a:hover {
+			opacity: 1;
+			border-bottom-color: var(--text-primary);
 		}
 
 		@keyframes kenBurns {
@@ -266,7 +275,7 @@ const serviceCards = [
 				transform: scale(1);
 			}
 			100% {
-				transform: scale(1.08);
+				transform: scale(1.06);
 			}
 		}
 
@@ -276,7 +285,7 @@ const serviceCards = [
 			}
 
 			.hero-content h1 {
-				line-height: 1.02;
+				line-height: 1.05;
 			}
 		}
 	</style>

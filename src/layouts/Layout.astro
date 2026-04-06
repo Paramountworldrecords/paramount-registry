@@ -18,32 +18,30 @@ const { title, showChrome = true } = Astro.props;
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
 			rel="stylesheet"
 		/>
 		<style is:global>
+			/* Platinum Prestige — soft ivory, sage containers, authoritative type */
 			:root {
-				--navy: #070707;
-				--accent: #d4af37;
-				--accent-soft: #f1d592;
-				--accent-deep: #9f7821;
-				--accent-heading: #f1d592;
-				--accent-glow: rgba(212, 175, 55, 0.22);
-				--panel: rgba(20, 20, 20, 0.88);
-				--panel-2: rgba(12, 12, 12, 0.92);
+				--bg-ivory: #e4e4de;
+				--bg-sage: #c4c5ba;
+				--bg-sage-deep: #b0b1a5;
+				--border-sage: #a3a494;
+				--text-primary: #1b1b1b;
+				--text-secondary: #2c2c2c;
+				--text-muted: #3d3d3d;
 				--white: #ffffff;
-				--link: #f1d592;
-				--font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+				--link: #1b1b1b;
+				--accent: #1b1b1b;
+				--accent-heading: #1b1b1b;
+				--font-display: "Playfair Display", Georgia, "Times New Roman", serif;
 				--font-body: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
-				--text-muted: #c5cedd;
-				--radius-premium: 14px;
-				/* Split gloss tuned for forest shell: champagne → gold → pale sage → deep green shadow */
-				--gloss-top: #fff4dc;
-				--gloss-mid: #d4af37;
-				--gloss-contrast: #dff0e8;
-				--gloss-base: #1e3328;
-				--gloss-stroke: rgba(255, 252, 245, 0.48);
-				--gloss-stroke-nav: rgba(220, 235, 226, 0.38);
+				--radius-premium: 2px;
+				--shadow-soft: 0 16px 48px rgba(27, 27, 27, 0.07);
+				--shadow-soft-sm: 0 8px 24px rgba(27, 27, 27, 0.05);
+				--panel: #c4c5ba;
+				--panel-2: #b8b9ae;
 			}
 
 			* {
@@ -58,17 +56,12 @@ const { title, showChrome = true } = Astro.props;
 
 			body {
 				min-height: 100vh;
-				background:
-					radial-gradient(ellipse 130% 85% at 50% -18%, rgba(255, 252, 247, 0.16) 0%, transparent 55%),
-					radial-gradient(ellipse 75% 65% at 0% 45%, rgba(255, 248, 235, 0.07) 0%, transparent 48%),
-					radial-gradient(ellipse 70% 55% at 100% 55%, rgba(212, 175, 55, 0.11) 0%, transparent 52%),
-					radial-gradient(circle at 50% 110%, rgba(180, 200, 175, 0.06) 0%, transparent 45%),
-					linear-gradient(168deg, #1a3d2e 0%, #0f2619 40%, #06140e 100%);
-				color: var(--white);
+				background: var(--bg-ivory);
+				color: var(--text-primary);
 				font-family: var(--font-body);
-				font-size: 1rem;
-				line-height: 1.6;
-				letter-spacing: 0.005em;
+				font-size: 1.05rem;
+				line-height: 1.65;
+				letter-spacing: 0.01em;
 				-webkit-font-smoothing: antialiased;
 			}
 
@@ -86,16 +79,16 @@ const { title, showChrome = true } = Astro.props;
 				position: sticky;
 				top: 0;
 				z-index: 20;
-				background: rgba(15, 42, 30, 0.28);
-				backdrop-filter: blur(10px);
-				-webkit-backdrop-filter: blur(10px);
-				border-bottom: 0.5px solid rgba(241, 213, 146, 0.42);
-				transition: background-color 0.35s ease, border-color 0.35s ease;
+				background: rgba(228, 228, 222, 0.82);
+				backdrop-filter: blur(14px);
+				-webkit-backdrop-filter: blur(14px);
+				border-bottom: 1px solid var(--border-sage);
+				transition: background-color 0.35s ease, box-shadow 0.35s ease;
 			}
 
 			.site-header.scrolled {
-				background: #123d28;
-				border-bottom-color: rgba(241, 213, 146, 0.5);
+				background: rgba(228, 228, 222, 0.96);
+				box-shadow: var(--shadow-soft-sm);
 			}
 
 			.nav-wrap {
@@ -111,12 +104,12 @@ const { title, showChrome = true } = Astro.props;
 				align-items: center;
 				gap: 0.55rem;
 				text-decoration: none;
-				color: var(--accent-heading);
+				color: var(--text-primary);
 				font-family: var(--font-display);
-				font-weight: 700;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
-				font-size: 0.88rem;
+				font-weight: 600;
+				letter-spacing: 0.06em;
+				text-transform: none;
+				font-size: 0.95rem;
 			}
 
 			.brand img {
@@ -135,10 +128,12 @@ const { title, showChrome = true } = Astro.props;
 
 			.top-nav a,
 			.menu summary {
-				color: #ffffff;
+				color: var(--text-secondary);
 				text-decoration: none;
-				font-size: 0.9rem;
+				font-size: 0.88rem;
 				cursor: pointer;
+				font-weight: 500;
+				letter-spacing: 0.04em;
 			}
 
 			.auth-nav-guest,
@@ -150,25 +145,26 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.auth-welcome {
-				color: var(--accent-heading);
+				color: var(--text-secondary);
 				font-size: 0.85rem;
 				white-space: nowrap;
 			}
 
 			.auth-logout {
 				cursor: pointer;
-				border: 1px solid rgba(196, 194, 188, 0.45);
-				background: rgba(12, 12, 12, 0.85);
-				color: #e8e6e1;
-				padding: 0.35rem 0.75rem;
+				border: 1px solid var(--border-sage);
+				background: transparent;
+				color: var(--text-primary);
+				padding: 0.4rem 0.85rem;
 				font-size: 0.78rem;
-				border-radius: 2px;
+				border-radius: var(--radius-premium);
 				font-family: inherit;
+				transition: background 0.2s ease, border-color 0.2s ease;
 			}
 
 			.auth-logout:hover {
-				border-color: rgba(168, 189, 216, 0.6);
-				color: #fff;
+				border-color: var(--text-primary);
+				background: rgba(255, 255, 255, 0.35);
 			}
 
 			.menu {
@@ -190,31 +186,32 @@ const { title, showChrome = true } = Astro.props;
 				display: grid;
 				gap: 0.35rem;
 				min-width: 240px;
-				padding: 0.7rem;
-				background: linear-gradient(180deg, #161616 0%, #0d0d0d 100%);
-				border: 1px solid rgba(196, 194, 188, 0.38);
+				padding: 0.75rem;
+				background: var(--bg-ivory);
+				border: 1px solid var(--border-sage);
+				box-shadow: var(--shadow-soft-sm);
 			}
 
 			.section {
-				padding: 7rem 0 3rem;
+				padding: clamp(4.5rem, 10vw, 7.5rem) 0 clamp(3.5rem, 8vw, 5rem);
 			}
 
 			.panel {
-				background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%);
-				border: 0.5px solid rgba(241, 213, 146, 0.45);
-				padding: 1.45rem;
+				background: linear-gradient(165deg, var(--panel) 0%, var(--panel-2) 100%);
+				border: 1px solid var(--border-sage);
+				padding: clamp(1.75rem, 4vw, 2.5rem);
 				border-radius: var(--radius-premium);
-				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 18px 38px rgba(0, 0, 0, 0.34);
-				transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+				box-shadow: var(--shadow-soft-sm);
+				transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 			}
 
 			.hero-card {
-				border: 1px solid rgba(196, 194, 188, 0.5);
+				border: 1px solid var(--border-sage);
 				padding: clamp(1.4rem, 4vw, 3rem);
-				background: radial-gradient(circle at top right, rgba(196, 194, 188, 0.1), transparent 45%);
-				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+				background: linear-gradient(165deg, var(--panel) 0%, var(--panel-2) 100%);
+				box-shadow: var(--shadow-soft-sm);
 				text-align: center;
-				border-radius: 2px;
+				border-radius: var(--radius-premium);
 			}
 
 			.hero {
@@ -224,11 +221,11 @@ const { title, showChrome = true } = Astro.props;
 
 			.tag {
 				margin: 0;
-				font-family: var(--font-display);
+				font-family: var(--font-body);
 				text-transform: uppercase;
-				font-size: 0.72rem;
-				letter-spacing: 0.14em;
-				color: #a8bdd8;
+				font-size: 0.68rem;
+				letter-spacing: 0.2em;
+				color: var(--text-secondary);
 				font-weight: 600;
 			}
 
@@ -241,63 +238,48 @@ const { title, showChrome = true } = Astro.props;
 			h1,
 			h2 {
 				font-family: var(--font-display);
-				font-weight: 700;
-				background: linear-gradient(
-					180deg,
-					var(--gloss-top) 0%,
-					var(--gloss-mid) 48%,
-					var(--gloss-contrast) 50%,
-					var(--gloss-base) 100%
-				);
-				-webkit-background-clip: text;
-				background-clip: text;
-				color: transparent;
-				-webkit-text-stroke: 0.35px var(--gloss-stroke);
-				text-shadow:
-					0 1px 0 rgba(255, 255, 255, 0.26),
-					0 8px 14px rgba(0, 0, 0, 0.34);
+				font-weight: 600;
+				color: var(--text-primary);
+				-webkit-background-clip: unset;
+				background: none;
+				background-clip: unset;
+				-webkit-text-stroke: 0;
+				text-shadow: none;
 			}
 
 			h1 {
 				font-size: clamp(2.2rem, 6vw, 4.8rem);
-				line-height: 1.03;
+				line-height: 1.08;
 				text-transform: none;
-				color: var(--accent-heading);
-				letter-spacing: 0.02em;
+				letter-spacing: -0.02em;
 			}
 
 			h1 span {
-				color: transparent;
-				background: linear-gradient(
-					180deg,
-					var(--gloss-top) 0%,
-					var(--gloss-mid) 49%,
-					var(--gloss-contrast) 51%,
-					var(--gloss-base) 100%
-				);
-				-webkit-background-clip: text;
-				background-clip: text;
-				-webkit-text-stroke: 0.3px var(--gloss-stroke);
+				color: var(--text-primary);
+				background: none;
+				-webkit-background-clip: unset;
+				background-clip: unset;
+				-webkit-text-stroke: 0;
 			}
 
 			h2 {
-				font-size: clamp(1.5rem, 3vw, 2rem);
-				color: var(--accent-heading);
-				letter-spacing: 0.01em;
+				font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+				letter-spacing: -0.015em;
 				text-transform: none;
 			}
 
 			h3 {
 				font-family: var(--font-body);
 				font-weight: 600;
+				color: var(--text-primary);
 			}
 
 			.lead {
 				font-size: clamp(1.02rem, 2.4vw, 1.28rem);
 				max-width: 38rem;
 				margin: 0.75rem auto 0;
-				line-height: 1.65;
-				color: var(--text-muted);
+				line-height: 1.7;
+				color: var(--text-secondary);
 				font-weight: 400;
 			}
 
@@ -315,48 +297,39 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.btn-primary {
-				background: linear-gradient(45deg, #d4af37, #f1d592);
-				color: #101010;
+				background: var(--text-primary);
+				color: var(--bg-ivory);
 				position: relative;
 				overflow: hidden;
-				box-shadow: 0 0 0 rgba(212, 175, 55, 0), 0 0 24px rgba(212, 175, 55, 0.18);
+				box-shadow: var(--shadow-soft-sm);
+				border: 1px solid var(--text-primary);
 			}
 
 			.btn-primary::after {
-				content: "";
-				position: absolute;
-				top: -120%;
-				left: -30%;
-				width: 35%;
-				height: 320%;
-				transform: rotate(22deg);
-				background: linear-gradient(
-					90deg,
-					rgba(255, 255, 255, 0) 0%,
-					rgba(255, 255, 255, 0.55) 50%,
-					rgba(255, 255, 255, 0) 100%
-				);
-				animation: accentShine 4s ease-in-out infinite;
-				pointer-events: none;
+				display: none;
 			}
 
 			.btn-ghost {
-				border: 0.5px solid rgba(241, 213, 146, 0.6);
-				color: #ffffff;
+				border: 1px solid var(--border-sage);
+				color: var(--text-primary);
+				background: transparent;
 			}
 
 			.btn:hover {
-				transform: translateY(-1px);
-				box-shadow: 0 12px 22px rgba(0, 0, 0, 0.25);
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-soft);
 			}
 
 			.btn-primary:hover {
-				box-shadow: 0 0 18px rgba(212, 175, 55, 0.4), 0 12px 24px rgba(0, 0, 0, 0.28);
+				background: var(--text-secondary);
+				border-color: var(--text-secondary);
+				color: var(--bg-ivory);
 			}
 
 			.btn-ghost:hover {
-				background: #ffffff;
-				color: #101010;
+				background: var(--bg-sage);
+				color: var(--text-primary);
+				border-color: var(--text-primary);
 			}
 
 			.grid {
@@ -394,28 +367,29 @@ const { title, showChrome = true } = Astro.props;
 
 			a {
 				color: var(--link);
+				text-decoration: none;
+				text-underline-offset: 0.2em;
+				transition: color 0.2s ease, opacity 0.2s ease;
 			}
 
-			/* Glossy premium text treatment across key UI labels (not solid primary CTAs) */
-			.brand,
+			a:hover {
+				opacity: 0.75;
+			}
+
+			.brand:hover,
+			.top-nav a:hover,
+			.menu summary:hover {
+				opacity: 1;
+			}
+
 			.top-nav a,
-			.menu summary,
-			.btn:not(.btn-primary),
-			.profile-role {
-				background: linear-gradient(
-					180deg,
-					var(--gloss-top) 0%,
-					var(--gloss-mid) 49%,
-					var(--gloss-contrast) 51%,
-					var(--gloss-base) 100%
-				);
-				-webkit-background-clip: text;
-				background-clip: text;
-				color: transparent !important;
-				-webkit-text-stroke: 0.25px var(--gloss-stroke-nav);
-				text-shadow:
-					0 1px 0 rgba(255, 255, 255, 0.18),
-					0 6px 10px rgba(0, 0, 0, 0.3);
+			.menu summary {
+				background: none;
+				-webkit-background-clip: unset;
+				background-clip: unset;
+				color: var(--text-secondary) !important;
+				-webkit-text-stroke: 0;
+				text-shadow: none;
 			}
 
 			a:focus-visible,
@@ -424,14 +398,15 @@ const { title, showChrome = true } = Astro.props;
 			input:focus-visible,
 			select:focus-visible,
 			textarea:focus-visible {
-				outline: 2px solid rgba(168, 189, 216, 0.85);
-				outline-offset: 2px;
+				outline: 2px solid var(--border-sage);
+				outline-offset: 3px;
 			}
 
 			.site-footer {
-				padding: 2.8rem 0;
-				border-top: 0.5px solid rgba(241, 213, 146, 0.4);
-				margin-top: 3.8rem;
+				padding: clamp(3rem, 6vw, 4rem) 0;
+				border-top: 1px solid var(--border-sage);
+				margin-top: clamp(3rem, 8vw, 5rem);
+				background: var(--bg-ivory);
 			}
 
 			.footer-links {
@@ -441,12 +416,23 @@ const { title, showChrome = true } = Astro.props;
 				justify-content: center;
 			}
 
+			.footer-links a {
+				color: var(--text-secondary);
+				font-size: 0.88rem;
+				letter-spacing: 0.06em;
+			}
+
+			.footer-links a:hover {
+				color: var(--text-primary);
+				opacity: 1;
+			}
+
 			.footer-copy {
 				margin-top: 1.35rem;
 				text-align: center;
-				color: #cfd8e9;
-				font-size: 0.9rem;
-				letter-spacing: 0.04em;
+				color: var(--text-secondary);
+				font-size: 0.82rem;
+				letter-spacing: 0.12em;
 				text-transform: uppercase;
 			}
 
@@ -468,12 +454,12 @@ const { title, showChrome = true } = Astro.props;
 			.apply-form select,
 			.apply-form textarea {
 				width: 100%;
-				border: 1px solid rgba(196, 194, 188, 0.38);
-				background: rgba(3, 12, 26, 0.8);
-				color: #ffffff;
-				padding: 0.7rem;
+				border: 1px solid var(--border-sage);
+				background: var(--white);
+				color: var(--text-primary);
+				padding: 0.75rem;
 				font: inherit;
-				border-radius: 2px;
+				border-radius: var(--radius-premium);
 			}
 
 			.apply-form .full {
@@ -483,8 +469,10 @@ const { title, showChrome = true } = Astro.props;
 			/* Transitions / reveal animations */
 			[data-reveal] {
 				opacity: 0;
-				transform: translateY(16px);
-				transition: opacity 0.9s ease, transform 0.9s ease;
+				transform: translateY(28px);
+				transition:
+					opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+					transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 			}
 
 			[data-reveal].is-visible {
@@ -494,9 +482,9 @@ const { title, showChrome = true } = Astro.props;
 
 			@media (hover: hover) and (pointer: fine) {
 				.panel:hover {
-					transform: translateY(-4px);
-					box-shadow: 0 22px 40px rgba(0, 0, 0, 0.36);
-					border-color: rgba(241, 213, 146, 0.68);
+					transform: translateY(-3px);
+					box-shadow: var(--shadow-soft);
+					border-color: var(--text-secondary);
 				}
 			}
 
@@ -538,11 +526,11 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.profile-card {
-				background: linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%);
-				border: 1px solid rgba(196, 194, 188, 0.32);
+				background: linear-gradient(165deg, var(--panel) 0%, var(--panel-2) 100%);
+				border: 1px solid var(--border-sage);
 				padding: 1.2rem;
-				border-radius: 2px;
-				box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+				border-radius: var(--radius-premium);
+				box-shadow: var(--shadow-soft-sm);
 			}
 
 			.profile-avatar {
@@ -552,23 +540,23 @@ const { title, showChrome = true } = Astro.props;
 				display: grid;
 				place-items: center;
 				margin-bottom: 0.9rem;
-				background: radial-gradient(circle at top, rgba(196, 194, 188, 0.32), rgba(0, 0, 0, 0) 60%),
-					#141414;
-				border: 1px solid rgba(196, 194, 188, 0.38);
-				color: var(--accent-heading);
+				background: var(--bg-ivory);
+				border: 1px solid var(--border-sage);
+				color: var(--text-primary);
 				font-weight: 800;
 				letter-spacing: 0.04em;
 				text-transform: uppercase;
 			}
 
 			.profile-role {
-				color: var(--accent-heading);
-				font-weight: 700;
+				color: var(--text-primary);
+				font-family: var(--font-display);
+				font-weight: 600;
 				margin: 0 0 0.6rem;
 			}
 
 			.profile-text {
-				color: #e9f0ff;
+				color: var(--text-secondary);
 				line-height: 1.6;
 				font-size: 0.98rem;
 			}
