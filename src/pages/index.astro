@@ -30,17 +30,24 @@ import Layout from '../layouts/Layout.astro';
 			place-items: center;
 			padding: 2rem 1.25rem;
 			position: relative;
+			/* Same layered wash + forest base as `body` in Layout.astro */
 			background:
-				radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196, 194, 188, 0.14), transparent 50%),
-				radial-gradient(circle at 80% 80%, rgba(168, 189, 216, 0.08), transparent 45%),
-				linear-gradient(180deg, #0a0a0a 0%, #030303 100%);
+				radial-gradient(ellipse 130% 85% at 50% -18%, rgba(255, 252, 247, 0.16) 0%, transparent 55%),
+				radial-gradient(ellipse 75% 65% at 0% 45%, rgba(255, 248, 235, 0.07) 0%, transparent 48%),
+				radial-gradient(ellipse 70% 55% at 100% 55%, rgba(212, 175, 55, 0.11) 0%, transparent 52%),
+				radial-gradient(circle at 50% 110%, rgba(180, 200, 175, 0.06) 0%, transparent 45%),
+				linear-gradient(168deg, #1a3d2e 0%, #0f2619 40%, #06140e 100%);
 		}
 
 		.splash-vignette {
 			position: absolute;
 			inset: 0;
 			pointer-events: none;
-			background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.55) 100%);
+			background: radial-gradient(
+				ellipse 70% 60% at 50% 50%,
+				transparent 0%,
+				rgba(4, 18, 12, 0.52) 100%
+			);
 		}
 
 		.splash-inner {
@@ -55,7 +62,7 @@ import Layout from '../layouts/Layout.astro';
 			font-size: 0.72rem;
 			letter-spacing: 0.14em;
 			text-transform: uppercase;
-			color: #a8bdd8;
+			color: #9cb8aa;
 		}
 
 		.splash-title {
@@ -82,7 +89,7 @@ import Layout from '../layouts/Layout.astro';
 
 		.splash-line {
 			margin: 0 0 2rem;
-			color: #9aa3b0;
+			color: #a8b0a8;
 			font-size: 0.88rem;
 			letter-spacing: 0.06em;
 		}
@@ -114,7 +121,7 @@ import Layout from '../layouts/Layout.astro';
 		.splash-hint {
 			margin: 1.5rem 0 0;
 			font-size: 0.75rem;
-			color: #5c6470;
+			color: #6a756e;
 			letter-spacing: 0.04em;
 		}
 	</style>
