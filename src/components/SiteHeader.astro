@@ -103,11 +103,17 @@ const links = {
 		opacity: 0.92;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		background: linear-gradient(180deg, #ffe79a 0%, #ffd700 49%, #d7e6ff 51%, #9fb6d6 100%);
+		background: linear-gradient(
+			180deg,
+			var(--gloss-top) 0%,
+			var(--gloss-mid) 49%,
+			var(--gloss-contrast) 51%,
+			var(--gloss-base) 100%
+		);
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
-		-webkit-text-stroke: 0.25px rgba(255, 247, 220, 0.38);
+		-webkit-text-stroke: 0.25px var(--gloss-stroke-nav);
 		text-shadow:
 			0 1px 0 rgba(255, 255, 255, 0.16),
 			0 5px 9px rgba(0, 0, 0, 0.28);
@@ -151,11 +157,17 @@ const links = {
 	}
 
 	.auth-welcome {
-		background: linear-gradient(180deg, #ffe79a 0%, #ffd700 49%, #d7e6ff 51%, #9fb6d6 100%);
+		background: linear-gradient(
+			180deg,
+			var(--gloss-top) 0%,
+			var(--gloss-mid) 49%,
+			var(--gloss-contrast) 51%,
+			var(--gloss-base) 100%
+		);
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
-		-webkit-text-stroke: 0.2px rgba(255, 248, 224, 0.32);
+		-webkit-text-stroke: 0.2px var(--gloss-stroke-nav);
 		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.14), 0 5px 8px rgba(0, 0, 0, 0.28);
 	}
 
