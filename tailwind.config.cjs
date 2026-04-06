@@ -5,17 +5,17 @@ module.exports = {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#123d28',
-          50:  '#e9f2ec',
-          100: '#c5dccf',
-          200: '#9fc4b0',
-          300: '#78ab91',
-          400: '#4e8f6c',
-          500: '#123d28',
-          600: '#0f3322',
-          700: '#0c281b',
-          800: '#081c13',
-          900: '#041109',
+          DEFAULT: '#080808',
+          50:  '#f5f5f5',
+          100: '#e8e8e8',
+          200: '#d1d1d1',
+          300: '#a3a3a3',
+          400: '#6b6b6b',
+          500: '#121212',
+          600: '#0f0f0f',
+          700: '#0c0c0c',
+          800: '#080808',
+          900: '#030303',
         },
         gold: {
           DEFAULT: '#D4AF37',
@@ -32,9 +32,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        body:    ['"Libre Baskerville"', 'Georgia', 'serif'],
-        sans:    ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+        display: ['Anton', 'Impact', 'Arial Narrow', 'sans-serif'],
+        body:    ['Inter', 'system-ui', 'sans-serif'],
+        sans:    ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gold-shine': 'linear-gradient(135deg, #D4AF37 0%, #f0d97a 40%, #D4AF37 60%, #a88b1a 100%)',
@@ -42,7 +42,7 @@ module.exports = {
       boxShadow: {
         'gold':    '0 0 30px rgba(212,175,55,0.25)',
         'gold-lg': '0 0 60px rgba(212,175,55,0.35)',
-        'navy':    '0 8px 32px rgba(18,61,40,0.38)',
+        'navy':    '0 8px 32px rgba(0,0,0,0.5)',
       },
     },
   },

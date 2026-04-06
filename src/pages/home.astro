@@ -33,8 +33,11 @@ const serviceCards = [
 			<div class="hero-overlay" aria-hidden="true"></div>
 
 			<div class="container hero-content" data-reveal>
-				<p class="hero-kicker">Independent Record Authority</p>
-				<h1>Recognize Extraordinary Performance With Verified Standards</h1>
+				<div class="hero-mist" aria-hidden="true"></div>
+				<p class="hero-kicker">Independent record authority</p>
+				<h1>
+					Recognize extraordinary performance with verified standards<span class="stoplight" aria-hidden="true">.</span>
+				</h1>
 				<p class="hero-text">
 					From application to certification, we run a transparent process based on written rules,
 					adjudication discipline, and evidence-led decisions.
@@ -54,7 +57,7 @@ const serviceCards = [
 		<section class="section home-services">
 			<div class="container" data-reveal>
 				<p class="tag">Core capabilities</p>
-				<h2>Built for credibility, speed, and traceability</h2>
+				<h2>Built for credibility speed and traceability<span class="stoplight" aria-hidden="true">.</span></h2>
 				<p class="home-services-intro">
 					Your applicant journey stays structured from day one, with clearer expectations and cleaner outcomes.
 				</p>
@@ -88,10 +91,13 @@ const serviceCards = [
 
 		.hero-video {
 			position: relative;
-			padding-top: clamp(8rem, 14vh, 11rem);
-			padding-bottom: clamp(6rem, 12vh, 9rem);
-			min-height: min(88vh, 860px);
+			padding-top: clamp(9rem, 16vh, 12rem);
+			padding-bottom: clamp(7rem, 14vh, 10rem);
+			min-height: min(92vh, 920px);
 			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.hero-video-bg,
@@ -104,16 +110,16 @@ const serviceCards = [
 
 		.hero-video-bg video {
 			object-fit: cover;
-			filter: saturate(0.55) brightness(1.05) contrast(0.95);
-			animation: kenBurns 26s ease-in-out infinite alternate;
+			filter: saturate(0.35) brightness(0.35) contrast(1.05);
+			animation: kenBurns 28s ease-in-out infinite alternate;
 		}
 
 		.hero-overlay {
 			position: absolute;
 			inset: 0;
 			background:
-				linear-gradient(105deg, rgba(228, 228, 222, 0.94) 0%, rgba(228, 228, 222, 0.78) 48%, rgba(228, 228, 222, 0.88) 100%),
-				radial-gradient(circle at 85% 40%, rgba(196, 197, 186, 0.35), transparent 42%);
+				linear-gradient(180deg, rgba(8, 8, 8, 0.5) 0%, rgba(8, 8, 8, 0.88) 100%),
+				radial-gradient(circle at 50% 35%, rgba(0, 201, 167, 0.12) 0%, transparent 55%);
 		}
 
 		.hero-video::after {
@@ -122,152 +128,194 @@ const serviceCards = [
 			left: 0;
 			right: 0;
 			bottom: 0;
-			height: 32%;
-			background: linear-gradient(180deg, rgba(228, 228, 222, 0) 0%, rgba(228, 228, 222, 1) 100%);
+			height: 28%;
+			background: linear-gradient(180deg, transparent 0%, var(--bg-noir, #080808) 100%);
 			pointer-events: none;
 		}
 
 		.hero-content {
 			position: relative;
 			z-index: 1;
-			max-width: 38rem;
+			width: 100%;
+			max-width: min(1040px, 94vw);
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.hero-mist {
+			position: absolute;
+			left: 50%;
+			top: 42%;
+			transform: translate(-50%, -50%);
+			width: min(140vw, 920px);
+			height: min(90vw, 520px);
+			background: radial-gradient(circle, rgba(0, 201, 167, 0.15) 0%, transparent 70%);
+			pointer-events: none;
+			z-index: 0;
+		}
+
+		.hero-content .hero-kicker,
+		.hero-content h1,
+		.hero-content .hero-text,
+		.hero-content .hero-cta-row,
+		.hero-content .hero-metrics {
+			position: relative;
+			z-index: 1;
 		}
 
 		.hero-kicker {
 			display: inline-block;
 			margin: 0;
-			padding: 0.35rem 0.75rem;
-			font-size: 0.65rem;
+			padding: 0.4rem 1rem;
+			font-family: var(--font-label, "Montserrat", sans-serif);
+			font-size: 0.62rem;
+			font-weight: 300;
 			letter-spacing: 0.2em;
 			text-transform: uppercase;
-			border: 1px solid var(--border-sage);
-			border-radius: 2px;
-			color: var(--text-secondary);
-			background: rgba(255, 255, 255, 0.45);
+			border: 1px solid var(--border-noir, #1f1f1f);
+			border-radius: 24px;
+			color: rgba(255, 255, 255, 0.65);
+			background: rgba(18, 18, 18, 0.65);
 		}
 
 		.hero-content h1 {
-			margin-top: 1.35rem;
-			font-size: clamp(2.1rem, 5vw, 3.65rem);
-			line-height: 1.06;
-			text-transform: none;
-			letter-spacing: -0.03em;
-			color: var(--text-primary);
+			margin: 1.75rem auto 0;
+			font-family: var(--font-hero, "Anton", sans-serif);
+			font-size: clamp(2.4rem, 8.5vw, 5.75rem);
+			font-weight: 400;
+			line-height: 0.95;
+			text-transform: uppercase;
+			letter-spacing: -0.045em;
+			color: #ffffff;
+			max-width: 16ch;
 			background: none;
 			-webkit-background-clip: unset;
 			background-clip: unset;
-			max-width: 18ch;
 		}
 
 		.hero-text {
-			margin: 1.35rem 0 0;
+			margin: 1.75rem auto 0;
 			max-width: 36rem;
-			font-size: clamp(0.98rem, 1.4vw, 1.06rem);
-			line-height: 1.85;
-			color: var(--text-secondary);
+			font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+			line-height: 1.8;
+			color: rgba(255, 255, 255, 0.72);
 		}
 
 		.hero-cta-row {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 1rem;
-			margin-top: 2.25rem;
+			margin-top: 2.5rem;
+			justify-content: center;
 		}
 
 		.hero-metrics {
 			list-style: none;
-			margin: 2.5rem 0 0;
+			margin: 3rem auto 0;
 			padding: 0;
 			display: flex;
 			gap: 1rem;
 			flex-wrap: wrap;
+			justify-content: center;
 		}
 
 		.hero-metrics li {
 			display: grid;
-			gap: 0.2rem;
-			padding: 1rem 1.15rem;
-			min-width: 124px;
-			border-radius: 2px;
-			border: 1px solid var(--border-sage);
-			background: linear-gradient(165deg, var(--bg-sage) 0%, var(--bg-sage-deep) 100%);
-			box-shadow: var(--shadow-soft-sm);
+			gap: 0.25rem;
+			padding: 1.1rem 1.35rem;
+			min-width: 130px;
+			border-radius: 24px;
+			border: 1px solid var(--border-noir, #1f1f1f);
+			background: var(--surface-noir, #121212);
+			box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 		}
 
 		.hero-metrics strong {
-			font-size: 1.05rem;
-			font-family: var(--font-display);
-			font-weight: 600;
-			color: var(--text-primary);
+			font-size: 1.1rem;
+			font-family: var(--font-hero, "Anton", sans-serif);
+			font-weight: 400;
+			letter-spacing: -0.02em;
+			color: #ffffff;
 		}
 
 		.hero-metrics span {
-			font-size: 0.72rem;
-			letter-spacing: 0.06em;
+			font-family: var(--font-label, "Montserrat", sans-serif);
+			font-size: 0.62rem;
+			font-weight: 300;
+			letter-spacing: 0.2em;
 			text-transform: uppercase;
-			color: var(--text-secondary);
+			color: rgba(255, 255, 255, 0.55);
 		}
 
 		.home-services {
-			padding-top: clamp(2rem, 5vw, 3rem);
+			padding-top: clamp(1rem, 4vw, 2rem);
 		}
 
 		.home-services h2 {
-			font-size: clamp(1.65rem, 3.3vw, 2.35rem);
-			max-width: 760px;
-			text-transform: none;
-			line-height: 1.2;
+			max-width: 20ch;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			line-height: 0.98;
+		}
+
+		.home-services .tag {
+			text-align: center;
 		}
 
 		.home-services-intro {
-			max-width: 650px;
-			margin: 1.25rem 0 2.5rem;
-			font-size: 1.05rem;
+			max-width: 36rem;
+			margin: 1.5rem auto 2.75rem;
+			font-size: 1rem;
 			line-height: 1.8;
-			color: var(--text-secondary);
+			text-align: center;
+			color: rgba(255, 255, 255, 0.72);
 		}
 
 		.service-grid {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-			gap: 1.75rem;
+			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			gap: 1.5rem;
 		}
 
 		.service-card {
 			position: relative;
 			overflow: hidden;
-			border-radius: 2px;
+			border-radius: 24px;
 			min-height: 100%;
 		}
 
 		.service-card h3 {
 			margin: 0;
-			font-size: 1.08rem;
-			font-family: var(--font-display);
-			font-weight: 600;
-			color: var(--text-primary);
+			font-size: 0.72rem;
+			font-family: var(--font-label, "Montserrat", sans-serif);
+			font-weight: 500;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: #ffffff;
 		}
 
 		.service-card p {
-			margin: 0.85rem 0 1.5rem;
+			margin: 1rem 0 1.5rem;
 			font-size: 0.92rem;
-			line-height: 1.75;
-			color: var(--text-secondary);
+			line-height: 1.7;
+			color: rgba(255, 255, 255, 0.7);
 		}
 
 		.service-card a {
-			font-size: 0.72rem;
-			font-weight: 600;
+			font-family: var(--font-label, "Montserrat", sans-serif);
+			font-size: 0.62rem;
+			font-weight: 500;
 			text-transform: uppercase;
-			letter-spacing: 0.14em;
-			color: var(--text-primary);
-			border-bottom: 1px solid var(--border-sage);
-			padding-bottom: 0.15rem;
+			letter-spacing: 0.2em;
+			color: #ffffff;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+			padding-bottom: 0.2rem;
 		}
 
 		.service-card a:hover {
 			opacity: 1;
-			border-bottom-color: var(--text-primary);
+			border-bottom-color: #ff0000;
 		}
 
 		@keyframes kenBurns {
@@ -275,17 +323,17 @@ const serviceCards = [
 				transform: scale(1);
 			}
 			100% {
-				transform: scale(1.06);
+				transform: scale(1.07);
 			}
 		}
 
 		@media (max-width: 680px) {
 			.hero-video {
-				min-height: 74vh;
+				min-height: 78vh;
 			}
 
 			.hero-content h1 {
-				line-height: 1.05;
+				max-width: none;
 			}
 		}
 	</style>
