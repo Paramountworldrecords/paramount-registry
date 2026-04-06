@@ -99,15 +99,16 @@ const serviceCards = [
 
 		.hero-video-bg video {
 			object-fit: cover;
-			filter: saturate(0.85) brightness(0.58);
+			filter: saturate(0.78) brightness(0.5);
+			animation: kenBurns 26s ease-in-out infinite alternate;
 		}
 
 		.hero-overlay {
 			position: absolute;
 			inset: 0;
 			background:
-				linear-gradient(110deg, rgba(3, 11, 28, 0.92) 10%, rgba(3, 11, 28, 0.72) 43%, rgba(3, 11, 28, 0.82) 100%),
-				radial-gradient(circle at 78% 50%, rgba(143, 198, 255, 0.1), transparent 36%);
+				linear-gradient(110deg, rgba(0, 18, 40, 0.9) 10%, rgba(0, 18, 40, 0.7) 43%, rgba(0, 18, 40, 0.84) 100%),
+				radial-gradient(circle at 78% 50%, rgba(212, 175, 55, 0.14), transparent 36%);
 		}
 
 		.hero-content {
@@ -123,7 +124,7 @@ const serviceCards = [
 			font-size: 0.72rem;
 			letter-spacing: 0.12em;
 			text-transform: uppercase;
-			border: 1px solid rgba(143, 198, 255, 0.4);
+			border: 0.5px solid rgba(241, 213, 146, 0.68);
 			border-radius: 999px;
 			color: #d8ecff;
 			background: rgba(4, 17, 38, 0.62);
@@ -169,7 +170,7 @@ const serviceCards = [
 			padding: 0.72rem 0.9rem;
 			min-width: 118px;
 			border-radius: 12px;
-			border: 1px solid rgba(143, 198, 255, 0.26);
+			border: 0.5px solid rgba(241, 213, 146, 0.52);
 			background: rgba(6, 20, 45, 0.62);
 		}
 
@@ -216,7 +217,7 @@ const serviceCards = [
 			background:
 				linear-gradient(160deg, rgba(5, 20, 42, 0.9) 0%, rgba(8, 13, 24, 0.95) 100%),
 				radial-gradient(circle at 100% -10%, rgba(143, 198, 255, 0.1), transparent 45%);
-			border: 1px solid rgba(143, 198, 255, 0.2);
+			border: 0.5px solid rgba(241, 213, 146, 0.52);
 		}
 
 		.service-card h3 {
@@ -237,6 +238,15 @@ const serviceCards = [
 			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: 0.05em;
+		}
+
+		@keyframes kenBurns {
+			0% {
+				transform: scale(1);
+			}
+			100% {
+				transform: scale(1.08);
+			}
 		}
 
 		@media (max-width: 680px) {
