@@ -6,7 +6,6 @@ import Layout from '../layouts/Layout.astro';
 	<main class="splash">
 		<div class="splash-vignette" aria-hidden="true"></div>
 		<div class="splash-inner">
-			<img src="/images/logo.png" alt="" class="splash-logo" width="120" height="120" />
 			<p class="splash-tag">Elite Global Record Authority</p>
 			<h1 class="splash-title">Paramount <span>World Records</span></h1>
 			<p class="splash-line">Authorisation · Adjudication · Verification · Certification · Publishing</p>
@@ -16,6 +15,15 @@ import Layout from '../layouts/Layout.astro';
 	</main>
 
 	<style>
+		/* Add /public/fonts/skylens-italic.woff2 for exact SKYLENS ITALIC rendering. */
+		@font-face {
+			font-family: "Skylens Italic";
+			src: url("/fonts/skylens-italic.woff2") format("woff2");
+			font-style: italic;
+			font-weight: 400;
+			font-display: swap;
+		}
+
 		.splash {
 			min-height: 100vh;
 			display: grid;
@@ -42,12 +50,6 @@ import Layout from '../layouts/Layout.astro';
 			max-width: 560px;
 		}
 
-		.splash-logo {
-			display: block;
-			margin: 0 auto 1.25rem;
-			filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.5));
-		}
-
 		.splash-tag {
 			margin: 0 0 0.5rem;
 			font-size: 0.72rem;
@@ -59,6 +61,8 @@ import Layout from '../layouts/Layout.astro';
 		.splash-title {
 			margin: 0 0 0.75rem;
 			font-size: clamp(1.85rem, 5.5vw, 2.75rem);
+			font-family: "Skylens Italic", "Cormorant Garamond", Georgia, serif;
+			font-style: italic;
 			font-weight: 700;
 			line-height: 1.08;
 			text-transform: uppercase;
