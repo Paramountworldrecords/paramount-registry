@@ -58,12 +58,13 @@ const { title, showChrome = true } = Astro.props;
 
 			body {
 				min-height: 100vh;
+				/* Warm charcoal / near-black: gold is the only strong accent */
 				background:
-					radial-gradient(ellipse 130% 85% at 50% -18%, rgba(255, 252, 247, 0.16) 0%, transparent 55%),
-					radial-gradient(ellipse 75% 65% at 0% 45%, rgba(255, 248, 235, 0.07) 0%, transparent 48%),
-					radial-gradient(ellipse 70% 55% at 100% 55%, rgba(212, 175, 55, 0.11) 0%, transparent 52%),
-					radial-gradient(circle at 50% 110%, rgba(180, 200, 175, 0.06) 0%, transparent 45%),
-					linear-gradient(168deg, #1a3d2e 0%, #0f2619 40%, #06140e 100%);
+					radial-gradient(ellipse 125% 82% at 50% -22%, rgba(255, 252, 248, 0.055) 0%, transparent 54%),
+					radial-gradient(ellipse 68% 52% at 92% 38%, rgba(212, 175, 55, 0.048) 0%, transparent 50%),
+					radial-gradient(ellipse 58% 46% at 8% 72%, rgba(255, 255, 255, 0.028) 0%, transparent 46%),
+					radial-gradient(circle at 50% 118%, rgba(28, 26, 24, 0.35) 0%, transparent 44%),
+					linear-gradient(168deg, #1a1917 0%, #0f0e0d 44%, #050504 100%);
 				color: var(--white);
 				font-family: var(--font-body);
 				font-size: 1rem;
@@ -86,7 +87,7 @@ const { title, showChrome = true } = Astro.props;
 				position: sticky;
 				top: 0;
 				z-index: 20;
-				background: rgba(15, 42, 30, 0.28);
+				background: rgba(22, 20, 18, 0.4);
 				backdrop-filter: blur(10px);
 				-webkit-backdrop-filter: blur(10px);
 				border-bottom: 0.5px solid rgba(241, 213, 146, 0.42);
@@ -94,7 +95,7 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.site-header.scrolled {
-				background: #123d28;
+				background: #141210;
 				border-bottom-color: rgba(241, 213, 146, 0.5);
 			}
 
