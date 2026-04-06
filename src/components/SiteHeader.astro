@@ -61,16 +61,17 @@ const links = {
 
 <style>
 	.site-header-redesign {
-		background: linear-gradient(180deg, rgba(2, 8, 21, 0.96), rgba(2, 8, 21, 0.9));
-		border-bottom: 1px solid rgba(110, 167, 217, 0.28);
+		background: linear-gradient(180deg, rgba(2, 8, 21, 0.94), rgba(2, 8, 21, 0.86));
+		border-bottom: 1px solid rgba(110, 167, 217, 0.24);
+		backdrop-filter: blur(10px);
 	}
 
 	.header-shell {
 		display: grid;
 		grid-template-columns: auto 1fr auto;
 		align-items: center;
-		gap: 1rem;
-		padding: 0.6rem 0;
+		gap: 1.15rem;
+		padding: 0.72rem 0;
 	}
 
 	.site-header-redesign .brand {
@@ -92,9 +93,10 @@ const links = {
 
 	.site-header-redesign .top-nav a,
 	.site-header-redesign .menu summary {
-		font-size: 0.82rem;
+		font-size: 0.79rem;
 		color: #d9e8f8;
 		opacity: 0.92;
+		letter-spacing: 0.03em;
 	}
 
 	.header-actions {
@@ -107,11 +109,11 @@ const links = {
 	.nav-pill {
 		display: inline-flex;
 		align-items: center;
-		padding: 0.42rem 0.72rem;
+		padding: 0.48rem 0.82rem;
 		border-radius: 999px;
-		font-size: 0.74rem;
+		font-size: 0.71rem;
 		font-weight: 700;
-		letter-spacing: 0.04em;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		text-decoration: none;
 	}
@@ -122,9 +124,14 @@ const links = {
 		background: rgba(255, 255, 255, 0.04);
 	}
 
+	.nav-pill-muted:hover {
+		background: rgba(255, 255, 255, 0.08);
+	}
+
 	.nav-pill-primary {
 		color: #081421;
 		background: linear-gradient(135deg, #d0ebff, #6ea7d9 62%, #2f628f);
+		box-shadow: 0 8px 18px rgba(25, 80, 128, 0.35);
 	}
 
 	.auth-logout {
