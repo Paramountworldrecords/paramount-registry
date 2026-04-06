@@ -15,141 +15,161 @@ const links = {
 };
 ---
 
-<header class="site-header">
-	<div class="container header-inner">
-		<div class="nav-top-row">
-			<a class="brand" href="/home">
-				<img src="/images/logo.png" alt="Paramount World Records logo" />
-				<span>Paramount World Records</span>
-			</a>
-			<div class="nav-account-slot">
-				<span id="authNavGuest" class="auth-nav-guest">
-					<a href="/register" class="nav-auth-link">Register</a>
-					<a href="/login" class="nav-auth-link nav-auth-emphasis">Login</a>
-				</span>
-				<span id="authNavUser" class="auth-nav-user" hidden>
-					<span class="auth-welcome"
-						>Hi, <strong id="authDisplayName"></strong></span
-					>
-					<button type="button" id="authLogoutBtn" class="auth-logout">Logout</button>
-				</span>
-			</div>
-		</div>
+<header class="site-header site-header-redesign">
+	<div class="container header-shell">
+		<a class="brand" href="/home">
+			<img src="/images/logo.png" alt="Paramount World Records logo" />
+			<span>Paramount World Records</span>
+		</a>
 
 		<nav class="top-nav" aria-label="Primary">
-			<div class="top-nav-primary">
-				<a href={links.about}>About Us</a>
-				<a href={links.founders}>Founders</a>
-				<a href={links.apply}>Apply For A Record</a>
-				<a href={links.departments}>Departments & Process</a>
-				<a href={links.vision}>Vision & Mission</a>
-				<a href={links.achievers}>World Record Achievers</a>
-				<a href={links.contact}>Contact Us</a>
-			</div>
+			<a href={links.about}>About</a>
+			<a href={links.founders}>Founders</a>
+			<a href={links.apply}>Apply</a>
+			<a href={links.departments}>Process</a>
+			<a href={links.contact}>Contact</a>
+		</nav>
 
+		<div class="header-actions">
+			<span id="authNavGuest" class="auth-nav-guest">
+				<a href="/register" class="nav-pill nav-pill-muted">Register</a>
+				<a href="/login" class="nav-pill nav-pill-primary">Login</a>
+			</span>
+			<span id="authNavUser" class="auth-nav-user" hidden>
+				<span class="auth-welcome">Hi, <strong id="authDisplayName"></strong></span>
+				<button type="button" id="authLogoutBtn" class="auth-logout">Logout</button>
+			</span>
 			<details class="menu">
 				<summary>More</summary>
 				<div class="dropdown" role="menu" aria-label="More pages">
 					<a href="/register" class="dropdown-account">Register</a>
 					<a href="/login" class="dropdown-account">Login</a>
 					<hr class="dropdown-rule" />
-					<a href={links.press}>Press & Media Release</a>
+					<a href={links.vision}>Vision &amp; Mission</a>
+					<a href={links.achievers}>Achievers</a>
+					<a href={links.press}>Press &amp; Media</a>
 					<a href={links.gallery}>Gallery</a>
-					<a href={links.records}>Search Records</a>
-					<a href={links.clients}>Our Esteemed Clients</a>
+					<a href={links.records}>Records</a>
+					<a href={links.clients}>Clients</a>
 					<a href={links.work}>Work With Us</a>
 					<a href="/faq">FAQ</a>
 				</div>
 			</details>
-		</nav>
+		</div>
 	</div>
 </header>
 
 <style>
-	.header-inner {
-		display: flex;
-		flex-direction: column;
-		gap: 0.65rem;
-		padding: 0.85rem 0 1rem;
+	.site-header-redesign {
+		background: linear-gradient(180deg, rgba(2, 8, 21, 0.96), rgba(2, 8, 21, 0.9));
+		border-bottom: 1px solid rgba(110, 167, 217, 0.28);
 	}
 
-	.nav-top-row {
-		display: flex;
+	.header-shell {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
 		align-items: center;
-		justify-content: space-between;
 		gap: 1rem;
-		width: 100%;
-		min-width: 0;
+		padding: 0.6rem 0;
 	}
 
-	.nav-account-slot {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		gap: 0.65rem;
-		flex-shrink: 0;
+	.site-header-redesign .brand {
+		gap: 0.5rem;
+		letter-spacing: 0.05em;
+		font-size: 0.72rem;
 	}
 
-	.top-nav {
+	.site-header-redesign .brand img {
+		height: 28px;
+	}
+
+	.site-header-redesign .top-nav {
 		display: flex;
+		justify-content: center;
+		gap: 1rem;
 		flex-wrap: wrap;
-		align-items: center;
-		justify-content: flex-end;
-		gap: 0.65rem 1rem;
-		row-gap: 0.5rem;
-		width: 100%;
-		min-width: 0;
 	}
 
-	.top-nav-primary {
+	.site-header-redesign .top-nav a,
+	.site-header-redesign .menu summary {
+		font-size: 0.82rem;
+		color: #d9e8f8;
+		opacity: 0.92;
+	}
+
+	.header-actions {
 		display: flex;
-		flex-wrap: wrap;
 		align-items: center;
 		justify-content: flex-end;
-		gap: 0.65rem 1rem;
-		flex: 1 1 auto;
-		min-width: 0;
+		gap: 0.45rem;
 	}
 
-	.nav-auth-link {
-		font-weight: 600;
+	.nav-pill {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.42rem 0.72rem;
+		border-radius: 999px;
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		text-decoration: none;
 	}
 
-	.nav-auth-emphasis {
-		padding: 0.35rem 0.75rem;
-		border-radius: 2px;
-		border: 1px solid rgba(168, 189, 216, 0.55);
-		background: rgba(12, 12, 12, 0.65);
+	.nav-pill-muted {
+		border: 1px solid rgba(143, 198, 255, 0.42);
+		color: #d7ebff;
+		background: rgba(255, 255, 255, 0.04);
 	}
 
-	.nav-auth-emphasis:hover {
-		border-color: rgba(168, 189, 216, 0.85);
-		background: rgba(255, 255, 255, 0.06);
+	.nav-pill-primary {
+		color: #081421;
+		background: linear-gradient(135deg, #d0ebff, #6ea7d9 62%, #2f628f);
+	}
+
+	.auth-logout {
+		padding: 0.42rem 0.72rem;
+		border-radius: 999px;
+		font-size: 0.74rem;
+	}
+
+	.site-header-redesign .menu {
+		position: relative;
+	}
+
+	.site-header-redesign .dropdown {
+		top: 1.7rem;
+		right: 0;
+		background: linear-gradient(180deg, #0a1629 0%, #070f1e 100%);
+		border: 1px solid rgba(143, 198, 255, 0.32);
 	}
 
 	.dropdown-rule {
 		border: none;
-		border-top: 1px solid rgba(196, 194, 188, 0.25);
+		border-top: 1px solid rgba(143, 198, 255, 0.24);
 		margin: 0.25rem 0;
 	}
 
 	.dropdown-account {
 		font-weight: 600;
-		color: #dbe4f2 !important;
+		color: #dbefff !important;
 	}
 
-	@media (max-width: 640px) {
-		.nav-top-row {
-			flex-wrap: wrap;
+	@media (max-width: 1050px) {
+		.header-shell {
+			grid-template-columns: 1fr;
+			justify-items: start;
+			gap: 0.55rem;
 		}
 
-		.nav-account-slot {
+		.site-header-redesign .top-nav {
+			justify-content: flex-start;
+			gap: 0.75rem;
+		}
+
+		.header-actions {
 			width: 100%;
 			justify-content: flex-start;
-		}
-
-		.brand span {
-			font-size: 0.78rem;
 		}
 	}
 </style>

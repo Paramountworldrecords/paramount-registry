@@ -1,49 +1,251 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import AuthorityProcess from "../components/AuthorityProcess.astro";
+
+const serviceCards = [
+	{
+		title: "Application intake",
+		text: "Structured screening and category matching before the attempt cycle begins.",
+		href: "/apply",
+	},
+	{
+		title: "Adjudication protocol",
+		text: "Defined evidence framework, witness guidance, and transparent review workflows.",
+		href: "/departments",
+	},
+	{
+		title: "Publication support",
+		text: "Qualified achievements are prepared for registry publication and media-ready release.",
+		href: "/press-media",
+	},
+];
 ---
+
 <Layout title="Paramount World Records — Home">
-	<main id="home" class="home-landing">
-		<section class="hero section">
-			<div class="container hero-card" data-reveal>
-				<p class="tag">Elite Global Record Authority</p>
-				<h1>Paramount <span>World Records</span></h1>
-				<p class="lead">
-					Independent registry for record authorisation and certification—governed by published rules,
-					evidence-led review, and adjudication. Publication follows verified outcomes, not headlines.
+	<main id="home" class="home-redesign">
+		<section class="hero-video section">
+			<div class="hero-video-bg" aria-hidden="true">
+				<!-- Replace this file with your final hero video: /public/media/home-hero.mp4 -->
+				<video autoplay muted loop playsinline poster="/images/logo.png">
+					<source src="/media/home-hero.mp4" type="video/mp4" />
+				</video>
+			</div>
+			<div class="hero-overlay" aria-hidden="true"></div>
+
+			<div class="container hero-content" data-reveal>
+				<p class="hero-kicker">Independent Record Authority</p>
+				<h1>Recognize Extraordinary Performance With Verified Standards</h1>
+				<p class="hero-text">
+					From application to certification, we run a transparent process based on written rules,
+					adjudication discipline, and evidence-led decisions.
 				</p>
-				<div class="hero-actions">
+				<div class="hero-cta-row">
 					<a class="btn btn-primary" href="/apply">Apply For A Record</a>
-					<a class="btn btn-ghost" href="/records">Search Record Suggestions</a>
+					<a class="btn btn-ghost" href="/records">Explore Record Suggestions</a>
+				</div>
+				<ul class="hero-metrics" aria-label="Key highlights">
+					<li><strong>200+</strong><span>Records reviewed</span></li>
+					<li><strong>5-stage</strong><span>Verification cycle</span></li>
+					<li><strong>Pan-India</strong><span>Operations and support</span></li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="section home-services">
+			<div class="container" data-reveal>
+				<p class="tag">Core capabilities</p>
+				<h2>Built for credibility, speed, and traceability</h2>
+				<p class="home-services-intro">
+					Your applicant journey stays structured from day one, with clearer expectations and cleaner outcomes.
+				</p>
+				<div class="service-grid">
+					{
+						serviceCards.map((card) => (
+							<article class="service-card panel">
+								<h3>{card.title}</h3>
+								<p>{card.text}</p>
+								<a href={card.href}>Learn more</a>
+							</article>
+						))
+					}
 				</div>
 			</div>
 		</section>
+
 		<AuthorityProcess />
 	</main>
 
 	<style>
-		.home-landing {
+		.home-redesign {
 			display: flex;
 			flex-direction: column;
-			min-height: calc(100vh - 12rem);
 		}
 
-		.home-landing .hero {
-			flex: 1;
-			padding-top: clamp(2rem, 5vh, 3.25rem);
-			padding-bottom: clamp(1.25rem, 3vh, 2rem);
-			display: grid;
-			align-items: center;
-			align-content: center;
-			min-height: min(72vh, 720px);
+		.hero-video {
+			position: relative;
+			padding-top: clamp(6.2rem, 11vh, 8.5rem);
+			padding-bottom: clamp(4.2rem, 9vh, 7rem);
+			min-height: min(88vh, 860px);
+			overflow: hidden;
 		}
 
-		.hero-actions {
+		.hero-video-bg,
+		.hero-video-bg video {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		.hero-video-bg video {
+			object-fit: cover;
+			filter: saturate(0.85) brightness(0.58);
+		}
+
+		.hero-overlay {
+			position: absolute;
+			inset: 0;
+			background:
+				linear-gradient(110deg, rgba(3, 11, 28, 0.92) 10%, rgba(3, 11, 28, 0.72) 43%, rgba(3, 11, 28, 0.82) 100%),
+				radial-gradient(circle at 78% 50%, rgba(143, 198, 255, 0.1), transparent 36%);
+		}
+
+		.hero-content {
+			position: relative;
+			z-index: 1;
+			max-width: 680px;
+		}
+
+		.hero-kicker {
+			display: inline-block;
+			margin: 0;
+			padding: 0.22rem 0.55rem;
+			font-size: 0.72rem;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			border: 1px solid rgba(143, 198, 255, 0.4);
+			border-radius: 999px;
+			color: #d8ecff;
+			background: rgba(4, 17, 38, 0.62);
+		}
+
+		.hero-content h1 {
+			margin-top: 1rem;
+			font-size: clamp(2.05rem, 6vw, 4.1rem);
+			line-height: 0.98;
+			text-transform: none;
+			letter-spacing: 0.01em;
+			color: #f4fbff;
+		}
+
+		.hero-text {
+			margin: 1rem 0 0;
+			max-width: 42rem;
+			font-size: clamp(0.98rem, 1.55vw, 1.12rem);
+			line-height: 1.7;
+			color: #c8d9ea;
+		}
+
+		.hero-cta-row {
 			display: flex;
-			justify-content: center;
 			flex-wrap: wrap;
 			gap: 0.8rem;
 			margin-top: 1.4rem;
+		}
+
+		.hero-metrics {
+			list-style: none;
+			margin: 1.45rem 0 0;
+			padding: 0;
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+		}
+
+		.hero-metrics li {
+			display: grid;
+			gap: 0.12rem;
+			padding: 0.6rem 0.78rem;
+			min-width: 118px;
+			border-radius: 10px;
+			border: 1px solid rgba(143, 198, 255, 0.26);
+			background: rgba(6, 20, 45, 0.62);
+		}
+
+		.hero-metrics strong {
+			font-size: 1rem;
+			font-family: var(--font-display);
+			color: #edf7ff;
+		}
+
+		.hero-metrics span {
+			font-size: 0.78rem;
+			color: #a9bfd6;
+		}
+
+		.home-services {
+			padding-top: 3.2rem;
+		}
+
+		.home-services h2 {
+			font-size: clamp(1.55rem, 3.3vw, 2.35rem);
+			max-width: 760px;
+			text-transform: none;
+			line-height: 1.15;
+		}
+
+		.home-services-intro {
+			max-width: 650px;
+			margin: 0.75rem 0 1.25rem;
+			font-size: 1rem;
+			line-height: 1.65;
+			color: #b9cce1;
+		}
+
+		.service-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			gap: 1rem;
+		}
+
+		.service-card {
+			position: relative;
+			overflow: hidden;
+			border-radius: 14px;
+			background:
+				linear-gradient(160deg, rgba(5, 20, 42, 0.9) 0%, rgba(8, 13, 24, 0.95) 100%),
+				radial-gradient(circle at 100% -10%, rgba(143, 198, 255, 0.1), transparent 45%);
+			border: 1px solid rgba(143, 198, 255, 0.2);
+		}
+
+		.service-card h3 {
+			margin: 0;
+			font-size: 1.06rem;
+			color: #ecf7ff;
+		}
+
+		.service-card p {
+			margin: 0.55rem 0 0.95rem;
+			font-size: 0.9rem;
+			line-height: 1.65;
+			color: #acc3dc;
+		}
+
+		.service-card a {
+			font-size: 0.86rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+
+		@media (max-width: 680px) {
+			.hero-video {
+				min-height: 74vh;
+			}
+
+			.hero-content h1 {
+				line-height: 1.02;
+			}
 		}
 	</style>
 </Layout>
