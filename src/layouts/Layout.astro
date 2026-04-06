@@ -11,18 +11,6 @@ const { title, showChrome = true } = Astro.props;
 <!doctype html>
 <html lang="en">
 	<head>
-		<script is:inline>
-			(function () {
-				var d = document.documentElement;
-				try {
-					var t = localStorage.getItem("pwr-gloss-theme");
-					if (t === "white-black" || t === "gold-platinum") d.setAttribute("data-gloss-theme", t);
-					else d.setAttribute("data-gloss-theme", "gold-platinum");
-				} catch (e) {
-					d.setAttribute("data-gloss-theme", "gold-platinum");
-				}
-			})();
-		</script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content="Independent record registry—authorisation, adjudication, verification, and certification." />
@@ -49,21 +37,13 @@ const { title, showChrome = true } = Astro.props;
 				--font-body: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
 				--text-muted: #c5cedd;
 				--radius-premium: 14px;
-				--gloss-top: #ffe79a;
-				--gloss-mid: #ffd700;
-				--gloss-contrast: #d7e6ff;
-				--gloss-base: #9fb6d6;
-				--gloss-stroke: rgba(255, 245, 214, 0.5);
-				--gloss-stroke-nav: rgba(255, 247, 220, 0.38);
-			}
-
-			html[data-gloss-theme="white-black"] {
-				--gloss-top: #ffffff;
-				--gloss-mid: #f0f2f5;
-				--gloss-contrast: #3a3a3a;
-				--gloss-base: #0a0a0a;
-				--gloss-stroke: rgba(255, 255, 255, 0.42);
-				--gloss-stroke-nav: rgba(255, 255, 255, 0.4);
+				/* Split gloss: champagne → gold → white → warm shadow (pairs with gold/ivory page wash) */
+				--gloss-top: #fff4dc;
+				--gloss-mid: #e0b53a;
+				--gloss-contrast: #ffffff;
+				--gloss-base: #7d6a48;
+				--gloss-stroke: rgba(255, 250, 235, 0.52);
+				--gloss-stroke-nav: rgba(255, 248, 228, 0.4);
 			}
 
 			* {
@@ -79,8 +59,11 @@ const { title, showChrome = true } = Astro.props;
 			body {
 				min-height: 100vh;
 				background:
-					radial-gradient(circle, #002d5f 0%, #002147 100%),
-					radial-gradient(circle at 20% -5%, rgba(212, 175, 55, 0.14), transparent 34%);
+					radial-gradient(ellipse 130% 85% at 50% -18%, rgba(255, 252, 247, 0.2) 0%, transparent 55%),
+					radial-gradient(ellipse 75% 65% at 0% 45%, rgba(255, 248, 235, 0.09) 0%, transparent 48%),
+					radial-gradient(ellipse 70% 55% at 100% 55%, rgba(212, 175, 55, 0.1) 0%, transparent 52%),
+					radial-gradient(circle at 50% 110%, rgba(241, 213, 146, 0.07) 0%, transparent 45%),
+					linear-gradient(168deg, #021f42 0%, #001f45 38%, #00152e 100%);
 				color: var(--white);
 				font-family: var(--font-body);
 				font-size: 1rem;
@@ -458,57 +441,6 @@ const { title, showChrome = true } = Astro.props;
 				justify-content: center;
 			}
 
-			.footer-gloss {
-				display: flex;
-				flex-wrap: wrap;
-				align-items: center;
-				justify-content: center;
-				gap: 0.65rem 1rem;
-				margin-top: 1.5rem;
-				padding-top: 1.5rem;
-				border-top: 0.5px solid rgba(241, 213, 146, 0.22);
-			}
-
-			.footer-gloss-label {
-				font-size: 0.72rem;
-				letter-spacing: 0.14em;
-				text-transform: uppercase;
-				color: #8fa4bd;
-			}
-
-			.footer-gloss-toggle {
-				display: inline-flex;
-				flex-wrap: wrap;
-				gap: 0.45rem;
-			}
-
-			.footer-gloss-btn {
-				cursor: pointer;
-				font: inherit;
-				font-size: 0.72rem;
-				font-weight: 600;
-				letter-spacing: 0.06em;
-				text-transform: uppercase;
-				padding: 0.42rem 0.75rem;
-				border-radius: 999px;
-				border: 0.5px solid rgba(241, 213, 146, 0.35);
-				background: rgba(0, 20, 45, 0.5);
-				color: #d8e4f4;
-				transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-			}
-
-			.footer-gloss-btn:hover {
-				border-color: rgba(241, 213, 146, 0.55);
-				background: rgba(0, 33, 71, 0.65);
-			}
-
-			.footer-gloss-btn.is-active {
-				border-color: rgba(212, 175, 55, 0.75);
-				color: #f1d592;
-				background: rgba(212, 175, 55, 0.12);
-				box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
-			}
-
 			.footer-copy {
 				margin-top: 1.35rem;
 				text-align: center;
@@ -761,38 +693,6 @@ const { title, showChrome = true } = Astro.props;
 
 				update();
 				window.addEventListener("scroll", update, { passive: true });
-			})();
-		</script>
-
-		<script is:inline>
-			(() => {
-				const KEY = "pwr-gloss-theme";
-				const valid = new Set(["gold-platinum", "white-black"]);
-				function apply(theme) {
-					if (!valid.has(theme)) theme = "gold-platinum";
-					document.documentElement.setAttribute("data-gloss-theme", theme);
-					try {
-						localStorage.setItem(KEY, theme);
-					} catch (_) {}
-					document.querySelectorAll("[data-gloss-theme-btn]").forEach((btn) => {
-						if (!(btn instanceof HTMLElement)) return;
-						const id = btn.getAttribute("data-gloss-theme-btn") || "";
-						const active = id === theme;
-						btn.setAttribute("aria-pressed", String(active));
-						btn.classList.toggle("is-active", active);
-					});
-				}
-				document.addEventListener("DOMContentLoaded", () => {
-					const current =
-						document.documentElement.getAttribute("data-gloss-theme") || "gold-platinum";
-					document.querySelectorAll("[data-gloss-theme-btn]").forEach((btn) => {
-						btn.addEventListener("click", () => {
-							const t = btn.getAttribute("data-gloss-theme-btn");
-							if (t) apply(t);
-						});
-					});
-					apply(current);
-				});
 			})();
 		</script>
 
