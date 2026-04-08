@@ -32,9 +32,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['Anton', 'Impact', 'Arial Narrow', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         body:    ['Inter', 'system-ui', 'sans-serif'],
-        sans:    ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+        sans:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gold-shine': 'linear-gradient(135deg, #D4AF37 0%, #f0d97a 40%, #D4AF37 60%, #a88b1a 100%)',

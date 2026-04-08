@@ -110,7 +110,8 @@ const serviceCards = [
 
 		.hero-video-bg video {
 			object-fit: cover;
-			filter: saturate(0.35) brightness(0.35) contrast(1.05);
+			filter: saturate(0.55) brightness(1.02) contrast(0.92);
+			opacity: 0.4;
 			animation: kenBurns 28s ease-in-out infinite alternate;
 		}
 
@@ -118,8 +119,8 @@ const serviceCards = [
 			position: absolute;
 			inset: 0;
 			background:
-				linear-gradient(180deg, rgba(8, 8, 8, 0.5) 0%, rgba(8, 8, 8, 0.88) 100%),
-				radial-gradient(circle at 50% 35%, rgba(0, 201, 167, 0.12) 0%, transparent 55%);
+				linear-gradient(180deg, rgba(244, 246, 251, 0.88) 0%, rgba(244, 246, 251, 0.94) 100%),
+				radial-gradient(circle at 50% 32%, rgba(79, 70, 229, 0.09) 0%, transparent 58%);
 		}
 
 		.hero-video::after {
@@ -128,8 +129,8 @@ const serviceCards = [
 			left: 0;
 			right: 0;
 			bottom: 0;
-			height: 28%;
-			background: linear-gradient(180deg, transparent 0%, var(--bg-noir, #080808) 100%);
+			height: 24%;
+			background: linear-gradient(180deg, transparent 0%, var(--page-bg, #f4f6fb) 100%);
 			pointer-events: none;
 		}
 
@@ -149,7 +150,7 @@ const serviceCards = [
 			transform: translate(-50%, -50%);
 			width: min(140vw, 920px);
 			height: min(90vw, 520px);
-			background: radial-gradient(circle, rgba(0, 201, 167, 0.15) 0%, transparent 70%);
+			background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
 			pointer-events: none;
 			z-index: 0;
 		}
@@ -167,27 +168,28 @@ const serviceCards = [
 			display: inline-block;
 			margin: 0;
 			padding: 0.4rem 1rem;
-			font-family: var(--font-label, "Montserrat", sans-serif);
-			font-size: 0.62rem;
-			font-weight: 300;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			border: 1px solid var(--border-noir, #1f1f1f);
-			border-radius: 24px;
-			color: rgba(255, 255, 255, 0.65);
-			background: rgba(18, 18, 18, 0.65);
+			font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+			font-size: 0.8125rem;
+			font-weight: 600;
+			letter-spacing: 0.02em;
+			text-transform: none;
+			border: 1px solid var(--border-subtle, #e2e8f0);
+			border-radius: 9999px;
+			color: var(--accent, #4f46e5);
+			background: rgba(255, 255, 255, 0.85);
+			backdrop-filter: blur(8px);
 		}
 
 		.hero-content h1 {
 			margin: 1.75rem auto 0;
-			font-family: var(--font-hero, "Anton", sans-serif);
-			font-size: clamp(2.4rem, 8.5vw, 5.75rem);
-			font-weight: 400;
-			line-height: 0.95;
-			text-transform: uppercase;
-			letter-spacing: -0.045em;
-			color: #ffffff;
-			max-width: 16ch;
+			font-family: var(--font-hero, "Plus Jakarta Sans", sans-serif);
+			font-size: clamp(2.1rem, 5.5vw, 3.5rem);
+			font-weight: 800;
+			line-height: 1.08;
+			text-transform: none;
+			letter-spacing: -0.03em;
+			color: var(--text-primary, #0f172a);
+			max-width: 18ch;
 			background: none;
 			-webkit-background-clip: unset;
 			background-clip: unset;
@@ -198,7 +200,7 @@ const serviceCards = [
 			max-width: 36rem;
 			font-size: clamp(0.95rem, 1.5vw, 1.08rem);
 			line-height: 1.8;
-			color: rgba(255, 255, 255, 0.72);
+			color: var(--text-secondary, #475569);
 		}
 
 		.hero-cta-row {
@@ -224,27 +226,27 @@ const serviceCards = [
 			gap: 0.25rem;
 			padding: 1.1rem 1.35rem;
 			min-width: 130px;
-			border-radius: 24px;
-			border: 1px solid var(--border-noir, #1f1f1f);
-			background: var(--surface-noir, #121212);
-			box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+			border-radius: var(--radius-card, 16px);
+			border: 1px solid var(--border-subtle, #e2e8f0);
+			background: var(--surface-card, #fff);
+			box-shadow: var(--shadow-soft-sm, 0 4px 24px rgba(15, 23, 42, 0.06));
 		}
 
 		.hero-metrics strong {
 			font-size: 1.1rem;
-			font-family: var(--font-hero, "Anton", sans-serif);
-			font-weight: 400;
+			font-family: var(--font-hero, "Plus Jakarta Sans", sans-serif);
+			font-weight: 800;
 			letter-spacing: -0.02em;
-			color: #ffffff;
+			color: var(--text-primary, #0f172a);
 		}
 
 		.hero-metrics span {
-			font-family: var(--font-label, "Montserrat", sans-serif);
-			font-size: 0.62rem;
-			font-weight: 300;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: rgba(255, 255, 255, 0.55);
+			font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+			font-size: 0.75rem;
+			font-weight: 500;
+			letter-spacing: 0;
+			text-transform: none;
+			color: var(--text-muted, #94a3b8);
 		}
 
 		.home-services {
@@ -252,11 +254,11 @@ const serviceCards = [
 		}
 
 		.home-services h2 {
-			max-width: 20ch;
+			max-width: 24ch;
 			margin-left: auto;
 			margin-right: auto;
 			text-align: center;
-			line-height: 0.98;
+			line-height: 1.08;
 		}
 
 		.home-services .tag {
@@ -269,7 +271,7 @@ const serviceCards = [
 			font-size: 1rem;
 			line-height: 1.8;
 			text-align: center;
-			color: rgba(255, 255, 255, 0.72);
+			color: var(--text-secondary, #475569);
 		}
 
 		.service-grid {
@@ -281,41 +283,42 @@ const serviceCards = [
 		.service-card {
 			position: relative;
 			overflow: hidden;
-			border-radius: 24px;
+			border-radius: var(--radius-card, 16px);
 			min-height: 100%;
 		}
 
 		.service-card h3 {
 			margin: 0;
-			font-size: 0.72rem;
-			font-family: var(--font-label, "Montserrat", sans-serif);
-			font-weight: 500;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: #ffffff;
+			font-size: 1.05rem;
+			font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+			font-weight: 700;
+			letter-spacing: -0.02em;
+			text-transform: none;
+			color: var(--text-primary, #0f172a);
 		}
 
 		.service-card p {
 			margin: 1rem 0 1.5rem;
 			font-size: 0.92rem;
 			line-height: 1.7;
-			color: rgba(255, 255, 255, 0.7);
+			color: var(--text-secondary, #475569);
 		}
 
 		.service-card a {
-			font-family: var(--font-label, "Montserrat", sans-serif);
-			font-size: 0.62rem;
-			font-weight: 500;
-			text-transform: uppercase;
-			letter-spacing: 0.2em;
-			color: #ffffff;
-			border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+			font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+			font-size: 0.875rem;
+			font-weight: 600;
+			text-transform: none;
+			letter-spacing: 0;
+			color: var(--accent, #4f46e5);
+			border-bottom: 1px solid rgba(79, 70, 229, 0.35);
 			padding-bottom: 0.2rem;
 		}
 
 		.service-card a:hover {
 			opacity: 1;
-			border-bottom-color: #ff0000;
+			border-bottom-color: var(--accent-hover, #4338ca);
+			color: var(--accent-hover, #4338ca);
 		}
 
 		@keyframes kenBurns {

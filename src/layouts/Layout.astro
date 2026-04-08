@@ -13,41 +13,47 @@ const { title, showChrome = true } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="theme-color" content="#080808" />
+		<meta name="theme-color" content="#f4f6fb" />
 		<meta name="description" content="Independent record registry—authorisation, adjudication, verification, and certification." />
 		<title>{title}</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;500;600&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap"
 			rel="stylesheet"
 		/>
 		<style is:global>
-			/* Modern Noir — deep matte black, white type, teal mist, stoplight punctuation only */
+			/* Brandmark-inspired: light product marketing, bold sans, indigo CTA, soft cards */
 			:root {
-				--bg-noir: #080808;
-				--surface-noir: #121212;
-				--border-noir: #1f1f1f;
-				--text-primary: #ffffff;
-				--text-secondary: rgba(255, 255, 255, 0.72);
-				--text-muted: rgba(255, 255, 255, 0.55);
-				--mist: rgba(0, 201, 167, 0.15);
-				--mist-soft: rgba(0, 201, 167, 0.08);
-				--mist-glow: rgba(0, 201, 167, 0.22);
-				--stoplight: #ff0000;
+				--page-bg: #f4f6fb;
+				--surface-card: #ffffff;
+				--surface-muted: #f8fafc;
+				--border-subtle: #e2e8f0;
+				--text-primary: #0f172a;
+				--text-secondary: #475569;
+				--text-muted: #94a3b8;
+				--accent: #4f46e5;
+				--accent-hover: #4338ca;
+				--accent-soft: rgba(79, 70, 229, 0.1);
+				--mist-soft: rgba(79, 70, 229, 0.06);
+				--mist-glow: rgba(79, 70, 229, 0.45);
+				--stoplight: #ef4444;
 				--white: #ffffff;
-				--link: #ffffff;
-				--accent: #ffffff;
-				--accent-heading: #ffffff;
-				--font-hero: "Anton", Impact, "Arial Narrow", sans-serif;
-				--font-label: "Montserrat", system-ui, sans-serif;
+				--link: #4f46e5;
+				--accent-heading: #0f172a;
+				--font-hero: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+				--font-label: "Plus Jakarta Sans", system-ui, sans-serif;
 				--font-body: "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
-				--radius-card: 24px;
-				--radius-premium: 24px;
-				--panel: #121212;
-				--panel-2: #121212;
-				--shadow-soft: 0 24px 64px rgba(0, 0, 0, 0.45);
-				--shadow-soft-sm: 0 12px 32px rgba(0, 0, 0, 0.35);
+				--radius-card: 16px;
+				--radius-premium: 16px;
+				--panel: #ffffff;
+				--panel-2: #f8fafc;
+				--shadow-soft: 0 24px 56px rgba(15, 23, 42, 0.08);
+				--shadow-soft-sm: 0 4px 24px rgba(15, 23, 42, 0.06);
+				/* Legacy aliases used in older components */
+				--bg-noir: var(--page-bg);
+				--surface-noir: var(--surface-card);
+				--border-noir: var(--border-subtle);
 			}
 
 			* {
@@ -55,7 +61,7 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			html {
-				color-scheme: dark;
+				color-scheme: light;
 			}
 
 			html,
@@ -66,12 +72,12 @@ const { title, showChrome = true } = Astro.props;
 
 			body {
 				min-height: 100vh;
-				background: var(--bg-noir);
+				background: var(--page-bg);
 				color: var(--text-primary);
 				font-family: var(--font-body);
-				font-size: 1rem;
+				font-size: 1.05rem;
 				line-height: 1.65;
-				letter-spacing: 0.02em;
+				letter-spacing: 0.01em;
 				-webkit-font-smoothing: antialiased;
 			}
 
@@ -89,16 +95,16 @@ const { title, showChrome = true } = Astro.props;
 				position: sticky;
 				top: 0;
 				z-index: 20;
-				background: rgba(8, 8, 8, 0.82);
+				background: rgba(255, 255, 255, 0.82);
 				backdrop-filter: blur(16px);
 				-webkit-backdrop-filter: blur(16px);
-				border-bottom: 1px solid var(--border-noir);
+				border-bottom: 1px solid var(--border-subtle);
 				transition: background-color 0.35s ease, box-shadow 0.35s ease;
 			}
 
 			.site-header.scrolled {
-				background: rgba(8, 8, 8, 0.94);
-				box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+				background: rgba(255, 255, 255, 0.96);
+				box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
 			}
 
 			.nav-wrap {
@@ -114,13 +120,12 @@ const { title, showChrome = true } = Astro.props;
 				align-items: center;
 				gap: 0.55rem;
 				text-decoration: none;
-				color: #ffffff;
+				color: var(--text-primary);
 				font-family: var(--font-label);
-				font-weight: 600;
-				letter-spacing: 0.22em;
-				text-transform: uppercase;
-				font-size: 0.72rem;
-				text-shadow: 0 0 24px rgba(0, 201, 167, 0.3);
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				text-transform: none;
+				font-size: 1rem;
 			}
 
 			.brand img {
@@ -139,15 +144,14 @@ const { title, showChrome = true } = Astro.props;
 
 			.top-nav a,
 			.menu summary {
-				color: rgba(255, 255, 255, 0.95);
+				color: var(--text-secondary);
 				text-decoration: none;
-				font-size: 0.7rem;
+				font-size: 0.875rem;
 				cursor: pointer;
 				font-weight: 500;
 				font-family: var(--font-label);
-				letter-spacing: 0.2em;
-				text-transform: uppercase;
-				text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+				letter-spacing: 0;
+				text-transform: none;
 			}
 
 			.auth-nav-guest,
@@ -159,32 +163,31 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.auth-welcome {
-				color: rgba(255, 255, 255, 0.88);
-				font-size: 0.85rem;
+				color: var(--text-secondary);
+				font-size: 0.875rem;
 				white-space: nowrap;
 			}
 
 			.auth-logout {
 				cursor: pointer;
-				border: 1px solid rgba(0, 201, 167, 0.45);
-				background: rgba(0, 201, 167, 0.14);
-				color: #ffffff;
+				border: 1px solid var(--border-subtle);
+				background: var(--surface-muted);
+				color: var(--text-primary);
 				padding: 0.45rem 0.9rem;
-				font-size: 0.64rem;
+				font-size: 0.8125rem;
 				font-weight: 600;
-				border-radius: var(--radius-card);
+				border-radius: 9999px;
 				font-family: var(--font-label);
-				letter-spacing: 0.16em;
-				text-transform: uppercase;
-				box-shadow: 0 0 16px rgba(0, 201, 167, 0.12);
-				transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+				letter-spacing: 0;
+				text-transform: none;
+				box-shadow: none;
+				transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 			}
 
 			.auth-logout:hover {
-				border-color: #00e6c3;
-				color: #bffff6;
-				background: rgba(0, 201, 167, 0.22);
-				box-shadow: 0 0 26px rgba(0, 201, 167, 0.35);
+				border-color: var(--accent);
+				color: var(--accent);
+				background: var(--accent-soft);
 			}
 
 			.menu {
@@ -207,10 +210,10 @@ const { title, showChrome = true } = Astro.props;
 				gap: 0.35rem;
 				min-width: 240px;
 				padding: 0.85rem;
-				background: var(--surface-noir);
-				border: 1px solid var(--border-noir);
+				background: var(--surface-card);
+				border: 1px solid var(--border-subtle);
 				border-radius: var(--radius-card);
-				box-shadow: var(--shadow-soft-sm);
+				box-shadow: var(--shadow-soft);
 			}
 
 			.section {
@@ -218,8 +221,8 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.panel {
-				background: var(--surface-noir);
-				border: 1px solid var(--border-noir);
+				background: var(--surface-card);
+				border: 1px solid var(--border-subtle);
 				padding: clamp(1.75rem, 4vw, 2.5rem);
 				border-radius: var(--radius-card);
 				box-shadow: var(--shadow-soft-sm);
@@ -227,9 +230,9 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.hero-card {
-				border: 1px solid var(--border-noir);
+				border: 1px solid var(--border-subtle);
 				padding: clamp(1.4rem, 4vw, 3rem);
-				background: var(--surface-noir);
+				background: var(--surface-card);
 				box-shadow: var(--shadow-soft-sm);
 				text-align: center;
 				border-radius: var(--radius-card);
@@ -243,11 +246,11 @@ const { title, showChrome = true } = Astro.props;
 			.tag {
 				margin: 0;
 				font-family: var(--font-label);
-				text-transform: uppercase;
-				font-size: 0.65rem;
-				letter-spacing: 0.2em;
-				color: var(--text-muted);
-				font-weight: 300;
+				text-transform: none;
+				font-size: 0.8125rem;
+				letter-spacing: 0.02em;
+				color: var(--accent);
+				font-weight: 600;
 			}
 
 			h1,
@@ -259,11 +262,11 @@ const { title, showChrome = true } = Astro.props;
 			h1,
 			h2 {
 				font-family: var(--font-hero);
-				font-weight: 400;
+				font-weight: 800;
 				color: var(--text-primary);
-				text-transform: uppercase;
-				letter-spacing: -0.04em;
-				line-height: 0.98;
+				text-transform: none;
+				letter-spacing: -0.03em;
+				line-height: 1.08;
 				-webkit-background-clip: unset;
 				background: none;
 				background-clip: unset;
@@ -272,7 +275,7 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			h1 {
-				font-size: clamp(2.75rem, 10vw, 6.5rem);
+				font-size: clamp(2.25rem, 6vw, 3.75rem);
 			}
 
 			h1 span {
@@ -284,17 +287,17 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			h2 {
-				font-size: clamp(2rem, 6vw, 3.75rem);
-				letter-spacing: -0.035em;
+				font-size: clamp(1.65rem, 4vw, 2.25rem);
+				letter-spacing: -0.025em;
 			}
 
 			h3 {
 				font-family: var(--font-label);
-				font-weight: 600;
+				font-weight: 700;
 				color: var(--text-primary);
-				letter-spacing: 0.2em;
-				text-transform: uppercase;
-				font-size: 0.78rem;
+				letter-spacing: -0.02em;
+				text-transform: none;
+				font-size: 1.05rem;
 			}
 
 			.lead {
@@ -320,24 +323,24 @@ const { title, showChrome = true } = Astro.props;
 
 			.btn {
 				display: inline-block;
-				padding: 1rem 1.5rem;
+				padding: 0.875rem 1.5rem;
 				text-decoration: none;
-				border-radius: var(--radius-card);
+				border-radius: 9999px;
 				font-family: var(--font-label);
-				font-weight: 500;
-				text-transform: uppercase;
-				font-size: 0.68rem;
-				letter-spacing: 0.2em;
+				font-weight: 600;
+				text-transform: none;
+				font-size: 0.9375rem;
+				letter-spacing: 0;
 				transition: transform 0.28s ease, background-color 0.28s ease, border-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
 			}
 
 			.btn-primary {
-				background: var(--text-primary);
-				color: var(--bg-noir);
+				background: var(--accent);
+				color: var(--white);
 				position: relative;
 				overflow: hidden;
-				box-shadow: 0 0 32px rgba(0, 201, 167, 0.12);
-				border: 1px solid var(--text-primary);
+				box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+				border: 1px solid var(--accent);
 			}
 
 			.btn-primary::after {
@@ -345,9 +348,9 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.btn-ghost {
-				border: 1px solid var(--border-noir);
+				border: 1px solid var(--border-subtle);
 				color: var(--text-primary);
-				background: transparent;
+				background: var(--surface-card);
 			}
 
 			.btn:hover {
@@ -356,15 +359,15 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.btn-primary:hover {
-				background: rgba(255, 255, 255, 0.92);
-				border-color: #ffffff;
-				color: var(--bg-noir);
+				background: var(--accent-hover);
+				border-color: var(--accent-hover);
+				color: var(--white);
 			}
 
 			.btn-ghost:hover {
-				background: var(--surface-noir);
-				border-color: var(--text-primary);
-				color: var(--text-primary);
+				background: var(--surface-muted);
+				border-color: var(--accent);
+				color: var(--accent);
 			}
 
 			.grid {
@@ -390,8 +393,8 @@ const { title, showChrome = true } = Astro.props;
 				position: absolute;
 				inset: 0;
 				background: url("/images/logo.png") center/340px no-repeat;
-				opacity: 0.04;
-				filter: brightness(0) invert(1);
+				opacity: 0.06;
+				filter: brightness(0);
 				pointer-events: none;
 			}
 
@@ -408,21 +411,18 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			a:hover {
-				opacity: 0.75;
+				opacity: 0.9;
 			}
 
 			.brand:hover {
 				opacity: 1;
-				text-shadow: 0 0 36px rgba(0, 201, 167, 0.55);
+				color: var(--accent);
 			}
 
 			.top-nav a:hover,
 			.menu summary:hover {
 				opacity: 1;
-				color: #00e6c3 !important;
-				text-shadow:
-					0 0 20px rgba(0, 201, 167, 0.55),
-					0 1px 3px rgba(0, 0, 0, 0.5);
+				color: var(--accent) !important;
 			}
 
 			.top-nav a,
@@ -430,9 +430,9 @@ const { title, showChrome = true } = Astro.props;
 				background: none;
 				-webkit-background-clip: unset;
 				background-clip: unset;
-				color: rgba(255, 255, 255, 0.95) !important;
+				color: var(--text-secondary) !important;
 				-webkit-text-stroke: 0;
-				text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+				text-shadow: none;
 			}
 
 			a:focus-visible,
@@ -441,15 +441,15 @@ const { title, showChrome = true } = Astro.props;
 			input:focus-visible,
 			select:focus-visible,
 			textarea:focus-visible {
-				outline: 2px solid var(--mist-glow);
+				outline: 2px solid var(--accent);
 				outline-offset: 3px;
 			}
 
 			.site-footer {
 				padding: clamp(3rem, 6vw, 4rem) 0;
-				border-top: 1px solid var(--border-noir);
+				border-top: 1px solid var(--border-subtle);
 				margin-top: clamp(3rem, 8vw, 5rem);
-				background: var(--bg-noir);
+				background: var(--surface-muted);
 			}
 
 			.footer-links {
@@ -461,14 +461,15 @@ const { title, showChrome = true } = Astro.props;
 
 			.footer-links a {
 				color: var(--text-muted);
-				font-size: 0.68rem;
+				font-size: 0.8125rem;
 				font-family: var(--font-label);
-				letter-spacing: 0.2em;
-				text-transform: uppercase;
+				letter-spacing: 0;
+				text-transform: none;
+				font-weight: 500;
 			}
 
 			.footer-links a:hover {
-				color: var(--text-primary);
+				color: var(--accent);
 				opacity: 1;
 			}
 
@@ -476,10 +477,10 @@ const { title, showChrome = true } = Astro.props;
 				margin-top: 1.35rem;
 				text-align: center;
 				color: var(--text-muted);
-				font-size: 0.65rem;
+				font-size: 0.8125rem;
 				font-family: var(--font-label);
-				letter-spacing: 0.2em;
-				text-transform: uppercase;
+				letter-spacing: 0;
+				text-transform: none;
 			}
 
 			/* Apply form */
@@ -493,20 +494,20 @@ const { title, showChrome = true } = Astro.props;
 			.apply-form label {
 				display: grid;
 				gap: 0.35rem;
-				font-size: 0.68rem;
-				color: rgba(255, 255, 255, 0.85);
+				font-size: 0.8125rem;
+				color: var(--text-secondary);
 				font-family: var(--font-label);
-				letter-spacing: 0.12em;
-				text-transform: uppercase;
-				font-weight: 400;
+				letter-spacing: 0;
+				text-transform: none;
+				font-weight: 500;
 			}
 
 			.apply-form input,
 			.apply-form select,
 			.apply-form textarea {
 				width: 100%;
-				border: 1px solid var(--border-noir);
-				background: var(--surface-noir);
+				border: 1px solid var(--border-subtle);
+				background: var(--surface-card);
 				color: var(--text-primary);
 				padding: 0.75rem;
 				font: inherit;
@@ -535,7 +536,7 @@ const { title, showChrome = true } = Astro.props;
 				.panel:hover {
 					transform: translateY(-4px);
 					box-shadow: var(--shadow-soft);
-					border-color: rgba(0, 201, 167, 0.25);
+					border-color: rgba(79, 70, 229, 0.22);
 				}
 			}
 
@@ -577,8 +578,8 @@ const { title, showChrome = true } = Astro.props;
 			}
 
 			.profile-card {
-				background: var(--surface-noir);
-				border: 1px solid var(--border-noir);
+				background: var(--surface-card);
+				border: 1px solid var(--border-subtle);
 				padding: 1.2rem;
 				border-radius: var(--radius-card);
 				box-shadow: var(--shadow-soft-sm);
@@ -591,8 +592,8 @@ const { title, showChrome = true } = Astro.props;
 				display: grid;
 				place-items: center;
 				margin-bottom: 0.9rem;
-				background: var(--bg-noir);
-				border: 1px solid var(--border-noir);
+				background: var(--surface-muted);
+				border: 1px solid var(--border-subtle);
 				color: var(--text-primary);
 				font-weight: 800;
 				letter-spacing: 0.04em;
@@ -602,10 +603,10 @@ const { title, showChrome = true } = Astro.props;
 			.profile-role {
 				color: var(--text-primary);
 				font-family: var(--font-hero);
-				font-weight: 400;
-				font-size: 1.25rem;
+				font-weight: 700;
+				font-size: 1.15rem;
 				letter-spacing: -0.02em;
-				text-transform: uppercase;
+				text-transform: none;
 				margin: 0 0 0.6rem;
 			}
 

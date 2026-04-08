@@ -85,7 +85,7 @@ const items = [
 
 		.faq-intro {
 			margin: 0 0 1.75rem;
-			color: #c5cedd;
+			color: var(--text-secondary, #475569);
 			line-height: 1.65;
 			font-size: 0.98rem;
 		}
@@ -96,11 +96,12 @@ const items = [
 		}
 
 		.faq-item {
-			border: 1px solid rgba(196, 194, 188, 0.28);
-			border-radius: 2px;
-			background: rgba(0, 0, 0, 0.2);
+			border: 1px solid var(--border-subtle, #e2e8f0);
+			border-radius: var(--radius-card, 16px);
+			background: var(--surface-card, #fff);
 			padding: 0;
 			overflow: hidden;
+			box-shadow: var(--shadow-soft-sm, 0 4px 24px rgba(15, 23, 42, 0.06));
 		}
 
 		.faq-item summary {
@@ -109,7 +110,7 @@ const items = [
 			font-weight: 600;
 			font-size: 0.95rem;
 			line-height: 1.45;
-			color: #ece9e4;
+			color: var(--text-primary, #0f172a);
 			list-style: none;
 		}
 
@@ -123,8 +124,8 @@ const items = [
 			width: 0.5rem;
 			height: 0.5rem;
 			margin-top: 0.35rem;
-			border-right: 2px solid #a8bdd8;
-			border-bottom: 2px solid #a8bdd8;
+			border-right: 2px solid var(--text-muted, #94a3b8);
+			border-bottom: 2px solid var(--text-muted, #94a3b8);
 			transform: rotate(45deg);
 			transition: transform 0.2s ease;
 			opacity: 0.75;
@@ -138,17 +139,17 @@ const items = [
 		.faq-answer {
 			margin: 0;
 			padding: 0 1.1rem 1.1rem;
-			color: #aeb8c9;
+			color: var(--text-secondary, #475569);
 			font-size: 0.92rem;
 			line-height: 1.65;
-			border-top: 1px solid rgba(196, 194, 188, 0.12);
+			border-top: 1px solid var(--border-subtle, #e2e8f0);
 			padding-top: 0.85rem;
 		}
 
 		.faq-footer {
 			margin-top: 2rem;
 			font-size: 0.9rem;
-			color: #8a96a8;
+			color: var(--text-muted, #94a3b8);
 		}
 	</style>
 </Layout>

@@ -186,14 +186,16 @@ import Layout from '../layouts/Layout.astro';
 			font-size: 0.82rem;
 			text-transform: uppercase;
 			letter-spacing: 0.06em;
-			color: #a8bdd8;
+			color: var(--text-muted, #94a3b8);
 		}
 		.form-msg {
 			margin: 1rem 0 0;
 			padding: 0.65rem 0.75rem;
-			border-radius:2px;
-			background: rgba(0,0,0,.25);
+			border-radius: var(--radius-card, 16px);
+			background: var(--surface-muted, #f8fafc);
+			border: 1px solid var(--border-subtle, #e2e8f0);
 			font-size: 0.9rem;
+			color: var(--text-primary, #0f172a);
 		}
 		.captcha-block {
 			margin-top: 0.25rem;
@@ -208,7 +210,7 @@ import Layout from '../layouts/Layout.astro';
 			flex: 1;
 			min-width: 180px;
 			margin: 0;
-			color: #d2dae6;
+			color: var(--text-secondary, #475569);
 			font-size: 0.95rem;
 		}
 		.captcha-row input[type="number"] {
@@ -216,16 +218,17 @@ import Layout from '../layouts/Layout.astro';
 		}
 		.btn-ghost-sm {
 			cursor: pointer;
-			border: 1px solid rgba(196, 194, 188, 0.5);
-			background: transparent;
-			color: #e8e6e1;
+			border: 1px solid var(--border-subtle, #e2e8f0);
+			background: var(--surface-card, #fff);
+			color: var(--text-primary, #0f172a);
 			padding: 0.5rem 0.75rem;
 			font-size: 0.78rem;
-			border-radius: 2px;
+			border-radius: var(--radius-card, 16px);
 			font-family: inherit;
 		}
 		.btn-ghost-sm:hover {
-			background: rgba(255,255,255,.08);
+			background: var(--accent-soft, rgba(79, 70, 229, 0.1));
+			border-color: var(--accent, #4f46e5);
 		}
 	</style>
 </Layout>

@@ -27,7 +27,7 @@ import Layout from '../layouts/Layout.astro';
 			place-items: center;
 			padding: 2rem 1.25rem;
 			position: relative;
-			background: #080808;
+			background: #f4f6fb;
 			overflow: hidden;
 		}
 
@@ -38,7 +38,7 @@ import Layout from '../layouts/Layout.astro';
 			transform: translate(-50%, -50%);
 			width: min(120vw, 800px);
 			height: min(100vw, 560px);
-			background: radial-gradient(circle, rgba(0, 201, 167, 0.15) 0%, transparent 70%);
+			background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
 			pointer-events: none;
 		}
 
@@ -46,7 +46,7 @@ import Layout from '../layouts/Layout.astro';
 			position: absolute;
 			inset: 0;
 			pointer-events: none;
-			background: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.5) 100%);
+			background: radial-gradient(ellipse 85% 75% at 50% 45%, transparent 35%, rgba(15, 23, 42, 0.04) 100%);
 		}
 
 		.splash-inner {
@@ -55,18 +55,18 @@ import Layout from '../layouts/Layout.astro';
 			text-align: center;
 			max-width: min(560px, 94vw);
 			padding: clamp(2.5rem, 6vw, 4rem);
-			border: 1px solid #1f1f1f;
-			border-radius: 24px;
-			background: #121212;
-			box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+			border: 1px solid #e2e8f0;
+			border-radius: 16px;
+			background: #ffffff;
+			box-shadow: 0 24px 56px rgba(15, 23, 42, 0.08);
 		}
 
 		.splash-inner::before {
 			content: "";
 			position: absolute;
 			inset: 0;
-			border-radius: 24px;
-			background: radial-gradient(circle at 50% 0%, rgba(0, 201, 167, 0.1) 0%, transparent 50%);
+			border-radius: 16px;
+			background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.06) 0%, transparent 52%);
 			pointer-events: none;
 		}
 
@@ -77,72 +77,76 @@ import Layout from '../layouts/Layout.astro';
 
 		.splash-tag {
 			margin: 0 0 1.25rem;
-			font-size: 0.62rem;
-			font-family: Montserrat, system-ui, sans-serif;
-			font-weight: 300;
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
-			color: rgba(255, 255, 255, 0.5);
+			font-size: 0.8125rem;
+			font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+			font-weight: 600;
+			letter-spacing: 0.02em;
+			text-transform: none;
+			color: #4f46e5;
 		}
 
 		.splash-title {
 			margin: 0 0 1rem;
-			font-size: clamp(2.5rem, 10vw, 4.5rem);
-			font-family: Anton, Impact, sans-serif;
-			font-weight: 400;
-			line-height: 0.95;
-			text-transform: uppercase;
-			letter-spacing: -0.04em;
-			color: #ffffff;
+			font-size: clamp(2.25rem, 8vw, 3.75rem);
+			font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+			font-weight: 800;
+			line-height: 1.08;
+			text-transform: none;
+			letter-spacing: -0.03em;
+			color: #0f172a;
 		}
 
 		.splash-title-sub {
 			display: block;
-			margin-top: 0.12em;
-			font-size: 0.42em;
-			letter-spacing: 0.18em;
+			margin-top: 0.2em;
+			font-size: 0.45em;
+			font-weight: 700;
+			letter-spacing: -0.02em;
+			color: #64748b;
 		}
 
 		.splash-line {
 			margin: 0 0 2rem;
-			color: rgba(255, 255, 255, 0.65);
+			color: #64748b;
 			font-family: Inter, system-ui, sans-serif;
-			font-size: 0.78rem;
-			letter-spacing: 0.14em;
-			line-height: 1.6;
-			text-transform: uppercase;
+			font-size: 0.875rem;
+			letter-spacing: 0.02em;
+			line-height: 1.65;
+			text-transform: none;
 		}
 
 		.splash-enter {
 			display: inline-block;
-			padding: 1rem 2.75rem;
+			padding: 0.95rem 2.5rem;
 			text-decoration: none;
-			border-radius: 24px;
-			font-family: Montserrat, system-ui, sans-serif;
-			font-weight: 500;
-			text-transform: uppercase;
-			font-size: 0.65rem;
-			letter-spacing: 0.2em;
-			background: #ffffff;
-			color: #080808;
-			border: 1px solid #ffffff;
-			box-shadow: 0 0 36px rgba(0, 201, 167, 0.12);
-			transition: transform 0.25s ease, box-shadow 0.25s ease;
+			border-radius: 9999px;
+			font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+			font-weight: 600;
+			text-transform: none;
+			font-size: 0.9375rem;
+			letter-spacing: 0;
+			background: #4f46e5;
+			color: #ffffff;
+			border: 1px solid #4f46e5;
+			box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+			transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 		}
 
 		.splash-enter:hover {
 			transform: translateY(-2px);
-			box-shadow: 0 12px 40px rgba(0, 201, 167, 0.2);
+			background: #4338ca;
+			border-color: #4338ca;
+			box-shadow: 0 12px 32px rgba(79, 70, 229, 0.3);
 		}
 
 		.splash-hint {
 			margin: 1.75rem 0 0;
-			font-size: 0.6rem;
-			font-family: Montserrat, system-ui, sans-serif;
-			font-weight: 300;
-			color: rgba(255, 255, 255, 0.4);
-			letter-spacing: 0.2em;
-			text-transform: uppercase;
+			font-size: 0.8125rem;
+			font-family: Inter, system-ui, sans-serif;
+			font-weight: 400;
+			color: #94a3b8;
+			letter-spacing: 0;
+			text-transform: none;
 		}
 	</style>
 </Layout>
