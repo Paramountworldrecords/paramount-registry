@@ -11,7 +11,13 @@ import Layout from '../layouts/Layout.astro';
 				<strong>existing record breaking</strong> attempts.
 			</p>
 
+			<p id="applyAccountHint" style="margin-top: 0.5rem; color: #94a3b8; font-size: 0.88rem; display: none;"></p>
+
 			<form class="apply-form" id="applyForm" action="#" method="post">
+				<label class="apply-honeypot" aria-hidden="true">
+					<span>Company</span>
+					<input type="text" name="website" tabindex="-1" autocomplete="off" />
+				</label>
 				<label>
 					Full Name
 					<input type="text" name="fullName" required placeholder="Enter your full name" />
@@ -51,56 +57,128 @@ import Layout from '../layouts/Layout.astro';
 				</label>
 
 				<div class="full" style="margin-top: 0.4rem; display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center;">
-					<button type="submit" class="btn btn-primary">Submit Application</button>
+					<button type="submit" class="btn btn-primary" id="applySubmitBtn">Submit Application</button>
 					<a class="btn btn-ghost" href="mailto:admin@paramountworldrecords.com">Email Admin Instead</a>
 				</div>
 			</form>
 
-			<p id="applyStatus" style="margin-top: 1rem; color: #d8e0ef; display: none;"></p>
+			<p id="applyStatus" style="margin-top: 1rem; color: var(--text-secondary); display: none;"></p>
 		</div>
 	</main>
 
+	<style>
+		#applyForm {
+			position: relative;
+		}
+		.apply-honeypot {
+			position: absolute;
+			left: -9999px;
+			top: 0;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+		}
+	</style>
+
 	<script>
+		import { getSupabase } from "../lib/supabaseBrowser";
+
 		(function () {
 			const form = document.getElementById("applyForm");
 			const statusEl = document.getElementById("applyStatus");
+			const submitBtn = document.getElementById("applySubmitBtn");
+			const hint = document.getElementById("applyAccountHint");
 			if (!form) return;
 
-			form.addEventListener("submit", (e) => {
+			async function showAccountHint() {
+				const supabase = getSupabase();
+				if (!supabase || !hint) return;
+				const {
+					data: { session },
+				} = await supabase.auth.getSession();
+				if (session?.user) {
+					const meta = session.user.user_metadata ?? {};
+					const label = (meta.name || meta.username || session.user.email || "your account").toString();
+					hint.style.display = "block";
+					hint.textContent = `Signed in as ${label}. This submission will be linked to your account and listed on your dashboard.`;
+				}
+			}
+			showAccountHint();
+
+			form.addEventListener("submit", async (e) => {
 				e.preventDefault();
-
-				const data = new FormData(form);
-				const to = "admin@paramountworldrecords.com";
-				const subject = "Paramount World Records - New Application";
-
-				const bodyLines = [];
-				bodyLines.push("Full Name: " + (data.get("fullName") || ""));
-				bodyLines.push("Email Address: " + (data.get("email") || ""));
-				bodyLines.push("Phone / WhatsApp: " + (data.get("phone") || ""));
-				bodyLines.push("City: " + (data.get("city") || ""));
-				bodyLines.push("Attempt Type: " + (data.get("attemptType") || ""));
-				bodyLines.push("");
-				bodyLines.push("Applicant Overview:");
-				bodyLines.push(data.get("overview") || "");
-				bodyLines.push("");
-				bodyLines.push("Record Attempt Details:");
-				bodyLines.push(data.get("recordDetails") || "");
-
-				const body = bodyLines.join("\n");
-
-				const url =
-					"mailto:" +
-					to +
-					"?subject=" +
-					encodeURIComponent(subject) +
-					"&body=" +
-					encodeURIComponent(body);
-
-				// Opens the visitor's email composer with pre-filled content.
-				window.location.href = url;
 				if (statusEl) {
-					statusEl.style.display = "block";
-					statusEl.textContent = "If your email app opened, send the message to complete the application.";
+					statusEl.style.display = "none";
+					statusEl.textContent = "";
+				}
+				if (submitBtn) {
+					submitBtn.setAttribute("disabled", "disabled");
+				}
+
+				const fd = new FormData(form);
+				const consentEl = form.querySelector('input[name="consent"]');
+				const payload = {
+					fullName: fd.get("fullName") || "",
+					email: fd.get("email") || "",
+					phone: fd.get("phone") || "",
+					city: fd.get("city") || "",
+					attemptType: fd.get("attemptType") || "",
+					overview: fd.get("overview") || "",
+					recordDetails: fd.get("recordDetails") || "",
+					consent: consentEl instanceof HTMLInputElement && consentEl.checked === true,
+					website: fd.get("website") || "",
+				};
+
+				const headers = { "Content-Type": "application/json" };
+				const supabase = getSupabase();
+				if (supabase) {
+					const {
+						data: { session },
+					} = await supabase.auth.getSession();
+					if (session?.access_token) {
+						headers["Authorization"] = `Bearer ${session.access_token}`;
+					}
+				}
+
+				try {
+					const res = await fetch("/api/apply", {
+						method: "POST",
+						headers,
+						body: JSON.stringify(payload),
+					});
+					const json = await res.json();
+					const ok = typeof json === "object" && json && "ok" in json && json.ok === true;
+					const errText =
+						typeof json === "object" && json && "error" in json && typeof json.error === "string"
+							? json.error
+							: "";
+
+					if (statusEl) {
+						statusEl.style.display = "block";
+					}
+					if (res.ok && ok) {
+						if (statusEl) {
+							statusEl.style.color = "#15803d";
+							statusEl.textContent =
+								"Application received. We will contact you using the details you provided. You can also reach admin@paramountworldrecords.com if needed.";
+						}
+						form.reset();
+					} else {
+						if (statusEl) {
+							statusEl.style.color = "#b91c1c";
+							statusEl.textContent =
+								errText || "Something went wrong. Please try again or use Email Admin Instead.";
+						}
+					}
+				} catch {
+					if (statusEl) {
+						statusEl.style.display = "block";
+						statusEl.style.color = "#b91c1c";
+						statusEl.textContent = "Network error. Check your connection and try again.";
+					}
+				} finally {
+					if (submitBtn) submitBtn.removeAttribute("disabled");
 				}
 			});
 		})();

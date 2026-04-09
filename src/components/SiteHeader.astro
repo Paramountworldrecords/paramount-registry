@@ -35,12 +35,14 @@ const links = {
 				<a href="/login" class="nav-pill nav-pill-primary">Login</a>
 			</span>
 			<span id="authNavUser" class="auth-nav-user" hidden>
+				<a href="/dashboard" class="nav-pill nav-pill-muted">Dashboard</a>
 				<span class="auth-welcome"><strong id="authDisplayName"></strong></span>
 				<button type="button" id="authLogoutBtn" class="auth-logout">Logout</button>
 			</span>
 			<details class="menu">
 				<summary>More</summary>
 				<div class="dropdown" role="menu" aria-label="More pages">
+					<a href="/dashboard" class="dropdown-dashboard" id="moreNavDashboard" hidden>Dashboard</a>
 					<a href="/register" class="dropdown-account">Register</a>
 					<a href="/login" class="dropdown-account">Login</a>
 					<hr class="dropdown-rule" />
@@ -256,6 +258,11 @@ const links = {
 	.dropdown-account {
 		font-weight: 600;
 		color: var(--text-primary, #0f172a) !important;
+	}
+
+	.dropdown-dashboard {
+		font-weight: 600;
+		color: var(--accent, #4f46e5) !important;
 	}
 
 	@media (max-width: 1050px) {

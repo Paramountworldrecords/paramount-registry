@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Dashboard">
+	<main class="section">
+		<div class="container panel about-panel" style="max-width: 720px; margin: 0 auto;" data-reveal>
+			<h2>Your dashboard</h2>
+			<p style="margin-top: -0.35rem; color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+				View applications you submitted while signed in. Submit new requests from
+				<a href="/apply">Apply for a record</a>.
+			</p>
+
+			<p id="dashMsg" class="form-msg" hidden></p>
+			<div id="dashLoading" style="margin-top: 1rem; color: var(--text-muted); font-size: 0.92rem;">Loading…</div>
+			<ul id="dashList" class="dash-list" style="display: none; margin-top: 1rem;"></ul>
+		</div>
+	</main>
+
+	<script>
+		import { getSupabase } from "../lib/supabaseBrowser";
+
+		const msg = document.getElementById("dashMsg");
+		const list = document.getElementById("dashList");
+		const loading = document.getElementById("dashLoading");
+
+		function showMsg(text, ok) {
+			if (!msg) return;
+			msg.textContent = text;
+			msg.hidden = !text;
+			msg.style.color = ok ? "#15803d" : "#b91c1c";
+		}
+
+		async function run() {
+			const supabase = getSupabase();
+			if (!supabase) {
+				if (loading) loading.style.display = "none";
+				showMsg(
+					"Supabase is not configured. Add PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY, then redeploy.",
+					false
+				);
+				return;
+			}
+			const {
+				data: { session },
+			} = await supabase.auth.getSession();
+			if (!session?.user) {
+				window.location.href = "/login";
+				return;
+			}
+
+			const { data: rows, error } = await supabase
+				.from("applications")
+				.select("id, created_at, full_name, email, attempt_type, city")
+				.order("created_at", { ascending: false });
+
+			if (loading) loading.style.display = "none";
+
+			if (error) {
+				showMsg(
+					error.message.includes("relation") || error.code === "42P01"
+						? "Applications table not found. Run supabase/migrations/002_applications.sql in the Supabase SQL editor."
+						: error.message,
+					false
+				);
+				return;
+			}
+
+			if (!list) return;
+			list.style.display = "block";
+
+			if (!rows?.length) {
+				list.innerHTML =
+					'<li class="dash-empty">No applications linked to this account yet. Use <a href="/apply">Apply for a record</a> while logged in.</li>';
+				return;
+			}
+
+			list.innerHTML = rows
+				.map((r) => {
+					const d = new Date(r.created_at);
+					const when = d.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+					return `<li class="dash-item">
+						<strong>${escapeHtml(r.full_name)}</strong>
+						<span class="dash-meta">${escapeHtml(r.attempt_type || "")} · ${escapeHtml(r.city || "")}</span>
+						<span class="dash-date">${when}</span>
+					</li>`;
+				})
+				.join("");
+		}
+
+		function escapeHtml(s) {
+			return String(s)
+				.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(/"/g, "&quot;");
+		}
+
+		run();
+	</script>
+
+	<style>
+		.form-msg {
+			margin: 1rem 0 0;
+			padding: 0.65rem 0.75rem;
+			border-radius: var(--radius-card);
+			background: var(--surface-muted);
+			border: 1px solid var(--border-subtle);
+			font-size: 0.9rem;
+		}
+		.dash-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: grid;
+			gap: 0.75rem;
+		}
+		.dash-item {
+			padding: 1rem 1.1rem;
+			border: 1px solid var(--border-subtle);
+			border-radius: var(--radius-card);
+			background: var(--surface-muted);
+			display: grid;
+			gap: 0.25rem;
+		}
+		.dash-meta,
+		.dash-date {
+			font-size: 0.85rem;
+			color: var(--text-secondary);
+		}
+		.dash-date {
+			color: var(--text-muted);
+		}
+		.dash-empty {
+			padding: 1rem;
+			border: 1px dashed var(--border-subtle);
+			border-radius: var(--radius-card);
+			color: var(--text-secondary);
+			line-height: 1.55;
+		}
+	</style>
+</Layout>

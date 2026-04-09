@@ -683,10 +683,12 @@ const { title, showChrome = true } = Astro.props;
 					const {
 						data: { session },
 					} = await supabase.auth.getSession();
+					const moreDash = document.getElementById("moreNavDashboard");
 					if (session?.user) {
 						guest.hidden = true;
 						userEl.hidden = false;
 						setMoreMenuAuth(false);
+						if (moreDash) moreDash.hidden = false;
 						const meta = session.user.user_metadata ?? {};
 						if (nameEl) {
 							nameEl.textContent =
@@ -696,6 +698,7 @@ const { title, showChrome = true } = Astro.props;
 						guest.hidden = false;
 						userEl.hidden = true;
 						setMoreMenuAuth(true);
+						if (moreDash) moreDash.hidden = true;
 					}
 				}
 
