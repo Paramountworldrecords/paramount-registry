@@ -4,5 +4,13 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
 	site: 'https://www.paramountworldrecords.com',
 	output: 'hybrid',
-	adapter: vercel(),
+	// Avoid Sharp in serverless bundles (often fails on Vercel Linux); site does not rely on Astro image optimization.
+	adapter: vercel({
+		imageService: false,
+	}),
+	vite: {
+		ssr: {
+			noExternal: ['resend'],
+		},
+	},
 });
