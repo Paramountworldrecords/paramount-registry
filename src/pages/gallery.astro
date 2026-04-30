@@ -1,26 +1,91 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+
+/** Drop files under `public/` then reference paths starting with `/`:
+ *  • Photos:   `public/images/gallery/your-photo.jpg`  →  `/images/gallery/your-photo.jpg`
+ *  • Videos: `public/media/gallery/your-video.mp4`   →  `/media/gallery/your-video.mp4`
+ * Optional `poster` for videos: still image URL until playback (often first frame export).
+ */
+type GalleryImage = { kind: "image"; src: string; alt: string };
+type GalleryVideo = { kind: "video"; src: string; alt: string; poster?: string };
+
+const items: (GalleryImage | GalleryVideo)[] = [
+	{ kind: "image", src: "/images/gallery/gallery-1.png", alt: "Gallery photo 1" },
+	{ kind: "image", src: "/images/gallery/gallery-2.png", alt: "Gallery photo 2" },
+	{ kind: "image", src: "/images/gallery/gallery-3.png", alt: "Gallery photo 3" },
+	{ kind: "image", src: "/images/gallery/gallery-4.png", alt: "Gallery photo 4" },
+	{ kind: "image", src: "/images/gallery/gallery-5.png", alt: "Gallery photo 5" },
+	{ kind: "image", src: "/images/gallery/gallery-6.png", alt: "Gallery photo 6" },
+	{ kind: "image", src: "/images/gallery/gallery-7.png", alt: "Gallery photo 7" },
+	{ kind: "image", src: "/images/gallery/gallery-8.png", alt: "Gallery photo 8" },
+	// Example — uncomment after adding `public/media/gallery/example.mp4`:
+	// { kind: "video", src: "/media/gallery/example.mp4", poster: "/images/gallery/gallery-1.png", alt: "Achievement clip" },
+];
 ---
 
 <Layout title="Gallery">
-	<main class="section">
-		<div class="container panel about-panel" data-reveal>
+	<main class="section gallery-page">
+		<div class="container panel about-panel gallery-intro-card" data-reveal>
 			<h2>Gallery</h2>
-			<p style="margin-top: -0.4rem; color: #d8e0ef; line-height: 1.6;">
+			<p class="gallery-lead">
 				Inspiring record-attempt visuals and achievement moments.
 			</p>
 
-			<div class="grid three" style="margin-top: 1.2rem;">
-				<figure class="panel card-gloss" style="padding: 0.4rem; background: rgba(18,18,18,0.65);" data-reveal><img src="/images/gallery/gallery-1.png" alt="Inspiring gallery image 1" style="width:100%; height:210px; object-fit:cover; border-radius:2px; filter: contrast(1.05) saturate(1.05);" /></figure>
-				<figure class="panel card-gloss" style="padding: 0.4rem; background: rgba(18,18,18,0.65);" data-reveal><img src="/images/gallery/gallery-2.png" alt="Inspiring gallery image 2" style="width:100%; height:210px; object-fit:cover; border-radius:2px; filter: contrast(1.05) saturate(1.05);" /></figure>
-				<figure class="panel card-gloss" style="padding: 0.4rem; background: rgba(18,18,18,0.65);" data-reveal><img src="/images/gallery/gallery-3.png" alt="Inspiring gallery image 3" style="width:100%; height:210px; object-fit:cover; border-radius:2px; filter: contrast(1.05) saturate(1.05);" /></figure>
-				<figure class="panel card-gloss" style="padding: 0.4rem; background: rgba(18,18,18,0.65);" data-reveal><img src="/images/gallery/gallery-4.png" alt="Inspiring gallery image 4" style="width:100%; height:210px; object-fit:cover; border-radius:2px; filter: contrast(1.05) saturate(1.05);" /></figure>
-				<figure class="panel card-gloss" style="padding: 0.4rem; background: rgba(18,18,18,0.65);" data-reveal><img src="/images/gallery/gallery-5.png" alt="Inspiring gallery image 5" style="width:100%; height:210px; object-fit:cover; border-radius:2px; filter: contrast(1.05) saturate(1.05);" /></figure>
-				<figure class="panel card-gloss" style="padding: 0.4rem; background: rgba(18,18,18,0.65);" data-reveal><img src="/images/gallery/gallery-6.png" alt="Inspiring gallery image 6" style="width:100%; height:210px; object-fit:cover; border-radius:2px; filter: contrast(1.05) saturate(1.05);" /></figure>
-				<figure class="panel card-gloss" style="padding: 0.4rem; background: rgba(18,18,18,0.65);" data-reveal><img src="/images/gallery/gallery-7.png" alt="Inspiring gallery image 7" style="width:100%; height:210px; object-fit:cover; border-radius:2px; filter: contrast(1.05) saturate(1.05);" /></figure>
-				<figure class="panel card-gloss" style="padding: 0.4rem; background: rgba(18,18,18,0.65);" data-reveal><img src="/images/gallery/gallery-8.png" alt="Inspiring gallery image 8" style="width:100%; height:210px; object-fit:cover; border-radius:2px; filter: contrast(1.05) saturate(1.05);" /></figure>
+			<div class="grid three gallery-grid">
+				{
+					items.map((item) => (
+						<figure class="panel card-gloss gallery-cell" data-reveal>
+							{item.kind === "image" ? (
+								<img class="gallery-media" src={item.src} alt={item.alt} loading="lazy" />
+							) : (
+								<video
+									class="gallery-media gallery-video"
+									src={item.src}
+									controls
+									playsinline
+									preload="metadata"
+									poster={item.poster}
+									aria-label={item.alt}
+								/>
+							)}
+						</figure>
+					))
+				}
 			</div>
 		</div>
 	</main>
 </Layout>
 
+<style>
+	.gallery-lead {
+		margin-top: -0.4rem;
+		color: var(--text-secondary, #475569);
+		line-height: 1.6;
+	}
+
+	.gallery-grid {
+		margin-top: 1.2rem;
+	}
+
+	.gallery-cell {
+		padding: 0.4rem;
+		margin: 0;
+		overflow: hidden;
+	}
+
+	.gallery-media {
+		display: block;
+		width: 100%;
+		height: 210px;
+		object-fit: cover;
+		border-radius: var(--radius-card, 16px);
+		background: var(--surface-muted, #f8fafc);
+	}
+
+	.gallery-video {
+		object-fit: contain;
+		height: auto;
+		min-height: 210px;
+		max-height: 320px;
+	}
+</style>
