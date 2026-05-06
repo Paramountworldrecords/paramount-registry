@@ -22,7 +22,23 @@ const highlights: (GalleryImage | GalleryVideo)[] = [
 	{ kind: "image", src: "/images/gallery/gallery-8.png", alt: "Gallery photo 8" },
 ];
 
+/** Continuous Kathak dance performance by a unified group — first batch, 26 April 2026 */
+const amrapaliBatch1: GalleryImage[] = Array.from({ length: 16 }, (_, i) => {
+	const n = String(i + 1).padStart(2, "0");
+	return {
+		kind: "image" as const,
+		src: `/images/gallery/amrapali-batch1-${n}.png`,
+		alt: `Amrapali Kathak Dance Academy — world record performance, first batch (${i + 1} of 16)`,
+	};
+});
+
 const sections: GallerySection[] = [
+	{
+		title: "Amrapali Kathak Dance Academies — World record performance, first batch",
+		subtitle:
+			"Recognition for continuous Kathak dance performance by a unified group — certificates, group portraits, and celebration moments.",
+		items: amrapaliBatch1,
+	},
 	{
 		title: "Highlights",
 		subtitle: "Moments from our programmes, venues, and achievers.",
