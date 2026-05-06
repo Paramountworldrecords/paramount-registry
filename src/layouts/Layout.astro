@@ -13,7 +13,7 @@ const { title, showChrome = true } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="theme-color" content="#f4f6fb" />
+		<meta name="theme-color" content="#1d2b6b" />
 		<meta name="description" content="Independent record registry—authorisation, adjudication, verification, and certification." />
 		<title>{title}</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,7 @@ const { title, showChrome = true } = Astro.props;
 			rel="stylesheet"
 		/>
 		<style is:global>
-			/* Brandmark-inspired: light product marketing, bold sans, indigo CTA, soft cards */
+			/* Paramount brand: registry navy + logo teal, light marketing shell */
 			:root {
 				--page-bg: #f4f6fb;
 				--surface-card: #ffffff;
@@ -32,14 +32,16 @@ const { title, showChrome = true } = Astro.props;
 				--text-primary: #0f172a;
 				--text-secondary: #475569;
 				--text-muted: #94a3b8;
-				--accent: #4f46e5;
-				--accent-hover: #4338ca;
-				--accent-soft: rgba(79, 70, 229, 0.1);
-				--mist-soft: rgba(79, 70, 229, 0.06);
-				--mist-glow: rgba(79, 70, 229, 0.45);
-				--stoplight: #ef4444;
+				--accent: #1d2b6b;
+				--accent-hover: #162456;
+				--accent-soft: rgba(29, 43, 107, 0.1);
+				--accent-line: rgba(29, 43, 107, 0.35);
+				--brand-teal: #48c9b0;
+				--mist-soft: rgba(72, 201, 176, 0.08);
+				--mist-glow: rgba(29, 43, 107, 0.4);
+				--stoplight: #e63946;
 				--white: #ffffff;
-				--link: #4f46e5;
+				--link: #1d2b6b;
 				--accent-heading: #0f172a;
 				--font-hero: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 				--font-label: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -68,6 +70,11 @@ const { title, showChrome = true } = Astro.props;
 			body {
 				margin: 0;
 				padding: 0;
+			}
+
+			::selection {
+				background: rgba(72, 201, 176, 0.28);
+				color: var(--text-primary);
 			}
 
 			body {
@@ -249,7 +256,7 @@ const { title, showChrome = true } = Astro.props;
 				text-transform: none;
 				font-size: 0.8125rem;
 				letter-spacing: 0.02em;
-				color: var(--accent);
+				color: var(--brand-teal);
 				font-weight: 600;
 			}
 
@@ -339,7 +346,7 @@ const { title, showChrome = true } = Astro.props;
 				color: var(--white);
 				position: relative;
 				overflow: hidden;
-				box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+				box-shadow: 0 10px 28px rgba(29, 43, 107, 0.28);
 				border: 1px solid var(--accent);
 			}
 
@@ -536,7 +543,7 @@ const { title, showChrome = true } = Astro.props;
 				.panel:hover {
 					transform: translateY(-4px);
 					box-shadow: var(--shadow-soft);
-					border-color: rgba(79, 70, 229, 0.22);
+					border-color: rgba(29, 43, 107, 0.2);
 				}
 			}
 
@@ -714,7 +721,7 @@ const { title, showChrome = true } = Astro.props;
 						if (supabase) await supabase.auth.signOut();
 						await refresh();
 						if (!["/login", "/register"].includes(location.pathname)) {
-							window.location.href = "/home";
+							window.location.href = "/";
 						}
 					});
 				}

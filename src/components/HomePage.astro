@@ -1,0 +1,563 @@
+---
+import AuthorityProcess from "./AuthorityProcess.astro";
+
+const serviceCards = [
+	{
+		title: "Application intake",
+		text: "Structured screening and category matching before the attempt cycle begins.",
+		href: "/apply",
+	},
+	{
+		title: "Adjudication protocol",
+		text: "Defined evidence framework, witness guidance, and transparent review workflows.",
+		href: "/departments",
+	},
+	{
+		title: "Publication support",
+		text: "Qualified achievements are prepared for registry publication and media-ready release.",
+		href: "/press-media",
+	},
+];
+
+const pillars = ["Authorisation", "Adjudication", "Verification", "Certification", "Publishing"];
+---
+
+<main id="home" class="home-redesign">
+	<section class="hero-video section section--flush">
+		<div class="hero-video-bg" aria-hidden="true">
+			<video autoplay muted loop playsinline preload="auto" poster="/images/logo.png">
+				<source src="/media/home-hero-main.mp4" type="video/mp4" />
+			</video>
+		</div>
+		<div class="hero-overlay" aria-hidden="true"></div>
+
+		<div class="container hero-content" data-reveal>
+			<div class="hero-mist" aria-hidden="true"></div>
+			<p class="hero-kicker">Independent record authority</p>
+			<h1>
+				Recognize extraordinary performance with verified standards<span class="stoplight" aria-hidden="true">.</span>
+			</h1>
+			<p class="hero-text">
+				From application to certification, we run a transparent process based on written rules,
+				adjudication discipline, and evidence-led decisions.
+			</p>
+			<div class="hero-cta-row">
+				<a class="btn btn-primary" href="/apply">Apply for a record</a>
+				<a class="btn btn-ghost hero-btn-ghost" href="/records">Browse record ideas</a>
+			</div>
+			<ul class="hero-metrics" aria-label="Key highlights">
+				<li><strong>200+</strong><span>Records reviewed</span></li>
+				<li><strong>5-stage</strong><span>Verification cycle</span></li>
+				<li><strong>Pan-India</strong><span>Operations &amp; support</span></li>
+			</ul>
+			<p class="hero-scroll-hint"><span class="hero-scroll-label">Explore</span></p>
+		</div>
+	</section>
+
+	<section class="section home-pillars" aria-label="Core services">
+		<div class="container">
+			<div class="home-pillars-inner">
+				{
+					pillars.map((label) => (
+						<span class="home-pillar">{label}</span>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="section home-services">
+		<div class="container" data-reveal>
+			<p class="tag">Core capabilities</p>
+			<h2>Built for credibility, speed, and traceability<span class="stoplight" aria-hidden="true">.</span></h2>
+			<p class="home-services-intro">
+				Your applicant journey stays structured from day one, with clearer expectations and cleaner outcomes.
+			</p>
+			<div class="service-grid">
+				{
+					serviceCards.map((card) => (
+						<article class="service-card panel">
+							<h3>{card.title}</h3>
+							<p>{card.text}</p>
+							<a href={card.href}>Learn more</a>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<AuthorityProcess />
+
+	<section class="home-cta-band section" aria-labelledby="home-cta-title">
+		<div class="container home-cta-grid">
+			<div class="home-cta-copy">
+				<h2 id="home-cta-title">Start your record journey</h2>
+				<p class="home-cta-lead">
+					Transparent stages, published standards, and adjudication outcomes you can follow from intake to publication.
+				</p>
+			</div>
+			<div class="home-cta-actions">
+				<a class="btn-cta-solid" href="/apply">Apply for a record</a>
+				<a class="btn-cta-outline" href="/gallery">View gallery</a>
+			</div>
+		</div>
+	</section>
+</main>
+
+<style>
+	.home-redesign {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hero-video.section.section--flush {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	.hero-video {
+		position: relative;
+		padding-top: clamp(9rem, 16vh, 12rem);
+		padding-bottom: clamp(7rem, 14vh, 10rem);
+		min-height: min(92vh, 920px);
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.hero-video-bg,
+	.hero-video-bg video {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.hero-video-bg video {
+		object-fit: cover;
+		filter: none;
+		opacity: 1;
+		animation: kenBurns 28s ease-in-out infinite alternate;
+	}
+
+	.hero-overlay {
+		position: absolute;
+		inset: 0;
+		background: transparent;
+		pointer-events: none;
+	}
+
+	.hero-video::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 12%;
+		background: linear-gradient(180deg, transparent 0%, var(--page-bg, #f4f6fb) 100%);
+		pointer-events: none;
+		opacity: 0.65;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: min(1040px, 94vw);
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.hero-mist {
+		display: none;
+	}
+
+	.hero-content .hero-kicker,
+	.hero-content h1,
+	.hero-content .hero-text,
+	.hero-content .hero-cta-row,
+	.hero-content .hero-metrics {
+		position: relative;
+		z-index: 1;
+	}
+
+	.hero-kicker {
+		display: inline-block;
+		margin: 0;
+		padding: 0.4rem 1rem;
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		text-transform: none;
+		border: 1px solid rgba(255, 255, 255, 0.45);
+		border-radius: 9999px;
+		color: #ffffff;
+		background: rgba(15, 23, 42, 0.45);
+		backdrop-filter: blur(10px);
+	}
+
+	.hero-content h1 {
+		margin: 1.75rem auto 0;
+		font-family: var(--font-hero, "Plus Jakarta Sans", sans-serif);
+		font-size: clamp(2.1rem, 5.5vw, 3.5rem);
+		font-weight: 800;
+		line-height: 1.08;
+		text-transform: none;
+		letter-spacing: -0.03em;
+		color: #ffffff;
+		max-width: 20ch;
+		background: none;
+		-webkit-background-clip: unset;
+		background-clip: unset;
+		text-shadow:
+			0 2px 40px rgba(0, 0, 0, 0.55),
+			0 1px 3px rgba(0, 0, 0, 0.9);
+	}
+
+	.hero-text {
+		margin: 1.75rem auto 0;
+		max-width: 36rem;
+		font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+		line-height: 1.8;
+		color: rgba(255, 255, 255, 0.96);
+		text-shadow:
+			0 1px 24px rgba(0, 0, 0, 0.55),
+			0 1px 2px rgba(0, 0, 0, 0.85);
+	}
+
+	.hero-cta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 2.5rem;
+		justify-content: center;
+	}
+
+	.hero-btn-ghost {
+		background: rgba(255, 255, 255, 0.12) !important;
+		border-color: rgba(255, 255, 255, 0.45) !important;
+		color: #ffffff !important;
+		backdrop-filter: blur(8px);
+	}
+
+	.hero-btn-ghost:hover {
+		background: rgba(255, 255, 255, 0.22) !important;
+		border-color: #ffffff !important;
+		color: #ffffff !important;
+	}
+
+	.hero-metrics {
+		list-style: none;
+		margin: 3rem auto 0;
+		padding: 0;
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.hero-metrics li {
+		display: grid;
+		gap: 0.25rem;
+		padding: 1.1rem 1.35rem;
+		min-width: 130px;
+		border-radius: var(--radius-card, 16px);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+		background: var(--surface-card, #fff);
+		box-shadow: var(--shadow-soft-sm, 0 4px 24px rgba(15, 23, 42, 0.06));
+	}
+
+	.hero-metrics strong {
+		font-size: 1.1rem;
+		font-family: var(--font-hero, "Plus Jakarta Sans", sans-serif);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--text-primary, #0f172a);
+	}
+
+	.hero-metrics span {
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0;
+		text-transform: none;
+		color: var(--text-muted, #94a3b8);
+	}
+
+	.hero-scroll-hint {
+		margin: 2.75rem auto 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.35rem;
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.hero-scroll-label::after {
+		content: "";
+		display: block;
+		margin: 0.35rem auto 0;
+		width: 1px;
+		height: 2rem;
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), transparent);
+		animation: scrollCueLine 2.2s ease-in-out infinite;
+	}
+
+	@keyframes scrollCueLine {
+		0%,
+		100% {
+			opacity: 0.35;
+			transform: translateY(0);
+		}
+		50% {
+			opacity: 1;
+			transform: translateY(6px);
+		}
+	}
+
+	.home-pillars {
+		padding-top: clamp(2.5rem, 5vw, 3.5rem) !important;
+		padding-bottom: clamp(2.5rem, 5vw, 3.5rem) !important;
+		background: var(--surface-muted, #f8fafc);
+		border-top: 1px solid var(--border-subtle, #e2e8f0);
+		border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+	}
+
+	.home-pillars-inner {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.65rem 1rem;
+	}
+
+	.home-pillar {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.45rem 0.95rem;
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--text-secondary, #475569);
+		background: var(--surface-card, #fff);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+		border-radius: 9999px;
+		box-shadow: var(--shadow-soft-sm, 0 2px 12px rgba(15, 23, 42, 0.04));
+	}
+
+	.home-pillar::before {
+		content: "";
+		width: 6px;
+		height: 6px;
+		margin-right: 0.45rem;
+		border-radius: 50%;
+		background: var(--brand-teal, #48c9b0);
+		flex-shrink: 0;
+	}
+
+	.home-services {
+		padding-top: clamp(1rem, 4vw, 2rem);
+	}
+
+	.home-services h2 {
+		max-width: 28ch;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		line-height: 1.08;
+	}
+
+	.home-services .tag {
+		text-align: center;
+	}
+
+	.home-services-intro {
+		max-width: 36rem;
+		margin: 1.5rem auto 2.75rem;
+		font-size: 1rem;
+		line-height: 1.8;
+		text-align: center;
+		color: var(--text-secondary, #475569);
+	}
+
+	.service-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.service-card {
+		position: relative;
+		overflow: hidden;
+		border-radius: var(--radius-card, 16px);
+		min-height: 100%;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.service-card h3 {
+		margin: 0;
+		font-size: 1.05rem;
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		text-transform: none;
+		color: var(--text-primary, #0f172a);
+	}
+
+	.service-card p {
+		margin: 1rem 0 1.5rem;
+		font-size: 0.92rem;
+		line-height: 1.7;
+		color: var(--text-secondary, #475569);
+	}
+
+	.service-card a {
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+		font-size: 0.875rem;
+		font-weight: 600;
+		text-transform: none;
+		letter-spacing: 0;
+		color: var(--accent, #1d2b6b);
+		border-bottom: 1px solid var(--accent-line, rgba(29, 43, 107, 0.35));
+		padding-bottom: 0.2rem;
+	}
+
+	.service-card a:hover {
+		opacity: 1;
+		border-bottom-color: var(--accent-hover, #162456);
+		color: var(--accent-hover, #162456);
+	}
+
+	.home-cta-band {
+		padding: clamp(3.25rem, 8vw, 5rem) 0 !important;
+		margin-bottom: 0;
+		background: linear-gradient(135deg, var(--accent, #1d2b6b) 0%, #0f172a 92%);
+		color: #ffffff;
+	}
+
+	.home-cta-grid {
+		display: grid;
+		gap: 2rem;
+		align-items: center;
+		grid-template-columns: 1fr auto;
+	}
+
+	.home-cta-band h2 {
+		margin: 0 0 0.65rem;
+		font-size: clamp(1.5rem, 3.2vw, 2.15rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: #ffffff;
+		line-height: 1.15;
+	}
+
+	.home-cta-lead {
+		margin: 0;
+		max-width: 38ch;
+		font-size: 1rem;
+		line-height: 1.65;
+		color: rgba(255, 255, 255, 0.88);
+	}
+
+	.home-cta-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		justify-content: flex-end;
+	}
+
+	.btn-cta-solid {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.9rem 1.65rem;
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+		font-weight: 600;
+		font-size: 0.9375rem;
+		text-decoration: none;
+		border-radius: 9999px;
+		background: #ffffff;
+		color: var(--accent, #1d2b6b);
+		border: 1px solid #ffffff;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+		transition:
+			transform 0.25s ease,
+			box-shadow 0.25s ease;
+	}
+
+	.btn-cta-solid:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+	}
+
+	.btn-cta-outline {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.9rem 1.65rem;
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+		font-weight: 600;
+		font-size: 0.9375rem;
+		text-decoration: none;
+		border-radius: 9999px;
+		background: transparent;
+		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.55);
+		transition:
+			transform 0.25s ease,
+			background 0.25s ease,
+			border-color 0.25s ease;
+	}
+
+	.btn-cta-outline:hover {
+		transform: translateY(-2px);
+		background: rgba(255, 255, 255, 0.08);
+		border-color: #ffffff;
+	}
+
+	@keyframes kenBurns {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(1.07);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-video-bg video {
+			animation: none;
+		}
+
+		.hero-scroll-label::after {
+			animation: none !important;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.home-cta-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.home-cta-actions {
+			justify-content: flex-start;
+		}
+	}
+
+	@media (max-width: 680px) {
+		.hero-video {
+			min-height: 78vh;
+		}
+
+		.hero-content h1 {
+			max-width: none;
+		}
+	}
+</style>

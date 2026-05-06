@@ -2,14 +2,154 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-	<div class="container footer-links">
-		<a href="/sitemap">Sitemap</a>
-		<a href="/faq">FAQ</a>
-		<a href="/cookies">Cookies Policy</a>
-		<a href="/privacy">Privacy Policy</a>
-		<a href="/terms">Terms of Use</a>
+<footer class="site-footer-pro">
+	<div class="container footer-shell">
+		<div class="footer-brand-block">
+			<a class="footer-brand" href="/">
+				<img src="/images/logo.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+				<span class="footer-brand-text">Paramount World Records</span>
+			</a>
+			<p class="footer-tagline">
+				Independent registry for authorisation, adjudication, verification, certification, and publication.
+			</p>
+		</div>
+		<div class="footer-col">
+			<h3 class="footer-heading">Explore</h3>
+			<ul class="footer-list">
+				<li><a href="/about">About</a></li>
+				<li><a href="/departments">Process</a></li>
+				<li><a href="/records">Records</a></li>
+				<li><a href="/gallery">Gallery</a></li>
+			</ul>
+		</div>
+		<div class="footer-col">
+			<h3 class="footer-heading">Apply</h3>
+			<ul class="footer-list">
+				<li><a href="/apply">Apply for a record</a></li>
+				<li><a href="/faq">FAQ</a></li>
+				<li><a href="/contact">Contact</a></li>
+				<li><a href="/press-media">Press</a></li>
+			</ul>
+		</div>
+		<div class="footer-col footer-legal">
+			<h3 class="footer-heading">Legal</h3>
+			<ul class="footer-list">
+				<li><a href="/privacy">Privacy</a></li>
+				<li><a href="/terms">Terms</a></li>
+				<li><a href="/cookies">Cookies</a></li>
+				<li><a href="/sitemap">Sitemap</a></li>
+			</ul>
+		</div>
 	</div>
-	<div class="container footer-copy">© {year} Paramount World Records. All rights reserved.</div>
+	<div class="container footer-bottom">
+		<p class="footer-copy">© {year} Paramount World Records. All rights reserved.</p>
+	</div>
 </footer>
 
+<style>
+	.site-footer-pro {
+		padding: clamp(2.75rem, 6vw, 4rem) 0 0;
+		margin-top: clamp(3rem, 8vw, 5rem);
+		background: linear-gradient(180deg, var(--surface-muted, #f8fafc) 0%, #eef2f7 100%);
+		border-top: 1px solid var(--border-subtle, #e2e8f0);
+	}
+
+	.footer-shell {
+		display: grid;
+		gap: 2.5rem 2rem;
+		grid-template-columns: minmax(200px, 1.35fr) repeat(3, minmax(140px, 1fr));
+		padding-bottom: clamp(2rem, 4vw, 2.75rem);
+	}
+
+	.footer-brand-block {
+		max-width: 22rem;
+	}
+
+	.footer-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.65rem;
+		text-decoration: none;
+		color: var(--text-primary, #0f172a);
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+		font-weight: 700;
+		font-size: 1.05rem;
+		letter-spacing: -0.02em;
+	}
+
+	.footer-brand img {
+		width: 40px;
+		height: auto;
+		border-radius: 50%;
+	}
+
+	.footer-brand:hover {
+		color: var(--accent, #1d2b6b);
+	}
+
+	.footer-tagline {
+		margin: 0.85rem 0 0;
+		font-size: 0.9rem;
+		line-height: 1.65;
+		color: var(--text-secondary, #475569);
+	}
+
+	.footer-heading {
+		margin: 0 0 0.85rem;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--text-muted, #94a3b8);
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+	}
+
+	.footer-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.footer-list a {
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: var(--text-secondary, #475569);
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+
+	.footer-list a:hover {
+		color: var(--accent, #1d2b6b);
+	}
+
+	.footer-bottom {
+		border-top: 1px solid var(--border-subtle, #e2e8f0);
+		padding: 1.15rem 0 1.75rem;
+	}
+
+	.footer-bottom .footer-copy {
+		margin: 0;
+		text-align: center;
+		font-size: 0.8125rem;
+		color: var(--text-muted, #94a3b8);
+	}
+
+	@media (max-width: 900px) {
+		.footer-shell {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.footer-brand-block {
+			grid-column: 1 / -1;
+			max-width: none;
+		}
+	}
+
+	@media (max-width: 520px) {
+		.footer-shell {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

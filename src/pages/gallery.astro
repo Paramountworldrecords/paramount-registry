@@ -1,15 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-/** Drop files under `public/` then reference paths starting with `/`:
- *  • Photos:   `public/images/gallery/your-photo.jpg`  →  `/images/gallery/your-photo.jpg`
- *  • Videos: `public/media/gallery/your-video.mp4`   →  `/media/gallery/your-video.mp4`
- * Optional `poster` for videos: still image URL until playback (often first frame export).
- */
+/** Add sections below. Place files in `public/images/gallery/` and `public/media/gallery/`. */
 type GalleryImage = { kind: "image"; src: string; alt: string };
 type GalleryVideo = { kind: "video"; src: string; alt: string; poster?: string };
 
-const items: (GalleryImage | GalleryVideo)[] = [
+type GallerySection = {
+	title: string;
+	subtitle?: string;
+	items: (GalleryImage | GalleryVideo)[];
+};
+
+const highlights: (GalleryImage | GalleryVideo)[] = [
 	{ kind: "image", src: "/images/gallery/gallery-1.png", alt: "Gallery photo 1" },
 	{ kind: "image", src: "/images/gallery/gallery-2.png", alt: "Gallery photo 2" },
 	{ kind: "image", src: "/images/gallery/gallery-3.png", alt: "Gallery photo 3" },
@@ -18,74 +20,242 @@ const items: (GalleryImage | GalleryVideo)[] = [
 	{ kind: "image", src: "/images/gallery/gallery-6.png", alt: "Gallery photo 6" },
 	{ kind: "image", src: "/images/gallery/gallery-7.png", alt: "Gallery photo 7" },
 	{ kind: "image", src: "/images/gallery/gallery-8.png", alt: "Gallery photo 8" },
-	// Example — uncomment after adding `public/media/gallery/example.mp4`:
-	// { kind: "video", src: "/media/gallery/example.mp4", poster: "/images/gallery/gallery-1.png", alt: "Achievement clip" },
+];
+
+const sections: GallerySection[] = [
+	{
+		title: "Highlights",
+		subtitle: "Moments from our programmes, venues, and achievers.",
+		items: highlights,
+	},
 ];
 ---
 
-<Layout title="Gallery">
+<Layout title="Gallery — Paramount World Records">
 	<main class="section gallery-page">
-		<div class="container panel about-panel gallery-intro-card" data-reveal>
-			<h2>Gallery</h2>
+		<header class="container gallery-page-header" data-reveal>
+			<p class="tag">Media</p>
+			<h1>Gallery</h1>
 			<p class="gallery-lead">
-				Inspiring record-attempt visuals and achievement moments.
+				Event photography and video in themed sections — add new batches in <code>gallery.astro</code> with a title per
+				group.
 			</p>
+		</header>
 
-			<div class="grid three gallery-grid">
-				{
-					items.map((item) => (
-						<figure class="panel card-gloss gallery-cell" data-reveal>
-							{item.kind === "image" ? (
-								<img class="gallery-media" src={item.src} alt={item.alt} loading="lazy" />
-							) : (
-								<video
-									class="gallery-media gallery-video"
-									src={item.src}
-									controls
-									playsinline
-									preload="metadata"
-									poster={item.poster}
-									aria-label={item.alt}
-								/>
-							)}
-						</figure>
-					))
-				}
-			</div>
-		</div>
+		{
+			sections.map((section, albumIndex) => (
+				<section
+					class="gallery-album container"
+					data-reveal
+					aria-labelledby={`gallery-album-${albumIndex}`}
+				>
+					<div class="gallery-album-head">
+						<h2 class="gallery-section-title" id={`gallery-album-${albumIndex}`}>
+							{section.title}
+						</h2>
+						{section.subtitle ? <p class="gallery-section-sub">{section.subtitle}</p> : null}
+					</div>
+					<div class="grid three gallery-grid">
+						{section.items.map((item) => (
+							<figure class="panel card-gloss gallery-cell">
+								{item.kind === "image" ? (
+									<button type="button" class="gallery-thumb-btn" aria-label={`Open larger: ${item.alt}`}>
+										<img
+											class="gallery-media"
+											src={item.src}
+											alt={item.alt}
+											loading="lazy"
+											decoding="async"
+											data-gallery-image
+										/>
+									</button>
+								) : (
+									<video
+										class="gallery-media gallery-video"
+										src={item.src}
+										controls
+										playsinline
+										preload="metadata"
+										poster={item.poster}
+										aria-label={item.alt}
+									/>
+								)}
+							</figure>
+						))}
+					</div>
+				</section>
+			))
+		}
+
+		<dialog id="gallery-lightbox" class="gallery-lightbox" aria-label="Enlarged photo">
+			<button type="button" class="gallery-lightbox-close" autofocus>Close</button>
+			<img id="gallery-lightbox-img" src="" alt="" class="gallery-lightbox-img" />
+		</dialog>
 	</main>
 </Layout>
 
+<script>
+	const dialog = document.getElementById("gallery-lightbox");
+	const imgEl = document.getElementById("gallery-lightbox-img");
+
+	document.querySelectorAll("[data-gallery-image]").forEach((node) => {
+		node.addEventListener("click", (e) => {
+			const t = e.currentTarget;
+			if (!(t instanceof HTMLImageElement) || !dialog || !imgEl) return;
+			imgEl.src = t.currentSrc || t.src;
+			imgEl.alt = t.alt;
+			dialog.showModal();
+		});
+	});
+
+	dialog?.addEventListener("click", (e) => {
+		if (e.target === dialog) dialog.close();
+	});
+
+	document.querySelector(".gallery-lightbox-close")?.addEventListener("click", () => dialog?.close());
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" && dialog?.open) dialog.close();
+	});
+</script>
+
 <style>
+	.gallery-page-header {
+		max-width: 42rem;
+		margin-bottom: clamp(2rem, 5vw, 3rem);
+	}
+
+	.gallery-page-header h1 {
+		margin: 0.35rem 0 0.75rem;
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+	}
+
 	.gallery-lead {
-		margin-top: -0.4rem;
+		margin: 0;
 		color: var(--text-secondary, #475569);
-		line-height: 1.6;
+		line-height: 1.65;
+		font-size: 1rem;
+	}
+
+	.gallery-lead code {
+		font-size: 0.85em;
+		padding: 0.1em 0.35em;
+		border-radius: 6px;
+		background: var(--surface-muted, #f1f5f9);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+	}
+
+	.gallery-album {
+		margin-bottom: clamp(3rem, 8vw, 5rem);
+	}
+
+	.gallery-album-head {
+		margin-bottom: 1.35rem;
+	}
+
+	.gallery-section-title {
+		margin: 0;
+		font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--text-primary, #0f172a);
+	}
+
+	.gallery-section-sub {
+		margin: 0.45rem 0 0;
+		color: var(--text-secondary, #475569);
+		font-size: 0.95rem;
+		line-height: 1.55;
+		max-width: 42rem;
 	}
 
 	.gallery-grid {
-		margin-top: 1.2rem;
+		gap: 1.25rem;
 	}
 
 	.gallery-cell {
-		padding: 0.4rem;
+		padding: 0.35rem;
 		margin: 0;
 		overflow: hidden;
+	}
+
+	.gallery-thumb-btn {
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border: none;
+		background: none;
+		cursor: zoom-in;
+		border-radius: var(--radius-card, 16px);
 	}
 
 	.gallery-media {
 		display: block;
 		width: 100%;
-		height: 210px;
+		height: 220px;
 		object-fit: cover;
 		border-radius: var(--radius-card, 16px);
 		background: var(--surface-muted, #f8fafc);
+		vertical-align: middle;
+		transition: transform 0.35s ease, box-shadow 0.35s ease;
+	}
+
+	.gallery-thumb-btn:hover .gallery-media,
+	.gallery-thumb-btn:focus-visible .gallery-media {
+		transform: scale(1.02);
+		box-shadow: var(--shadow-soft-sm, 0 8px 28px rgba(15, 23, 42, 0.1));
+	}
+
+	.gallery-thumb-btn:focus-visible {
+		outline: 2px solid var(--accent, #1d2b6b);
+		outline-offset: 3px;
 	}
 
 	.gallery-video {
 		object-fit: contain;
 		height: auto;
-		min-height: 210px;
-		max-height: 320px;
+		min-height: 220px;
+		max-height: 340px;
+	}
+
+	.gallery-lightbox {
+		border: none;
+		padding: 0;
+		max-width: min(96vw, 1100px);
+		background: transparent;
+	}
+
+	.gallery-lightbox::backdrop {
+		background: rgba(15, 23, 42, 0.88);
+		backdrop-filter: blur(4px);
+	}
+
+	.gallery-lightbox-img {
+		display: block;
+		max-width: min(92vw, 1000px);
+		max-height: min(86vh, 900px);
+		width: auto;
+		height: auto;
+		margin: 0 auto;
+		border-radius: 12px;
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+	}
+
+	.gallery-lightbox-close {
+		position: fixed;
+		top: 1.25rem;
+		right: 1.25rem;
+		z-index: 2;
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		background: rgba(15, 23, 42, 0.6);
+		color: #fff;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		padding: 0.5rem 0.9rem;
+		border-radius: 9999px;
+		cursor: pointer;
 	}
 </style>
