@@ -110,28 +110,30 @@ const serviceCards = [
 
 		.hero-video-bg video {
 			object-fit: cover;
-			filter: saturate(0.55) brightness(1.02) contrast(0.92);
+			filter: none;
 			opacity: 1;
 			animation: kenBurns 28s ease-in-out infinite alternate;
 		}
 
+		/* No wash over the video — keep footage fully visible */
 		.hero-overlay {
 			position: absolute;
 			inset: 0;
-			background:
-				linear-gradient(180deg, rgba(244, 246, 251, 0.78) 0%, rgba(244, 246, 251, 0.9) 100%),
-				radial-gradient(circle at 50% 32%, rgba(79, 70, 229, 0.08) 0%, transparent 58%);
+			background: transparent;
+			pointer-events: none;
 		}
 
+		/* Light blend only at the very bottom into the page (optional subtle seam) */
 		.hero-video::after {
 			content: "";
 			position: absolute;
 			left: 0;
 			right: 0;
 			bottom: 0;
-			height: 24%;
+			height: 12%;
 			background: linear-gradient(180deg, transparent 0%, var(--page-bg, #f4f6fb) 100%);
 			pointer-events: none;
+			opacity: 0.65;
 		}
 
 		.hero-content {
@@ -144,15 +146,7 @@ const serviceCards = [
 		}
 
 		.hero-mist {
-			position: absolute;
-			left: 50%;
-			top: 42%;
-			transform: translate(-50%, -50%);
-			width: min(140vw, 920px);
-			height: min(90vw, 520px);
-			background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
-			pointer-events: none;
-			z-index: 0;
+			display: none;
 		}
 
 		.hero-content .hero-kicker,
@@ -173,11 +167,11 @@ const serviceCards = [
 			font-weight: 600;
 			letter-spacing: 0.02em;
 			text-transform: none;
-			border: 1px solid var(--border-subtle, #e2e8f0);
+			border: 1px solid rgba(255, 255, 255, 0.45);
 			border-radius: 9999px;
-			color: var(--accent, #4f46e5);
-			background: rgba(255, 255, 255, 0.85);
-			backdrop-filter: blur(8px);
+			color: #ffffff;
+			background: rgba(15, 23, 42, 0.45);
+			backdrop-filter: blur(10px);
 		}
 
 		.hero-content h1 {
@@ -188,11 +182,14 @@ const serviceCards = [
 			line-height: 1.08;
 			text-transform: none;
 			letter-spacing: -0.03em;
-			color: var(--text-primary, #0f172a);
+			color: #ffffff;
 			max-width: 18ch;
 			background: none;
 			-webkit-background-clip: unset;
 			background-clip: unset;
+			text-shadow:
+				0 2px 40px rgba(0, 0, 0, 0.55),
+				0 1px 3px rgba(0, 0, 0, 0.9);
 		}
 
 		.hero-text {
@@ -200,7 +197,10 @@ const serviceCards = [
 			max-width: 36rem;
 			font-size: clamp(0.95rem, 1.5vw, 1.08rem);
 			line-height: 1.8;
-			color: var(--text-secondary, #475569);
+			color: rgba(255, 255, 255, 0.96);
+			text-shadow:
+				0 1px 24px rgba(0, 0, 0, 0.55),
+				0 1px 2px rgba(0, 0, 0, 0.85);
 		}
 
 		.hero-cta-row {
