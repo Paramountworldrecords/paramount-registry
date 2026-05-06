@@ -25,9 +25,9 @@ const serviceCards = [
 	<main id="home" class="home-redesign">
 		<section class="hero-video section section--flush">
 			<div class="hero-video-bg" aria-hidden="true">
-				<!-- Replace this file with your final hero video: /public/media/home-hero.mp4 -->
-				<video autoplay muted loop playsinline poster="/images/logo.png">
-					<source src="/media/home-hero.mp4" type="video/mp4" />
+				<!-- Background file: public/media/home-hero-main.mp4 -->
+				<video autoplay muted loop playsinline preload="auto" poster="/images/logo.png">
+					<source src="/media/home-hero-main.mp4" type="video/mp4" />
 				</video>
 			</div>
 			<div class="hero-overlay" aria-hidden="true"></div>
@@ -111,7 +111,7 @@ const serviceCards = [
 		.hero-video-bg video {
 			object-fit: cover;
 			filter: saturate(0.55) brightness(1.02) contrast(0.92);
-			opacity: 0.4;
+			opacity: 0.52;
 			animation: kenBurns 28s ease-in-out infinite alternate;
 		}
 
@@ -119,8 +119,8 @@ const serviceCards = [
 			position: absolute;
 			inset: 0;
 			background:
-				linear-gradient(180deg, rgba(244, 246, 251, 0.88) 0%, rgba(244, 246, 251, 0.94) 100%),
-				radial-gradient(circle at 50% 32%, rgba(79, 70, 229, 0.09) 0%, transparent 58%);
+				linear-gradient(180deg, rgba(244, 246, 251, 0.78) 0%, rgba(244, 246, 251, 0.9) 100%),
+				radial-gradient(circle at 50% 32%, rgba(79, 70, 229, 0.08) 0%, transparent 58%);
 		}
 
 		.hero-video::after {
