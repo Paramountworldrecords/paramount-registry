@@ -112,9 +112,11 @@ const links = {
 	.site-header-redesign .top-nav a,
 	.site-header-redesign .menu summary {
 		font-size: 0.875rem;
-		color: var(--text-secondary, #475569) !important;
+		color: #1e293b !important;
+		-webkit-text-fill-color: #1e293b;
+		opacity: 1 !important;
 		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
-		font-weight: 500;
+		font-weight: 600;
 		letter-spacing: 0;
 		text-transform: none;
 		background: none !important;
@@ -123,11 +125,14 @@ const links = {
 		-webkit-text-stroke: 0 !important;
 		text-shadow: none;
 		transition: color 0.2s ease;
+		cursor: pointer;
 	}
 
 	.site-header-redesign .top-nav a:hover,
 	.site-header-redesign .menu summary:hover {
 		color: var(--accent, #1d2b6b) !important;
+		-webkit-text-fill-color: var(--accent, #1d2b6b);
+		opacity: 1 !important;
 	}
 
 	.header-actions {
@@ -226,26 +231,35 @@ const links = {
 	}
 
 	.site-header-redesign .dropdown {
-		top: 1.7rem;
+		top: calc(100% + 0.35rem);
 		right: 0;
-		background: var(--surface-card, #fff);
+		left: auto;
+		z-index: 250;
+		background: #ffffff;
 		border: 1px solid var(--border-subtle, #e2e8f0);
 		border-radius: var(--radius-card, 16px);
-		box-shadow: var(--shadow-soft, 0 24px 56px rgba(15, 23, 42, 0.08));
+		box-shadow: var(--shadow-soft, 0 24px 56px rgba(15, 23, 42, 0.12));
+		padding: 0.65rem 0.85rem;
 	}
 
 	.site-header-redesign .dropdown a {
-		color: var(--text-secondary, #475569) !important;
+		display: block;
+		padding: 0.35rem 0.15rem;
+		color: #0f172a !important;
+		-webkit-text-fill-color: #0f172a;
+		opacity: 1 !important;
 		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
-		font-size: 0.8125rem;
+		font-size: 0.875rem;
 		letter-spacing: 0;
 		text-transform: none;
-		font-weight: 500;
+		font-weight: 600;
 		transition: color 0.15s ease;
 	}
 
 	.site-header-redesign .dropdown a:hover {
 		color: var(--accent, #1d2b6b) !important;
+		-webkit-text-fill-color: var(--accent, #1d2b6b);
+		opacity: 1 !important;
 		text-shadow: none;
 	}
 
@@ -256,13 +270,15 @@ const links = {
 	}
 
 	.dropdown-account {
-		font-weight: 600;
-		color: var(--text-primary, #0f172a) !important;
+		font-weight: 700;
+		color: #0f172a !important;
+		-webkit-text-fill-color: #0f172a;
 	}
 
 	.dropdown-dashboard {
-		font-weight: 600;
+		font-weight: 700;
 		color: var(--accent, #1d2b6b) !important;
+		-webkit-text-fill-color: var(--accent, #1d2b6b);
 	}
 
 	@media (max-width: 1050px) {

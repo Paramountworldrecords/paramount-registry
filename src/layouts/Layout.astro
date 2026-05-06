@@ -101,12 +101,19 @@ const { title, showChrome = true } = Astro.props;
 			.site-header {
 				position: sticky;
 				top: 0;
-				z-index: 20;
+				z-index: 100;
 				background: rgba(255, 255, 255, 0.82);
 				backdrop-filter: blur(16px);
 				-webkit-backdrop-filter: blur(16px);
 				border-bottom: 1px solid var(--border-subtle);
 				transition: background-color 0.35s ease, box-shadow 0.35s ease;
+				overflow: visible;
+			}
+
+			.site-header .header-shell,
+			.site-header .header-actions,
+			.site-header .menu {
+				overflow: visible;
 			}
 
 			.site-header.scrolled {
@@ -213,14 +220,41 @@ const { title, showChrome = true } = Astro.props;
 				position: absolute;
 				right: 0;
 				top: 1.4rem;
+				z-index: 200;
 				display: grid;
 				gap: 0.35rem;
 				min-width: 240px;
 				padding: 0.85rem;
-				background: var(--surface-card);
+				background: #ffffff;
 				border: 1px solid var(--border-subtle);
 				border-radius: var(--radius-card);
 				box-shadow: var(--shadow-soft);
+			}
+
+			/* Flyout links — high specificity fallback if component CSS order varies */
+			.site-header.site-header-redesign .dropdown a {
+				color: #0f172a !important;
+				opacity: 1 !important;
+				-webkit-text-fill-color: #0f172a;
+			}
+
+			.site-header.site-header-redesign .dropdown a:hover {
+				color: var(--accent) !important;
+				-webkit-text-fill-color: var(--accent);
+				opacity: 1 !important;
+			}
+
+			/* Native selects & OS dropdown lists */
+			select {
+				color-scheme: light;
+				background-color: var(--surface-card);
+				color: var(--text-primary);
+			}
+
+			select option,
+			select optgroup {
+				background-color: #ffffff;
+				color: #0f172a;
 			}
 
 			.section {

@@ -39,7 +39,7 @@ const items = [
 
 <Layout title="FAQ — Paramount World Records">
 	<main class="section faq-page">
-		<div class="container narrow about-panel" data-reveal>
+		<div class="container narrow about-panel">
 			<p class="tag">Guidance</p>
 			<h1>Frequently asked questions</h1>
 			<p class="faq-intro">
@@ -110,7 +110,9 @@ const items = [
 			font-weight: 600;
 			font-size: 0.95rem;
 			line-height: 1.45;
-			color: var(--text-primary, #0f172a);
+			color: var(--text-primary, #0f172a) !important;
+			-webkit-text-fill-color: var(--text-primary, #0f172a);
+			opacity: 1 !important;
 			list-style: none;
 		}
 
