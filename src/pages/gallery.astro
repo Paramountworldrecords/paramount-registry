@@ -32,12 +32,28 @@ const amrapaliBatch1: GalleryImage[] = Array.from({ length: 16 }, (_, i) => {
 	};
 });
 
+/** Iron Hub Gym — fitness world record event, 3 May 2026 */
+const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
+	const n = String(i + 1).padStart(2, "0");
+	return {
+		kind: "image" as const,
+		src: `/images/gallery/ironhub-fitness-${n}.png`,
+		alt: `Iron Hub — fitness world record event, trainers and trainees (${i + 1} of 18)`,
+	};
+});
+
 const sections: GallerySection[] = [
 	{
 		title: "Amrapali Kathak Dance Academies — World record performance, first batch",
 		subtitle:
 			"Recognition for continuous Kathak dance performance by a unified group — certificates, group portraits, and celebration moments.",
 		items: amrapaliBatch1,
+	},
+	{
+		title: "FITNESS WORLD RECORD CREATION BY IRON HUB TRAINERS AND TRAINERS",
+		subtitle:
+			"Iron Hub Gym, J.B. Nagar — Paramount World Records fitness event (3 May 2026). Posters, certificates, training moments, and team photos.",
+		items: ironHubFitness,
 	},
 	{
 		title: "Highlights",
