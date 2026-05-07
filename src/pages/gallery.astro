@@ -11,6 +11,15 @@ type GallerySection = {
 	items: (GalleryImage | GalleryVideo)[];
 };
 
+/** Mother's Day Awards & Celebration — Mumbai Press Club, 9 May 2026 */
+const upcomingMothersDay2026: GalleryImage[] = [
+	{
+		kind: "image" as const,
+		src: "/images/gallery/mothers-day-2026-flyer.png",
+		alt: "Paramount World Records — Mother's Day Awards & Celebration 2026, flyer (Mumbai Press Club, Fort)",
+	},
+];
+
 const highlights: (GalleryImage | GalleryVideo)[] = [
 	{ kind: "image", src: "/images/gallery/gallery-1.png", alt: "Gallery photo 1" },
 	{ kind: "image", src: "/images/gallery/gallery-2.png", alt: "Gallery photo 2" },
@@ -43,6 +52,12 @@ const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
 });
 
 const sections: GallerySection[] = [
+	{
+		title: "Upcoming events — Mother's Day Awards & Celebration 2026",
+		subtitle:
+			"Mother's Day celebration at Mumbai Press Club, Fort. Awards for NGOs and social workers. Date: 9 May 2026. Time: 3:00 PM–5:00 PM. Call +91 99878 14980 for a free invite.",
+		items: upcomingMothersDay2026,
+	},
 	{
 		title: "Amrapali Kathak Dance Academies — World record performance, first batch",
 		subtitle:
