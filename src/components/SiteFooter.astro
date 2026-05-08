@@ -50,7 +50,7 @@ const year = new Date().getFullYear();
 	.site-footer-pro {
 		padding: clamp(2.75rem, 6vw, 4rem) 0 0;
 		margin-top: clamp(3rem, 8vw, 5rem);
-		background: linear-gradient(180deg, #f9eeff 0%, #f3ddff 100%);
+		background: linear-gradient(180deg, var(--surface-muted, #f8fafc) 0%, #eef2f7 100%);
 		border-top: 1px solid var(--border-subtle, #e2e8f0);
 	}
 
@@ -81,7 +81,6 @@ const year = new Date().getFullYear();
 		width: 40px;
 		height: auto;
 		border-radius: 50%;
-		box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.55);
 	}
 
 	.footer-brand:hover {
@@ -128,7 +127,6 @@ const year = new Date().getFullYear();
 	.footer-bottom {
 		border-top: 1px solid var(--border-subtle, #e2e8f0);
 		padding: 1.15rem 0 1.75rem;
-		background: rgba(255, 255, 255, 0.45);
 	}
 
 	.footer-bottom .footer-copy {
