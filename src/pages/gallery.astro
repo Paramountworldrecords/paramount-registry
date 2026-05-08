@@ -53,6 +53,11 @@ const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
 
 const sections: GallerySection[] = [
 	{
+		title: "Highlights",
+		subtitle: "Moments from our programmes, venues, and achievers.",
+		items: highlights,
+	},
+	{
 		title: "Upcoming events — Mother's Day Awards & Celebration 2026",
 		subtitle:
 			"Mother's Day celebration at Mumbai Press Club, Fort. Awards for NGOs and social workers. Date: 9 May 2026. Time: 3:00 PM–5:00 PM. Call +91 99878 14980 for a free invite.",
@@ -69,11 +74,6 @@ const sections: GallerySection[] = [
 		subtitle:
 			"Iron Hub Gym, J.B. Nagar — Paramount World Records fitness event (3 May 2026). Posters, certificates, training moments, and team photos.",
 		items: ironHubFitness,
-	},
-	{
-		title: "Highlights",
-		subtitle: "Moments from our programmes, venues, and achievers.",
-		items: highlights,
 	},
 ];
 ---
@@ -216,6 +216,17 @@ const sections: GallerySection[] = [
 
 	.gallery-grid {
 		gap: 1.25rem;
+	}
+
+	.gallery-grid .gallery-cell:only-child {
+		max-width: min(100%, 980px);
+		margin-inline: auto;
+	}
+
+	.gallery-grid .gallery-cell:only-child .gallery-media {
+		height: auto;
+		max-height: none;
+		object-fit: contain;
 	}
 
 	.gallery-cell {
