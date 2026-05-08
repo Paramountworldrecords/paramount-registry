@@ -124,6 +124,7 @@ const links = {
 		height: 30px;
 		filter: none;
 		display: block;
+		cursor: default;
 	}
 
 	.site-header-redesign .top-nav {
@@ -389,3 +390,15 @@ const links = {
 		}
 	}
 </style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const logo = document.querySelector(".site-header-redesign .brand img");
+		if (!(logo instanceof HTMLImageElement)) return;
+
+		logo.addEventListener("click", (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+		});
+	});
+</script>
