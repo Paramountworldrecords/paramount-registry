@@ -21,32 +21,12 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 		{
 			isHome ? (
 				<span class="brand brand-home" aria-current="page">
-					<img
-						src="/images/logo.png"
-						alt="Paramount World Records logo"
-						width="30"
-						height="30"
-						draggable="false"
-						loading="eager"
-						decoding="sync"
-						fetchpriority="high"
-						style="width:30px;height:30px;min-width:30px;max-width:30px;display:block;object-fit:contain;"
-					/>
+					<span class="brand-logo" aria-hidden="true"></span>
 					<span>Paramount World Records</span>
 				</span>
 			) : (
 				<a class="brand" href="/">
-					<img
-						src="/images/logo.png"
-						alt="Paramount World Records logo"
-						width="30"
-						height="30"
-						draggable="false"
-						loading="eager"
-						decoding="sync"
-						fetchpriority="high"
-						style="width:30px;height:30px;min-width:30px;max-width:30px;display:block;object-fit:contain;"
-					/>
+					<span class="brand-logo" aria-hidden="true"></span>
 					<span>Paramount World Records</span>
 				</a>
 			)
@@ -154,16 +134,16 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 		cursor: default;
 	}
 
-	.site-header-redesign .brand img {
+	.site-header-redesign .brand-logo {
 		width: 30px;
 		height: 30px;
-		object-fit: contain;
-		filter: none;
+		border-radius: 50%;
+		background: url("/images/logo.png") center / contain no-repeat;
 		display: block;
 		cursor: default;
 		pointer-events: none;
 		user-select: none;
-		-webkit-user-drag: none;
+		flex-shrink: 0;
 	}
 
 	.site-header-redesign .top-nav {
