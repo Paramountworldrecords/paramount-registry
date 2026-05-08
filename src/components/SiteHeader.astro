@@ -49,8 +49,8 @@ const links = {
 
 		<div class="header-actions">
 			<span id="authNavGuest" class="auth-nav-guest">
-				<a href="/register" class="nav-pill nav-pill-muted">Register</a>
-				<a href="/login" class="nav-pill nav-pill-primary">Login</a>
+				<a href="/register" class="auth-link">Register</a>
+				<a href="/login" class="auth-link">Login</a>
 			</span>
 			<span id="authNavUser" class="auth-nav-user" hidden>
 				<a href="/dashboard" class="nav-pill nav-pill-muted">Dashboard</a>
@@ -173,6 +173,21 @@ const links = {
 			border-color 0.2s ease,
 			color 0.2s ease,
 			box-shadow 0.2s ease;
+	}
+
+	.auth-link {
+		font-size: 0.875rem;
+		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
+		font-weight: 600;
+		letter-spacing: 0;
+		text-transform: none;
+		color: var(--text-secondary, #475569);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.auth-link:hover {
+		color: var(--accent, #1d2b6b);
 	}
 
 	.nav-pill-muted {
