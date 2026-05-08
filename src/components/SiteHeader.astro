@@ -28,7 +28,9 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 						height="30"
 						draggable="false"
 						loading="eager"
-						decoding="async"
+						decoding="sync"
+						fetchpriority="high"
+						style="width:30px;height:30px;min-width:30px;max-width:30px;display:block;object-fit:contain;"
 					/>
 					<span>Paramount World Records</span>
 				</span>
@@ -41,7 +43,9 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 						height="30"
 						draggable="false"
 						loading="eager"
-						decoding="async"
+						decoding="sync"
+						fetchpriority="high"
+						style="width:30px;height:30px;min-width:30px;max-width:30px;display:block;object-fit:contain;"
 					/>
 					<span>Paramount World Records</span>
 				</a>
