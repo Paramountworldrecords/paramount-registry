@@ -113,6 +113,7 @@ const links = {
 			0 0 18px rgba(117, 247, 255, 0.22),
 			0 0 18px rgba(252, 122, 241, 0.2),
 			0 1px 0 rgba(255, 255, 255, 0.6) !important;
+		animation: neonPulseHeader 1.2s ease-in-out infinite alternate;
 	}
 
 	.site-header-redesign .brand:hover {
@@ -166,6 +167,27 @@ const links = {
 			0 0 22px rgba(117, 247, 255, 0.35),
 			0 0 22px rgba(252, 122, 241, 0.32),
 			0 1px 0 rgba(255, 255, 255, 0.62) !important;
+	}
+
+	@keyframes neonPulseHeader {
+		0% {
+			text-shadow:
+				-1px 0 7px rgba(117, 247, 255, 0.85),
+				1px 0 7px rgba(252, 122, 241, 0.82),
+				0 0 13px rgba(255, 217, 107, 0.48),
+				0 0 18px rgba(117, 247, 255, 0.22),
+				0 0 18px rgba(252, 122, 241, 0.2),
+				0 1px 0 rgba(255, 255, 255, 0.6);
+		}
+		100% {
+			text-shadow:
+				-1px 0 11px rgba(117, 247, 255, 1),
+				1px 0 11px rgba(252, 122, 241, 0.98),
+				0 0 18px rgba(255, 217, 107, 0.75),
+				0 0 28px rgba(117, 247, 255, 0.5),
+				0 0 28px rgba(252, 122, 241, 0.48),
+				0 1px 0 rgba(255, 255, 255, 0.68);
+		}
 	}
 
 	.header-actions {

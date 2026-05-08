@@ -342,6 +342,7 @@ const { title, showChrome = true } = Astro.props;
 					-1px 0 6px rgba(117, 247, 255, 0.55),
 					1px 0 6px rgba(252, 122, 241, 0.48),
 					0 0 10px rgba(255, 217, 107, 0.34);
+				animation: neonPulseHeading 1.6s ease-in-out infinite alternate;
 			}
 
 			h1 {
@@ -382,6 +383,57 @@ const { title, showChrome = true } = Astro.props;
 					-1px 0 4px rgba(117, 247, 255, 0.45),
 					1px 0 4px rgba(252, 122, 241, 0.42),
 					0 0 8px rgba(255, 217, 107, 0.24);
+				animation: neonPulseSubhead 1.45s ease-in-out infinite alternate;
+			}
+
+			@keyframes neonPulseHeading {
+				0% {
+					text-shadow:
+						0 1px 0 rgba(255, 255, 255, 0.74),
+						0 0 0.01em rgba(255, 255, 255, 0.65),
+						0 2px 7px rgba(60, 72, 95, 0.6),
+						0 8px 16px rgba(15, 23, 42, 0.26),
+						-1px 0 7px rgba(117, 247, 255, 0.66),
+						1px 0 7px rgba(252, 122, 241, 0.62),
+						0 0 14px rgba(255, 217, 107, 0.5),
+						0 0 18px rgba(117, 247, 255, 0.35),
+						0 0 18px rgba(252, 122, 241, 0.33);
+				}
+				100% {
+					text-shadow:
+						0 1px 0 rgba(255, 255, 255, 0.82),
+						0 0 0.01em rgba(255, 255, 255, 0.75),
+						0 2px 8px rgba(60, 72, 95, 0.68),
+						0 9px 18px rgba(15, 23, 42, 0.3),
+						-1px 0 10px rgba(117, 247, 255, 0.94),
+						1px 0 10px rgba(252, 122, 241, 0.9),
+						0 0 18px rgba(255, 217, 107, 0.72),
+						0 0 26px rgba(117, 247, 255, 0.52),
+						0 0 26px rgba(252, 122, 241, 0.5);
+				}
+			}
+
+			@keyframes neonPulseSubhead {
+				0% {
+					text-shadow:
+						0 1px 0 rgba(255, 255, 255, 0.7),
+						0 2px 8px rgba(60, 72, 95, 0.5),
+						-1px 0 5px rgba(117, 247, 255, 0.54),
+						1px 0 5px rgba(252, 122, 241, 0.5),
+						0 0 10px rgba(255, 217, 107, 0.3),
+						0 0 14px rgba(117, 247, 255, 0.24),
+						0 0 14px rgba(252, 122, 241, 0.22);
+				}
+				100% {
+					text-shadow:
+						0 1px 0 rgba(255, 255, 255, 0.78),
+						0 2px 9px rgba(60, 72, 95, 0.58),
+						-1px 0 7px rgba(117, 247, 255, 0.8),
+						1px 0 7px rgba(252, 122, 241, 0.76),
+						0 0 14px rgba(255, 217, 107, 0.5),
+						0 0 20px rgba(117, 247, 255, 0.4),
+						0 0 20px rgba(252, 122, 241, 0.38);
+				}
 			}
 
 			.lead {
