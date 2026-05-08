@@ -21,12 +21,28 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 		{
 			isHome ? (
 				<span class="brand brand-home" aria-current="page">
-					<img src="/images/logo.png" alt="Paramount World Records logo" />
+					<img
+						src="/images/logo.png"
+						alt="Paramount World Records logo"
+						width="30"
+						height="30"
+						draggable="false"
+						loading="eager"
+						decoding="async"
+					/>
 					<span>Paramount World Records</span>
 				</span>
 			) : (
 				<a class="brand" href="/">
-					<img src="/images/logo.png" alt="Paramount World Records logo" />
+					<img
+						src="/images/logo.png"
+						alt="Paramount World Records logo"
+						width="30"
+						height="30"
+						draggable="false"
+						loading="eager"
+						decoding="async"
+					/>
 					<span>Paramount World Records</span>
 				</a>
 			)
@@ -135,10 +151,15 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 	}
 
 	.site-header-redesign .brand img {
+		width: 30px;
 		height: 30px;
+		object-fit: contain;
 		filter: none;
 		display: block;
 		cursor: default;
+		pointer-events: none;
+		user-select: none;
+		-webkit-user-drag: none;
 	}
 
 	.site-header-redesign .top-nav {
