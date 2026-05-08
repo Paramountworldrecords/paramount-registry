@@ -13,14 +13,24 @@ const links = {
 	work: "/work",
 	contact: "/contact",
 };
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html";
 ---
 
 <header class="site-header site-header-redesign">
 	<div class="container header-shell">
-		<a class="brand" href="/">
-			<img src="/images/logo.png" alt="Paramount World Records logo" />
-			<span>Paramount World Records</span>
-		</a>
+		{
+			isHome ? (
+				<span class="brand brand-home" aria-current="page">
+					<img src="/images/logo.png" alt="Paramount World Records logo" />
+					<span>Paramount World Records</span>
+				</span>
+			) : (
+				<a class="brand" href="/">
+					<img src="/images/logo.png" alt="Paramount World Records logo" />
+					<span>Paramount World Records</span>
+				</a>
+			)
+		}
 
 		<nav class="top-nav" aria-label="Primary">
 			<a href={links.about}>About</a>
@@ -116,8 +126,12 @@ const links = {
 		animation: neonPulseHeader 1.2s ease-in-out infinite alternate;
 	}
 
-	.site-header-redesign .brand:hover {
+	.site-header-redesign a.brand:hover {
 		color: var(--accent, #1d2b6b);
+	}
+
+	.site-header-redesign .brand-home {
+		cursor: default;
 	}
 
 	.site-header-redesign .brand img {
@@ -390,15 +404,3 @@ const links = {
 		}
 	}
 </style>
-
-<script>
-	document.addEventListener("DOMContentLoaded", () => {
-		const logo = document.querySelector(".site-header-redesign .brand img");
-		if (!(logo instanceof HTMLImageElement)) return;
-
-		logo.addEventListener("click", (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-		});
-	});
-</script>
