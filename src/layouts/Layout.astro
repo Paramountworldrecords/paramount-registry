@@ -68,6 +68,9 @@ const { title, showChrome = true } = Astro.props;
 					rgba(255, 255, 255, 0.2) 20%,
 					rgba(255, 255, 255, 0) 56%
 				);
+				--neon-cyan: rgba(117, 247, 255, 0.9);
+				--neon-magenta: rgba(252, 122, 241, 0.9);
+				--neon-amber: rgba(255, 217, 107, 0.9);
 				/* Legacy aliases used in older components */
 				--bg-noir: var(--page-bg);
 				--surface-noir: var(--surface-card);
@@ -335,7 +338,10 @@ const { title, showChrome = true } = Astro.props;
 					0 1px 0 rgba(255, 255, 255, 0.74),
 					0 0 0.01em rgba(255, 255, 255, 0.65),
 					0 2px 7px rgba(60, 72, 95, 0.6),
-					0 8px 16px rgba(15, 23, 42, 0.26);
+					0 8px 16px rgba(15, 23, 42, 0.26),
+					-1px 0 6px rgba(117, 247, 255, 0.55),
+					1px 0 6px rgba(252, 122, 241, 0.48),
+					0 0 10px rgba(255, 217, 107, 0.34);
 			}
 
 			h1 {
@@ -372,7 +378,10 @@ const { title, showChrome = true } = Astro.props;
 				font-size: 1.05rem;
 				text-shadow:
 					0 1px 0 rgba(255, 255, 255, 0.7),
-					0 2px 8px rgba(60, 72, 95, 0.5);
+					0 2px 8px rgba(60, 72, 95, 0.5),
+					-1px 0 4px rgba(117, 247, 255, 0.45),
+					1px 0 4px rgba(252, 122, 241, 0.42),
+					0 0 8px rgba(255, 217, 107, 0.24);
 			}
 
 			.lead {
