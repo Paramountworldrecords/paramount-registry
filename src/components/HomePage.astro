@@ -111,6 +111,16 @@ const pillars = ["Authorisation", "Adjudication", "Verification", "Certification
 		if (!(video instanceof HTMLVideoElement)) return;
 
 		const showVideo = () => video.classList.add("is-ready");
+		video.addEventListener(
+			"loadedmetadata",
+			() => {
+				// Skip any branded opening frame that can flash briefly on navigation.
+				try {
+					video.currentTime = 0.9;
+				} catch {}
+			},
+			{ once: true }
+		);
 		video.addEventListener("loadeddata", showVideo, { once: true });
 		video.addEventListener("canplay", showVideo, { once: true });
 
