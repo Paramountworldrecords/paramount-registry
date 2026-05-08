@@ -113,8 +113,11 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 	.site-header-redesign .top-nav a,
 	.site-header-redesign .menu summary,
 	.site-header-redesign .auth-link,
+	.site-header-redesign .nav-pill.nav-pill-muted,
 	.site-header-redesign .auth-welcome strong,
 	.site-header-redesign .auth-logout {
+		color: #1e2c43 !important;
+		-webkit-text-fill-color: #1e2c43 !important;
 		-webkit-text-stroke: 0.55px rgba(25, 33, 48, 0.62) !important;
 		text-shadow:
 			-1px 0 7px rgba(117, 247, 255, 0.85),
@@ -161,8 +164,6 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 	.site-header-redesign .top-nav a,
 	.site-header-redesign .menu summary {
 		font-size: 0.875rem;
-		color: #1e293b !important;
-		-webkit-text-fill-color: #1e293b;
 		opacity: 1 !important;
 		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
 		font-weight: 600;
@@ -244,7 +245,6 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 		font-weight: 600;
 		letter-spacing: 0;
 		text-transform: none;
-		color: var(--text-secondary, #475569);
 		text-decoration: none;
 		transition: color 0.2s ease;
 	}
