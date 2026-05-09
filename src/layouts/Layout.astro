@@ -7,6 +7,7 @@ interface Props {
 	showChrome?: boolean;
 }
 const { title, showChrome = true } = Astro.props;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 <!doctype html>
 <html lang="en">
@@ -23,6 +24,22 @@ const { title, showChrome = true } = Astro.props;
 			href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
 			rel="stylesheet"
 		/>
+		{
+			gaMeasurementId ? (
+				<>
+					<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+					<script
+						define:vars={{ gaMeasurementId }}
+						is:inline
+					>
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', gaMeasurementId);
+					</script>
+				</>
+			) : null
+		}
 		<style is:global>
 			/* Paramount brand: registry navy + logo teal, light marketing shell */
 			:root {
