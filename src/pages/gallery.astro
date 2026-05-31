@@ -31,6 +31,46 @@ const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
 	};
 });
 
+const dreamersDanceAlt = [
+	"Young dancers rehearsing Bollywood choreography at Dreamers Dance Studio",
+	"Group dance practice session at Dreamers Dance and Fitness Studio",
+	"Students performing synchronized dance moves during world record rehearsal",
+	"Children practicing choreography led by instructor at Dreamers Dance Studio",
+	"Adult dancers rehearsing group Bollywood routine at Dreamers Dance Studio",
+	"Young girl receiving world record certificate at Dreamers Dance Studio event",
+	"Award recipient with medal and certificate at Dreamers Dance Studio",
+	"Certificate presentation for continuous Bollywood dance world record",
+	"Young achiever holding Paramount World Records certificate at Dreamers Dance Studio",
+	"Master Sam Sukant Lenka receiving world record certificate and medal",
+	"World record holder with certificate and trophy at Dreamers Dance Studio",
+	"Medal presentation at Dreamers Dance Studio world record event",
+	"Young girl with world record certificate and medal at Dreamers Dance Studio",
+	"Certificate of World Record Holder — Dreamers Dance and Fitness Studio",
+	"Young dancer awarded world record certificate at Dreamers Dance Studio",
+	"Group of young dancers rehearsing at Dreamers Dance Studio",
+	"Children performing coordinated dance routine during world record attempt",
+	"Students practicing Bollywood dance in studio with mirror wall",
+	"Adult dancers rehearsing group choreography at Dreamers Dance Studio",
+	"Young dancers in formation during world record rehearsal session",
+	"Certificate presentation to young achiever at Dreamers Dance Studio",
+	"World record certificate ceremony at Dreamers Dance Studio",
+	"Young girl with medal and certificate at Dreamers Dance Studio event",
+	"Adult dancer receiving world record certificate at Dreamers Dance Studio",
+	"Certificate of World Record Holder presentation at Dreamers Dance Studio",
+	"Young achiever with Paramount World Records certificate and medal",
+	"Group dance rehearsal at Dreamers Dance and Fitness Studio",
+	"Students practicing synchronized Bollywood dance for world record attempt",
+];
+
+const dreamersDanceStudio: GalleryImage[] = Array.from({ length: 28 }, (_, i) => {
+	const n = String(i + 1).padStart(2, "0");
+	return {
+		kind: "image" as const,
+		src: `/images/gallery/dreamers-dance-studio-world-record/${n}.png`,
+		alt: dreamersDanceAlt[i] ?? `Dreamers Dance Studio world record (${i + 1} of 28)`,
+	};
+});
+
 const mothersDayAlt = [
 	"Award recipient interviewed by media at the Motherlywood 2026 ceremony",
 	"Group photo with award recipients at the Motherlywood 2026 celebration, Mumbai Press Club",
@@ -80,9 +120,9 @@ const folders: GalleryFolder[] = [
 	{
 		id: "dreamers-dance-studio-world-record",
 		title: "Dreamers Dance Studio World Record",
-		subtitle: "Photos from the Dreamers Dance Studio world record event.",
-		emptyMessage: "Photos will be added here soon.",
-		items: [],
+		subtitle:
+			"Continuous Bollywood dance by a unified group — Dreamers Dance and Fitness Studio. Rehearsals, certificates, medals, and celebration moments.",
+		items: dreamersDanceStudio,
 	},
 	{
 		id: "mothers-day-award-ceremony",
