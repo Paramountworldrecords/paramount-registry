@@ -20,17 +20,6 @@ const upcomingMothersDay2026: GalleryImage[] = [
 	},
 ];
 
-const highlights: (GalleryImage | GalleryVideo)[] = [
-	{ kind: "image", src: "/images/gallery/gallery-1.png", alt: "Gallery photo 1" },
-	{ kind: "image", src: "/images/gallery/gallery-2.png", alt: "Gallery photo 2" },
-	{ kind: "image", src: "/images/gallery/gallery-3.png", alt: "Gallery photo 3" },
-	{ kind: "image", src: "/images/gallery/gallery-4.png", alt: "Gallery photo 4" },
-	{ kind: "image", src: "/images/gallery/gallery-5.png", alt: "Gallery photo 5" },
-	{ kind: "image", src: "/images/gallery/gallery-6.png", alt: "Gallery photo 6" },
-	{ kind: "image", src: "/images/gallery/gallery-7.png", alt: "Gallery photo 7" },
-	{ kind: "image", src: "/images/gallery/gallery-8.png", alt: "Gallery photo 8" },
-];
-
 /** Continuous Kathak dance performance by a unified group — first batch, 26 April 2026 */
 const amrapaliBatch1: GalleryImage[] = Array.from({ length: 16 }, (_, i) => {
 	const n = String(i + 1).padStart(2, "0");
@@ -52,11 +41,6 @@ const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
 });
 
 const sections: GallerySection[] = [
-	{
-		title: "Highlights",
-		subtitle: "Moments from our programmes, venues, and achievers.",
-		items: highlights,
-	},
 	{
 		title: "Upcoming events — Mother's Day Awards & Celebration 2026",
 		subtitle:
