@@ -31,6 +31,29 @@ const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
 	};
 });
 
+const mothersDayAlt = [
+	"Award recipient interviewed by media at the Motherlywood 2026 ceremony",
+	"Group photo with award recipients at the Motherlywood 2026 celebration, Mumbai Press Club",
+	"Award recipients holding recognition plaques at the Mother's Day ceremony",
+	"Group of honourees with Mother's Day Special Recognition Awards 2026",
+	"Recipients posing with Mother's Day recognition awards at Mumbai Press Club",
+	"Award presentation at the Motherlywood 2026 Mother's Day celebration",
+	"Honourees holding certificates at the Mother's Day Special Recognition Awards 2026",
+	"Award recipient receiving a recognition plaque at the Motherlywood 2026 event",
+	"Chief guest speaking at the podium, Mumbai Press Club",
+	"Group portrait at the Motherlywood 2026 Mother's Day Awards & Celebration",
+	"Media interview with an award recipient at the Mother's Day ceremony",
+];
+
+const mothersDayAwardCeremony: GalleryImage[] = Array.from({ length: 11 }, (_, i) => {
+	const n = String(i + 1).padStart(2, "0");
+	return {
+		kind: "image" as const,
+		src: `/images/gallery/mothers-day-award-ceremony/${n}.png`,
+		alt: mothersDayAlt[i] ?? `Mother's Day Award Ceremony (${i + 1} of 11)`,
+	};
+});
+
 const upcomingEvents: GalleryImage[] = [
 	{
 		kind: "image" as const,
@@ -65,9 +88,8 @@ const folders: GalleryFolder[] = [
 		id: "mothers-day-award-ceremony",
 		title: "Mother's Day Award Ceremony",
 		subtitle:
-			"Mother's Day Awards & Celebration at Mumbai Press Club, Fort — 9 May 2026, 3:00 PM–5:00 PM.",
-		emptyMessage: "Ceremony photos will be added after the event.",
-		items: [],
+			"Motherlywood 2026 — Mother's Day Awards & Celebration at Mumbai Press Club, Fort. Recognition awards, group portraits, and ceremony moments.",
+		items: mothersDayAwardCeremony,
 	},
 	{
 		id: "upcoming-events",
