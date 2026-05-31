@@ -1,63 +1,79 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-/** Add sections below. Place files in `public/images/gallery/` and `public/media/gallery/`. */
+/** Add albums below. Place files in `public/images/gallery/<folder>/`. */
 type GalleryImage = { kind: "image"; src: string; alt: string };
 type GalleryVideo = { kind: "video"; src: string; alt: string; poster?: string };
 
-type GallerySection = {
+type GalleryFolder = {
+	id: string;
 	title: string;
 	subtitle?: string;
+	emptyMessage?: string;
 	items: (GalleryImage | GalleryVideo)[];
 };
 
-/** Mother's Day Awards & Celebration — Mumbai Press Club, 9 May 2026 */
-const upcomingMothersDay2026: GalleryImage[] = [
-	{
-		kind: "image" as const,
-		src: "/images/gallery/mothers-day-2026-flyer.png",
-		alt: "Paramount World Records — Mother's Day Awards & Celebration 2026, flyer (Mumbai Press Club, Fort)",
-	},
-];
-
-/** Continuous Kathak dance performance by a unified group — first batch, 26 April 2026 */
-const amrapaliBatch1: GalleryImage[] = Array.from({ length: 16 }, (_, i) => {
+const amrapaliKathak: GalleryImage[] = Array.from({ length: 16 }, (_, i) => {
 	const n = String(i + 1).padStart(2, "0");
 	return {
 		kind: "image" as const,
-		src: `/images/gallery/amrapali-batch1-${n}.png`,
-		alt: `Amrapali Kathak Dance Academy — world record performance, first batch (${i + 1} of 16)`,
+		src: `/images/gallery/amrapali-kathak-world-record/${n}.png`,
+		alt: `Amrapali Kathak Dance Academy — world record performance (${i + 1} of 16)`,
 	};
 });
 
-/** Iron Hub Gym — fitness world record event, 3 May 2026 */
 const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
 	const n = String(i + 1).padStart(2, "0");
 	return {
 		kind: "image" as const,
-		src: `/images/gallery/ironhub-fitness-${n}.png`,
+		src: `/images/gallery/iron-hub-fitness-world-record/${n}.png`,
 		alt: `Iron Hub — fitness world record event, trainers and trainees (${i + 1} of 18)`,
 	};
 });
 
-const sections: GallerySection[] = [
+const upcomingEvents: GalleryImage[] = [
 	{
-		title: "Upcoming events — Mother's Day Awards & Celebration 2026",
+		kind: "image" as const,
+		src: "/images/gallery/upcoming-events/mothers-day-2026-flyer.png",
+		alt: "Paramount World Records — Mother's Day Awards & Celebration 2026, flyer (Mumbai Press Club, Fort)",
+	},
+];
+
+const folders: GalleryFolder[] = [
+	{
+		id: "amrapali-kathak-world-record",
+		title: "Amrapali Kathak World Record",
 		subtitle:
-			"Mother's Day celebration at Mumbai Press Club, Fort. Awards for NGOs and social workers. Date: 9 May 2026. Time: 3:00 PM–5:00 PM. Call +91 99878 14980 for a free invite.",
-		items: upcomingMothersDay2026,
+			"Continuous Kathak dance performance by a unified group — certificates, group portraits, and celebration moments (26 April 2026).",
+		items: amrapaliKathak,
 	},
 	{
-		title: "Amrapali Kathak Dance Academies — World record performance, first batch",
-		subtitle:
-			"Recognition for continuous Kathak dance performance by a unified group — certificates, group portraits, and celebration moments.",
-		items: amrapaliBatch1,
-	},
-	{
-		title: "FITNESS WORLD RECORD CREATION BY IRON HUB TRAINERS AND TRAINEES",
+		id: "iron-hub-fitness-world-record",
+		title: "Iron Hub Fitness World Record",
 		subtitle:
 			"Iron Hub Gym, J.B. Nagar — Paramount World Records fitness event (3 May 2026). Posters, certificates, training moments, and team photos.",
 		items: ironHubFitness,
+	},
+	{
+		id: "dreamers-dance-studio-world-record",
+		title: "Dreamers Dance Studio World Record",
+		subtitle: "Photos from the Dreamers Dance Studio world record event.",
+		emptyMessage: "Photos will be added here soon.",
+		items: [],
+	},
+	{
+		id: "mothers-day-award-ceremony",
+		title: "Mother's Day Award Ceremony",
+		subtitle:
+			"Mother's Day Awards & Celebration at Mumbai Press Club, Fort — 9 May 2026, 3:00 PM–5:00 PM.",
+		emptyMessage: "Ceremony photos will be added after the event.",
+		items: [],
+	},
+	{
+		id: "upcoming-events",
+		title: "Upcoming Events",
+		subtitle: "Flyers and announcements for upcoming Paramount World Records programmes.",
+		items: upcomingEvents,
 	},
 ];
 ---
@@ -69,50 +85,77 @@ const sections: GallerySection[] = [
 			<h1>Gallery</h1>
 		</header>
 
-		{
-			sections.map((section, albumIndex) => (
-				<section
-					class="gallery-album container"
-					data-reveal
-					aria-labelledby={`gallery-album-${albumIndex}`}
-				>
-					<div class="gallery-album-head">
-						<h2 class="gallery-section-title" id={`gallery-album-${albumIndex}`}>
-							{section.title}
-						</h2>
-						{section.subtitle ? <p class="gallery-section-sub">{section.subtitle}</p> : null}
-					</div>
-					<div class="grid three gallery-grid">
-						{section.items.map((item) => (
-							<figure class="panel card-gloss gallery-cell">
-								{item.kind === "image" ? (
-									<button type="button" class="gallery-thumb-btn" aria-label={`Open larger: ${item.alt}`}>
-										<img
-											class="gallery-media"
-											src={item.src}
-											alt={item.alt}
-											loading="lazy"
-											decoding="async"
-											data-gallery-image
-										/>
-									</button>
-								) : (
-									<video
-										class="gallery-media gallery-video"
-										src={item.src}
-										controls
-										playsinline
-										preload="metadata"
-										poster={item.poster}
-										aria-label={item.alt}
+		<div class="container gallery-folders" data-reveal>
+			{
+				folders.map((folder, folderIndex) => (
+					<details class="gallery-folder panel card-gloss" open={folderIndex === 0}>
+						<summary class="gallery-folder-summary">
+							<span class="gallery-folder-icon" aria-hidden="true">
+								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path
+										d="M3 7.5C3 6.67157 3.67157 6 4.5 6H9.17157C9.70201 6 10.2107 6.21071 10.5858 6.58579L12 8H19.5C20.3284 8 21 8.67157 21 9.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V7.5Z"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linejoin="round"
 									/>
-								)}
-							</figure>
-						))}
-					</div>
-				</section>
-			))
-		}
+								</svg>
+							</span>
+							<span class="gallery-folder-text">
+								<span class="gallery-folder-title">{folder.title}</span>
+								{folder.subtitle ? (
+									<span class="gallery-folder-sub">{folder.subtitle}</span>
+								) : null}
+							</span>
+							<span class="gallery-folder-count">
+								{folder.items.length > 0
+									? `${folder.items.length} ${folder.items.length === 1 ? "item" : "items"}`
+									: "Empty"}
+							</span>
+							<span class="gallery-folder-chevron" aria-hidden="true" />
+						</summary>
+
+						<div class="gallery-folder-body">
+							{folder.items.length > 0 ? (
+								<div class="grid three gallery-grid">
+									{folder.items.map((item) => (
+										<figure class="panel card-gloss gallery-cell">
+											{item.kind === "image" ? (
+												<button
+													type="button"
+													class="gallery-thumb-btn"
+													aria-label={`Open larger: ${item.alt}`}
+												>
+													<img
+														class="gallery-media"
+														src={item.src}
+														alt={item.alt}
+														loading="lazy"
+														decoding="async"
+														data-gallery-image
+													/>
+												</button>
+											) : (
+												<video
+													class="gallery-media gallery-video"
+													src={item.src}
+													controls
+													playsinline
+													preload="metadata"
+													poster={item.poster}
+													aria-label={item.alt}
+												/>
+											)}
+										</figure>
+									))}
+								</div>
+							) : (
+								<p class="gallery-folder-empty">{folder.emptyMessage ?? "No photos yet."}</p>
+							)}
+						</div>
+					</details>
+				))
+			}
+		</div>
 
 		<dialog id="gallery-lightbox" class="gallery-lightbox" aria-label="Enlarged photo">
 			<button type="button" class="gallery-lightbox-close" autofocus>Close</button>
@@ -159,47 +202,107 @@ const sections: GallerySection[] = [
 		letter-spacing: -0.03em;
 	}
 
-	.gallery-lead {
-		margin: 0;
-		color: var(--text-secondary, #475569);
-		line-height: 1.65;
-		font-size: 1rem;
+	.gallery-folders {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
 
-	.gallery-lead code {
-		font-size: 0.85em;
-		padding: 0.1em 0.35em;
-		border-radius: 6px;
-		background: var(--surface-muted, #f1f5f9);
-		border: 1px solid var(--border-subtle, #e2e8f0);
+	.gallery-folder {
+		overflow: hidden;
 	}
 
-	.gallery-album {
-		margin-bottom: clamp(3rem, 8vw, 5rem);
+	.gallery-folder-summary {
+		display: grid;
+		grid-template-columns: auto 1fr auto auto;
+		align-items: center;
+		gap: 1rem;
+		padding: 1.1rem 1.25rem;
+		cursor: pointer;
+		list-style: none;
 	}
 
-	.gallery-album-head {
-		margin-bottom: 1.35rem;
+	.gallery-folder-summary::-webkit-details-marker {
+		display: none;
 	}
 
-	.gallery-section-title {
-		margin: 0;
-		font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+	.gallery-folder-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 12px;
+		background: rgba(29, 43, 107, 0.08);
+		color: var(--accent, #1d2b6b);
+		flex-shrink: 0;
+	}
+
+	.gallery-folder-icon svg {
+		width: 1.35rem;
+		height: 1.35rem;
+	}
+
+	.gallery-folder-text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		min-width: 0;
+	}
+
+	.gallery-folder-title {
+		font-size: clamp(1.05rem, 2vw, 1.25rem);
 		font-weight: 800;
 		letter-spacing: -0.02em;
 		color: var(--text-primary, #0f172a);
 	}
 
-	.gallery-section-sub {
-		margin: 0.45rem 0 0;
+	.gallery-folder-sub {
+		font-size: 0.9rem;
+		line-height: 1.5;
 		color: var(--text-secondary, #475569);
+	}
+
+	.gallery-folder-count {
+		font-size: 0.8125rem;
+		font-weight: 600;
+		color: var(--text-secondary, #64748b);
+		white-space: nowrap;
+	}
+
+	.gallery-folder-chevron {
+		width: 0.55rem;
+		height: 0.55rem;
+		border-right: 2px solid var(--text-secondary, #64748b);
+		border-bottom: 2px solid var(--text-secondary, #64748b);
+		transform: rotate(45deg);
+		transition: transform 0.2s ease;
+		flex-shrink: 0;
+	}
+
+	.gallery-folder[open] .gallery-folder-chevron {
+		transform: rotate(-135deg);
+		margin-top: 0.25rem;
+	}
+
+	.gallery-folder-body {
+		padding: 0 1.25rem 1.35rem;
+		border-top: 1px solid var(--border-subtle, #e2e8f0);
+	}
+
+	.gallery-folder-empty {
+		margin: 1.25rem 0 0.35rem;
+		padding: 1.25rem 1rem;
+		border-radius: var(--radius-card, 16px);
+		background: var(--surface-muted, #f8fafc);
+		color: var(--text-secondary, #64748b);
 		font-size: 0.95rem;
-		line-height: 1.55;
-		max-width: 42rem;
+		text-align: center;
 	}
 
 	.gallery-grid {
 		gap: 1.25rem;
+		margin-top: 1.25rem;
 	}
 
 	.gallery-grid .gallery-cell:only-child {
@@ -295,5 +398,25 @@ const sections: GallerySection[] = [
 		padding: 0.5rem 0.9rem;
 		border-radius: 9999px;
 		cursor: pointer;
+	}
+
+	@media (max-width: 640px) {
+		.gallery-folder-summary {
+			grid-template-columns: auto 1fr auto;
+			grid-template-rows: auto auto;
+		}
+
+		.gallery-folder-count {
+			grid-column: 2;
+			grid-row: 2;
+			justify-self: start;
+			margin-left: 0;
+		}
+
+		.gallery-folder-chevron {
+			grid-column: 3;
+			grid-row: 1 / span 2;
+			align-self: center;
+		}
 	}
 </style>
