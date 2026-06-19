@@ -83,6 +83,48 @@ const whyParamount = [
 	"Measurable Outcomes",
 	"End-to-End Program Management",
 ];
+
+const trainingPhotos = [
+	{
+		src: "/images/experiential-training/01.png",
+		alt: "Corporate team celebrating with Paramount World Records Certificate of World Record Creation",
+	},
+	{
+		src: "/images/experiential-training/02.png",
+		alt: "Blindfold trust-building team activity during experiential learning workshop",
+	},
+	{
+		src: "/images/experiential-training/03.png",
+		alt: "Achievement recognition moment with colleagues during corporate training programme",
+	},
+	{
+		src: "/images/experiential-training/04.png",
+		alt: "Corporate training session on professional attitude, proactive service, and guest satisfaction",
+	},
+	{
+		src: "/images/experiential-training/05.png",
+		alt: "Group portrait with Paramount World Records certificate of world record creation",
+	},
+	{
+		src: "/images/experiential-training/06.png",
+		alt: "The Thane Club — Certificate of World Record Creation for largest group recitation of a service excellence commitment",
+	},
+	{
+		src: "/images/experiential-training/07.png",
+		alt: "Leadership intervention workshop with trainer addressing engaged participants",
+	},
+];
+
+const trainingGlimpses = [
+	{
+		label: "Instagram Video 1",
+		href: "https://www.instagram.com/reel/DZapBGZIeAh/",
+	},
+	{
+		label: "Instagram Video 2",
+		href: "https://www.instagram.com/reel/DZa1mnpIzAI/",
+	},
+];
 ---
 
 <Layout title="Experiential Learning & Corporate Transformation">
@@ -182,6 +224,64 @@ const whyParamount = [
 			</div>
 		</section>
 
+		<section class="container training-section" aria-labelledby="training-gallery-heading" data-reveal>
+			<h3 id="training-gallery-heading" class="training-section-title">Training in Action</h3>
+			<p class="training-gallery-intro">
+				Snapshots from experiential learning workshops, team-building interventions, leadership
+				sessions, and corporate world record programmes delivered by Paramount World Records.
+			</p>
+			<div class="grid three training-gallery">
+				{
+					trainingPhotos.map((photo) => (
+						<figure class="panel training-photo">
+							<button
+								type="button"
+								class="training-photo-btn"
+								aria-label={`Open larger: ${photo.alt}`}
+							>
+								<img
+									class="training-photo-img"
+									src={photo.src}
+									alt={photo.alt}
+									loading="lazy"
+									decoding="async"
+									data-training-image
+								/>
+							</button>
+						</figure>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="container training-section" aria-labelledby="training-glimpses-heading" data-reveal>
+			<div class="panel training-glimpses">
+				<h3 id="training-glimpses-heading" class="training-section-title">
+					Training Glimpses – The Thane Club Training Glimpse
+				</h3>
+				<p class="training-gallery-intro">
+					Watch highlights from our experiential training programme delivered for The Thane Club.
+				</p>
+				<ul class="training-video-links">
+					{
+						trainingGlimpses.map((video) => (
+							<li>
+								<a
+									class="training-video-link"
+									href={video.href}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<span class="training-video-link-label">{video.label}</span>
+									<span class="training-video-link-action">Watch on Instagram</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
 		<footer class="container training-footer panel about-panel" data-reveal>
 			<p class="training-closing">
 				Transforming Individuals. Strengthening Teams. Elevating Organizations.
@@ -192,7 +292,37 @@ const whyParamount = [
 			</div>
 		</footer>
 	</main>
+
+	<dialog id="training-lightbox" class="training-lightbox" aria-label="Enlarged training photo">
+		<button type="button" class="training-lightbox-close" autofocus>Close</button>
+		<img id="training-lightbox-img" src="" alt="" class="training-lightbox-img" />
+	</dialog>
 </Layout>
+
+<script>
+	const dialog = document.getElementById("training-lightbox");
+	const imgEl = document.getElementById("training-lightbox-img");
+
+	document.querySelectorAll("[data-training-image]").forEach((node) => {
+		node.addEventListener("click", (e) => {
+			const t = e.currentTarget;
+			if (!(t instanceof HTMLImageElement) || !dialog || !imgEl) return;
+			imgEl.src = t.currentSrc || t.src;
+			imgEl.alt = t.alt;
+			dialog.showModal();
+		});
+	});
+
+	dialog?.addEventListener("click", (e) => {
+		if (e.target === dialog) dialog.close();
+	});
+
+	document.querySelector(".training-lightbox-close")?.addEventListener("click", () => dialog?.close());
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" && dialog?.open) dialog.close();
+	});
+</script>
 
 <style>
 	.training-page {
@@ -354,5 +484,146 @@ const whyParamount = [
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 0.75rem;
+	}
+
+	.training-gallery-intro {
+		margin: -0.35rem 0 1.1rem;
+		max-width: 52rem;
+		color: var(--text-secondary, #475569);
+		line-height: 1.65;
+		font-size: 0.95rem;
+	}
+
+	.training-gallery {
+		gap: 1.1rem;
+	}
+
+	.training-photo {
+		padding: 0.35rem;
+		margin: 0;
+		overflow: hidden;
+		background: var(--surface-card, #fff);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+	}
+
+	.training-photo-btn {
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border: none;
+		background: none;
+		cursor: zoom-in;
+		border-radius: var(--radius-card, 16px);
+	}
+
+	.training-photo-img {
+		display: block;
+		width: 100%;
+		height: 220px;
+		object-fit: cover;
+		border-radius: var(--radius-card, 16px);
+		background: var(--surface-muted, #f8fafc);
+		transition: transform 0.35s ease, box-shadow 0.35s ease;
+	}
+
+	.training-photo-btn:hover .training-photo-img,
+	.training-photo-btn:focus-visible .training-photo-img {
+		transform: scale(1.02);
+		box-shadow: var(--shadow-soft-sm, 0 8px 28px rgba(15, 23, 42, 0.1));
+	}
+
+	.training-photo-btn:focus-visible {
+		outline: 2px solid var(--accent, #1d2b6b);
+		outline-offset: 3px;
+	}
+
+	.training-lightbox {
+		border: none;
+		padding: 0;
+		max-width: min(96vw, 1100px);
+		background: transparent;
+	}
+
+	.training-lightbox::backdrop {
+		background: rgba(15, 23, 42, 0.88);
+		backdrop-filter: blur(4px);
+	}
+
+	.training-lightbox-img {
+		display: block;
+		max-width: min(92vw, 1000px);
+		max-height: min(86vh, 900px);
+		width: auto;
+		height: auto;
+		margin: 0 auto;
+		border-radius: 12px;
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+	}
+
+	.training-lightbox-close {
+		position: fixed;
+		top: 1.25rem;
+		right: 1.25rem;
+		z-index: 2;
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		background: rgba(15, 23, 42, 0.6);
+		color: #fff;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		padding: 0.5rem 0.9rem;
+		border-radius: 9999px;
+		cursor: pointer;
+	}
+
+	.training-glimpses {
+		background: var(--surface-card, #fff);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+	}
+
+	.training-glimpses .training-section-title {
+		margin-bottom: 0.35rem;
+	}
+
+	.training-video-links {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.85rem;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	}
+
+	.training-video-link {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		padding: 1rem 1.15rem;
+		border-radius: var(--radius-card, 16px);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+		background: var(--surface-muted, #f8fafc);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.training-video-link:hover {
+		border-color: var(--accent, #1d2b6b);
+		background: var(--accent-soft, rgba(29, 43, 107, 0.08));
+		box-shadow: var(--shadow-soft-sm, 0 8px 28px rgba(15, 23, 42, 0.08));
+	}
+
+	.training-video-link-label {
+		font-weight: 700;
+		color: var(--text-primary, #0f172a);
+		font-size: 0.98rem;
+	}
+
+	.training-video-link-action {
+		font-size: 0.88rem;
+		font-weight: 600;
+		color: var(--accent, #1d2b6b);
 	}
 </style>
