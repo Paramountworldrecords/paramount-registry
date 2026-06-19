@@ -1,48 +1,358 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const methodology = [
+	{
+		title: "Discover",
+		text: "We identify organizational challenges, performance gaps, opportunities, and growth objectives through discussions with management and key stakeholders.",
+	},
+	{
+		title: "Design",
+		text: "Our experts curate customized learning journeys tailored specifically to your industry, workforce, and business requirements.",
+	},
+	{
+		title: "Experience",
+		text: "Participants engage in activity-based learning, simulations, outbound experiences, leadership exercises, team challenges, and practical interventions that create meaningful learning experiences.",
+	},
+	{
+		title: "Debrief",
+		text: "Every activity is connected to workplace realities through structured debriefing sessions, ensuring participants understand the practical application of the learning.",
+	},
+	{
+		title: "Transform",
+		text: "The outcome is not just knowledge acquisition but improved performance, enhanced teamwork, stronger leadership, and measurable business impact.",
+	},
+];
+
+const trainingAreas = [
+	"Sales Excellence",
+	"Marketing & Branding",
+	"Customer Service Excellence",
+	"Leadership & Management Development",
+	"Team Building & Collaboration",
+	"Communication Skills",
+	"Business Strategy",
+	"Employee Engagement",
+	"Customer Experience Enhancement",
+	"Front Office & Back Office Excellence",
+	"Hospitality & Service Industry Training",
+	"Performance Improvement Programs",
+];
+
+const experientialSolutions = [
+	"Team Building Challenges",
+	"Outdoor Learning Experiences",
+	"Adventure-Based Learning",
+	"Water Sports Activities",
+	"Leadership Simulations",
+	"Problem-Solving Exercises",
+	"Communication Challenges",
+	"Trust Building Activities",
+	"Strategic Thinking Exercises",
+	"Collaborative Learning Workshops",
+];
+
+const corporateRecordBenefits = [
+	"Teamwork",
+	"Leadership",
+	"Employee Engagement",
+	"Brand Visibility",
+	"Organizational Pride",
+	"Achievement Recognition",
+];
+
+const industries = [
+	"Hospitality",
+	"Clubs & Recreation Facilities",
+	"Educational Institutions",
+	"Corporate Organizations",
+	"Startups",
+	"Manufacturing",
+	"Retail",
+	"Healthcare",
+	"Service Industries",
+	"Business Associations",
+];
+
+const whyParamount = [
+	"Customized Solutions",
+	"Industry-Specific Expertise",
+	"Experiential Learning Methodology",
+	"Leadership Development Focus",
+	"Corporate World Record Expertise",
+	"Measurable Outcomes",
+	"End-to-End Program Management",
+];
 ---
 
-<Layout title="Experiential Training">
-	<main class="section">
-		<div class="container panel about-panel" data-reveal>
-			<h2>Experiential Training</h2>
-			<p style="margin-top: -0.4rem; color: var(--text-secondary); line-height: 1.65; max-width: 900px;">
-				Paramount World Records offers hands-on training programmes that prepare individuals, teams, and
-				institutions for world record attempts—with the same discipline, evidence standards, and adjudication
-				protocols used in official certification.
+<Layout title="Experiential Learning & Corporate Transformation">
+	<main class="section training-page">
+		<header class="container training-hero panel about-panel" data-reveal>
+			<p class="tag">Experiential Training</p>
+			<h2>Experiential Learning &amp; Corporate Transformation Programs</h2>
+			<p class="training-lead">We Don&apos;t Just Train. We Transform.</p>
+			<p class="training-intro">
+				At Paramount World Records, we believe that real learning happens through experience,
+				participation, reflection, and action.
 			</p>
+			<p class="training-intro">
+				Traditional classroom training often creates temporary motivation. Our experiential learning
+				programs are designed to create lasting behavioral transformation by combining learning,
+				activities, leadership interventions, consulting methodologies, and measurable outcomes.
+			</p>
+			<p class="training-intro">
+				Every organization is unique. Therefore, we do not deliver generic training modules. We work
+				closely with management teams to understand business challenges, organizational goals, team
+				dynamics, and operational pain points before designing customized learning experiences.
+			</p>
+		</header>
 
-			<div class="grid two" style="margin-top: 1.2rem;">
-				<section class="panel" style="background: transparent; border: 1px solid rgba(196,194,188,0.3);" data-reveal>
-					<h3 style="margin-bottom: 0.6rem; color: #c4c2bc;">Who it is for</h3>
-					<ul class="suggestions" style="margin-top: 0;">
-						<li>Yoga schools, dance academies, and fitness centres</li>
-						<li>Corporate teams and community groups</li>
-						<li>Event coordinators, chapter leaders, and volunteers</li>
-						<li>Teachers, coaches, and aspiring record holders</li>
-					</ul>
-				</section>
-
-				<section class="panel" style="background: transparent; border: 1px solid rgba(196,194,188,0.3);" data-reveal>
-					<h3 style="margin-bottom: 0.6rem; color: #c4c2bc;">What you learn</h3>
-					<ul class="suggestions" style="margin-top: 0;">
-						<li>Record attempt planning and category selection</li>
-						<li>Witness guidance, evidence capture, and compliance</li>
-						<li>Group coordination for large-scale unified attempts</li>
-						<li>Professional event conduct and post-attempt documentation</li>
-					</ul>
-				</section>
+		<section class="container training-section" aria-labelledby="methodology-heading" data-reveal>
+			<h3 id="methodology-heading" class="training-section-title">Our Transformation Methodology</h3>
+			<div class="training-methodology">
+				{
+					methodology.map((step, index) => (
+						<article class="panel training-step">
+							<span class="training-step-num">{String(index + 1).padStart(2, "0")}</span>
+							<h4>{step.title}</h4>
+							<p>{step.text}</p>
+						</article>
+					))
+				}
 			</div>
+		</section>
 
-			<p style="margin-top: 1.35rem; color: var(--text-secondary); line-height: 1.65; max-width: 900px;">
-				Training is delivered through workshops, on-site sessions, and programme partnerships across our
-				Mumbai headquarters and branch networks in Chennai, Coimbatore, and Kanchipuram.
+		<section class="container training-section" aria-labelledby="training-areas-heading" data-reveal>
+			<div class="grid two training-grid">
+				<div class="panel training-card">
+					<h3 id="training-areas-heading" class="training-card-title">Training Areas</h3>
+					<p class="training-card-intro">We design and deliver customized programs in:</p>
+					<ul class="suggestions training-list">
+						{trainingAreas.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+
+				<div class="panel training-card">
+					<h3 class="training-card-title">Experiential Learning Solutions</h3>
+					<p class="training-card-intro">Our activity-based learning programs may include:</p>
+					<ul class="suggestions training-list">
+						{experientialSolutions.map((item) => <li>{item}</li>)}
+					</ul>
+					<p class="training-note">
+						All activities are carefully selected based on the learning objectives and organizational
+						requirements.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="container training-section" aria-labelledby="corporate-records-heading" data-reveal>
+			<div class="panel training-highlight">
+				<h3 id="corporate-records-heading" class="training-card-title">Corporate World Record Programs</h3>
+				<p class="training-card-intro">A unique offering from Paramount World Records.</p>
+				<p class="training-card-intro">
+					Organizations can engage their employees through customized world record initiatives that
+					promote:
+				</p>
+				<ul class="suggestions training-list training-list--inline">
+					{corporateRecordBenefits.map((item) => <li>{item}</li>)}
+				</ul>
+				<p class="training-note">
+					Participants work together towards a common goal while creating a memorable experience that
+					strengthens culture and engagement.
+				</p>
+			</div>
+		</section>
+
+		<section class="container training-section" aria-labelledby="industries-heading" data-reveal>
+			<div class="grid two training-grid">
+				<div class="panel training-card">
+					<h3 id="industries-heading" class="training-card-title">Industries We Serve</h3>
+					<ul class="suggestions training-list">
+						{industries.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+
+				<div class="panel training-card">
+					<h3 class="training-card-title">Why Paramount World Records?</h3>
+					<ul class="training-checklist">
+						{whyParamount.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<footer class="container training-footer panel about-panel" data-reveal>
+			<p class="training-closing">
+				Transforming Individuals. Strengthening Teams. Elevating Organizations.
 			</p>
-
-			<div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+			<div class="training-cta">
 				<a class="btn btn-primary" href="/contact">Enquire about training</a>
 				<a class="btn btn-ghost" href="/apply">Apply for a record</a>
 			</div>
-		</div>
+		</footer>
 	</main>
 </Layout>
+
+<style>
+	.training-page {
+		padding-top: clamp(3rem, 7vw, 4.5rem);
+	}
+
+	.training-hero {
+		margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+	}
+
+	.training-hero h2 {
+		margin-top: 0.35rem;
+		max-width: 52rem;
+	}
+
+	.training-lead {
+		margin: 0.75rem 0 0;
+		font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+		font-weight: 700;
+		color: var(--accent, #1d2b6b);
+		letter-spacing: -0.02em;
+	}
+
+	.training-intro {
+		margin: 1rem 0 0;
+		max-width: 52rem;
+		color: var(--text-secondary, #475569);
+		line-height: 1.7;
+	}
+
+	.training-section {
+		margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+	}
+
+	.training-section-title {
+		margin: 0 0 1rem;
+		font-size: clamp(1.35rem, 3vw, 1.65rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--text-primary, #0f172a);
+	}
+
+	.training-methodology {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	}
+
+	.training-step {
+		background: var(--surface-card, #fff);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+		padding: 1.25rem 1.35rem;
+	}
+
+	.training-step-num {
+		display: inline-block;
+		margin-bottom: 0.5rem;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		color: var(--brand-teal, #0d9488);
+	}
+
+	.training-step h4 {
+		margin: 0 0 0.55rem;
+		font-size: 1.05rem;
+		font-weight: 800;
+		color: var(--text-primary, #0f172a);
+	}
+
+	.training-step p {
+		margin: 0;
+		font-size: 0.95rem;
+		line-height: 1.65;
+		color: var(--text-secondary, #475569);
+	}
+
+	.training-grid {
+		gap: 1.25rem;
+	}
+
+	.training-card,
+	.training-highlight {
+		background: var(--surface-card, #fff);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+	}
+
+	.training-card-title {
+		margin: 0 0 0.65rem;
+		font-size: 1.15rem;
+		font-weight: 800;
+		color: var(--text-primary, #0f172a);
+	}
+
+	.training-card-intro,
+	.training-note {
+		margin: 0 0 0.85rem;
+		color: var(--text-secondary, #475569);
+		line-height: 1.65;
+		font-size: 0.95rem;
+	}
+
+	.training-note {
+		margin-top: 0.85rem;
+		margin-bottom: 0;
+	}
+
+	.training-list {
+		margin: 0;
+	}
+
+	.training-list--inline {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 0.25rem 1.25rem;
+	}
+
+	.training-checklist {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.training-checklist li {
+		position: relative;
+		padding-left: 1.5rem;
+		color: var(--text-secondary, #475569);
+		line-height: 1.55;
+		font-size: 0.95rem;
+	}
+
+	.training-checklist li::before {
+		content: "✓";
+		position: absolute;
+		left: 0;
+		top: 0;
+		font-weight: 700;
+		color: var(--accent, #1d2b6b);
+	}
+
+	.training-footer {
+		text-align: center;
+	}
+
+	.training-closing {
+		margin: 0;
+		font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--text-primary, #0f172a);
+		line-height: 1.45;
+	}
+
+	.training-cta {
+		margin-top: 1.35rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+	}
+</style>
