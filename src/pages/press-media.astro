@@ -1,21 +1,306 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+
+const pressPhotos = [
+	{
+		src: "/images/press-media/01-newspaper-aapna-andaaz.png",
+		alt: "Aapna Andaaz newspaper coverage — Paramount World Records Mother's Day celebration at Mumbai Press Club, 9 May 2026",
+	},
+	{
+		src: "/images/press-media/02-media-interview-hind-tv.png",
+		alt: "Award recipient interviewed by Hind TV and media at Mother's Day Recognition Awards 2026",
+	},
+	{
+		src: "/images/press-media/03-motherlywood-2026-group.png",
+		alt: "Motherlywood 2026 group photo — Paramount World Records Mother's Day celebration at Mumbai Press Club",
+	},
+];
+
+const mediaVideos = [
+	{
+		label: "Instagram Reel 1",
+		href: "https://www.instagram.com/reel/DYJ9CyTR3Gv/?igsh=MTdrZ20xbXg5ZHppdg==",
+		platform: "Instagram",
+	},
+	{
+		label: "Instagram Reel 2",
+		href: "https://www.instagram.com/reel/DYJ21FDICsc/?igsh=bmk0c2FkdjBiMmdp",
+		platform: "Instagram",
+	},
+	{
+		label: "Instagram Reel 3",
+		href: "https://www.instagram.com/reel/DZapBGZIeAh/?igsh=OTNjemZxcTZvaTE3",
+		platform: "Instagram",
+	},
+	{
+		label: "Instagram Reel 4",
+		href: "https://www.instagram.com/reel/DZa1mnpIzAI/?igsh=cXVuOG4zZjMza2Qx",
+		platform: "Instagram",
+	},
+	{
+		label: "YouTube Video",
+		href: "https://youtu.be/I-o_prsPWq0?si=4OHzJyJSDMmwYEi5",
+		platform: "YouTube",
+	},
+];
 ---
 
 <Layout title="Press & Media Release">
-	<main class="section">
+	<main class="section press-page">
 		<div class="container panel about-panel" data-reveal>
-			<h2>Press & Media Release</h2>
-			<p style="margin-top: -0.4rem; color: var(--text-secondary); line-height: 1.6; max-width: 900px;">
-				Official announcements, event coverage, and certification releases will appear here.
-				For media enquiries, email us at
+			<h2>Press &amp; Media Release</h2>
+			<p class="press-intro">
+				Official announcements, event coverage, media interviews, and certification releases from
+				Paramount World Records. For media enquiries, email
 				<a href="mailto:admin@paramountworldrecords.com">admin@paramountworldrecords.com</a>.
 			</p>
-			<div class="grid two" style="margin-top: 1.2rem;">
-				<div class="panel" style="background: transparent; border: 1px solid rgba(196,194,188,0.3);" data-reveal>Latest Release Placeholder</div>
-				<div class="panel" style="background: transparent; border: 1px solid rgba(196,194,188,0.3);" data-reveal>Media Kit Placeholder</div>
-			</div>
+
+			<section class="press-section" aria-labelledby="press-photos-heading">
+				<h3 id="press-photos-heading" class="press-section-title">Press Coverage</h3>
+				<p class="press-section-intro">
+					Highlights from Motherlywood 2026 — Mother's Day Awards &amp; Celebration at Mumbai Press Club.
+				</p>
+				<div class="grid three press-gallery">
+					{
+						pressPhotos.map((photo) => (
+							<figure class="panel press-photo">
+								<button
+									type="button"
+									class="press-photo-btn"
+									aria-label={`Open larger: ${photo.alt}`}
+								>
+									<img
+										class="press-photo-img"
+										src={photo.src}
+										alt={photo.alt}
+										loading="lazy"
+										decoding="async"
+										data-press-image
+									/>
+								</button>
+							</figure>
+						))
+					}
+				</div>
+			</section>
+
+			<section class="press-section" aria-labelledby="press-videos-heading">
+				<h3 id="press-videos-heading" class="press-section-title">Media Videos</h3>
+				<p class="press-section-intro">
+					Watch event coverage and programme highlights on Instagram and YouTube.
+				</p>
+				<ul class="press-video-links">
+					{
+						mediaVideos.map((video) => (
+							<li>
+								<a
+									class="press-video-link"
+									href={video.href}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<span class="press-video-platform">{video.platform}</span>
+									<span class="press-video-label">{video.label}</span>
+									<span class="press-video-action">
+										{video.platform === "YouTube" ? "Watch on YouTube" : "Watch on Instagram"}
+									</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
 		</div>
 	</main>
+
+	<dialog id="press-lightbox" class="press-lightbox" aria-label="Enlarged press photo">
+		<button type="button" class="press-lightbox-close" autofocus>Close</button>
+		<img id="press-lightbox-img" src="" alt="" class="press-lightbox-img" />
+	</dialog>
 </Layout>
 
+<script>
+	const dialog = document.getElementById("press-lightbox");
+	const imgEl = document.getElementById("press-lightbox-img");
+
+	document.querySelectorAll("[data-press-image]").forEach((node) => {
+		node.addEventListener("click", (e) => {
+			const t = e.currentTarget;
+			if (!(t instanceof HTMLImageElement) || !dialog || !imgEl) return;
+			imgEl.src = t.currentSrc || t.src;
+			imgEl.alt = t.alt;
+			dialog.showModal();
+		});
+	});
+
+	dialog?.addEventListener("click", (e) => {
+		if (e.target === dialog) dialog.close();
+	});
+
+	document.querySelector(".press-lightbox-close")?.addEventListener("click", () => dialog?.close());
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" && dialog?.open) dialog.close();
+	});
+</script>
+
+<style>
+	.press-intro {
+		margin: -0.4rem 0 0;
+		color: var(--text-secondary, #475569);
+		line-height: 1.65;
+		max-width: 52rem;
+	}
+
+	.press-section {
+		margin-top: 1.75rem;
+	}
+
+	.press-section-title {
+		margin: 0 0 0.45rem;
+		font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--text-primary, #0f172a);
+	}
+
+	.press-section-intro {
+		margin: 0 0 1.1rem;
+		color: var(--text-secondary, #475569);
+		line-height: 1.65;
+		font-size: 0.95rem;
+		max-width: 52rem;
+	}
+
+	.press-gallery {
+		gap: 1.1rem;
+	}
+
+	.press-photo {
+		padding: 0.35rem;
+		margin: 0;
+		overflow: hidden;
+		background: var(--surface-card, #fff);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+	}
+
+	.press-photo-btn {
+		display: block;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border: none;
+		background: none;
+		cursor: zoom-in;
+		border-radius: var(--radius-card, 16px);
+	}
+
+	.press-photo-img {
+		display: block;
+		width: 100%;
+		height: 240px;
+		object-fit: cover;
+		border-radius: var(--radius-card, 16px);
+		background: var(--surface-muted, #f8fafc);
+		transition: transform 0.35s ease, box-shadow 0.35s ease;
+	}
+
+	.press-photo-btn:hover .press-photo-img,
+	.press-photo-btn:focus-visible .press-photo-img {
+		transform: scale(1.02);
+		box-shadow: var(--shadow-soft-sm, 0 8px 28px rgba(15, 23, 42, 0.1));
+	}
+
+	.press-photo-btn:focus-visible {
+		outline: 2px solid var(--accent, #1d2b6b);
+		outline-offset: 3px;
+	}
+
+	.press-video-links {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.85rem;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	}
+
+	.press-video-link {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		padding: 1rem 1.15rem;
+		border-radius: var(--radius-card, 16px);
+		border: 1px solid var(--border-subtle, #e2e8f0);
+		background: var(--surface-muted, #f8fafc);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.press-video-link:hover {
+		border-color: var(--accent, #1d2b6b);
+		background: var(--accent-soft, rgba(29, 43, 107, 0.08));
+		box-shadow: var(--shadow-soft-sm, 0 8px 28px rgba(15, 23, 42, 0.08));
+	}
+
+	.press-video-platform {
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--brand-teal, #0d9488);
+	}
+
+	.press-video-label {
+		font-weight: 700;
+		color: var(--text-primary, #0f172a);
+		font-size: 0.98rem;
+	}
+
+	.press-video-action {
+		font-size: 0.88rem;
+		font-weight: 600;
+		color: var(--accent, #1d2b6b);
+	}
+
+	.press-lightbox {
+		border: none;
+		padding: 0;
+		max-width: min(96vw, 1100px);
+		background: transparent;
+	}
+
+	.press-lightbox::backdrop {
+		background: rgba(15, 23, 42, 0.88);
+		backdrop-filter: blur(4px);
+	}
+
+	.press-lightbox-img {
+		display: block;
+		max-width: min(92vw, 1000px);
+		max-height: min(86vh, 900px);
+		width: auto;
+		height: auto;
+		margin: 0 auto;
+		border-radius: 12px;
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+	}
+
+	.press-lightbox-close {
+		position: fixed;
+		top: 1.25rem;
+		right: 1.25rem;
+		z-index: 2;
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		background: rgba(15, 23, 42, 0.6);
+		color: #fff;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		padding: 0.5rem 0.9rem;
+		border-radius: 9999px;
+		cursor: pointer;
+	}
+</style>
