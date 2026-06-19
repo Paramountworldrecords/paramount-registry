@@ -1,5 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const whatsappMessage = encodeURIComponent(
+	"Hello Paramount World Records, I would like to get in touch.",
+);
+
+const contacts = [
+	{
+		display: "+91 7550015677",
+		phone: "917550015677",
+		tel: "+917550015677",
+	},
+	{
+		display: "+91 9987814980",
+		phone: "919987814980",
+		tel: "+919987814980",
+	},
+];
 ---
 
 <Layout title="Contact Us">
@@ -7,10 +24,27 @@ import Layout from '../layouts/Layout.astro';
 		<div class="container panel" data-reveal>
 			<h2>Contact Us</h2>
 			<div class="grid two" style="margin-top: 1.2rem;">
-				<section class="panel" style="background: transparent; border: 1px solid rgba(196,194,188,0.3);" data-reveal>
-					<h3 style="color:#c4c2bc;">Phone & WhatsApp</h3>
-					<p style="margin: 0; color:var(--text-secondary); line-height: 1.7;"><strong>+91 7550015677</strong></p>
-					<p style="margin: 0.2rem 0 0; color:var(--text-secondary); line-height: 1.7;"><strong>+91 9987814980</strong></p>
+				<section class="panel contact-phone-panel" data-reveal>
+					<h3 class="contact-section-title">Phone &amp; WhatsApp</h3>
+					<ul class="contact-phone-list">
+						{
+							contacts.map((contact) => (
+								<li class="contact-phone-item">
+									<a class="contact-phone-link" href={`tel:${contact.tel}`}>
+										{contact.display}
+									</a>
+									<a
+										class="contact-whatsapp-link"
+										href={`https://wa.me/${contact.phone}?text=${whatsappMessage}`}
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										Chat on WhatsApp
+									</a>
+								</li>
+							))
+						}
+					</ul>
 				</section>
 				<section class="panel" style="background: transparent; border: 1px solid rgba(196,194,188,0.3);" data-reveal>
 					<h3 style="color:#c4c2bc;">Email</h3>
@@ -28,4 +62,64 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</main>
 </Layout>
+
+<style>
+	.contact-phone-panel {
+		background: transparent;
+		border: 1px solid rgba(196, 194, 188, 0.3);
+	}
+
+	.contact-section-title {
+		margin: 0 0 0.85rem;
+		color: #c4c2bc;
+	}
+
+	.contact-phone-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.contact-phone-item {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.65rem 1rem;
+	}
+
+	.contact-phone-link {
+		font-weight: 700;
+		color: var(--text-primary, #0f172a);
+		text-decoration: none;
+		font-size: 1rem;
+	}
+
+	.contact-phone-link:hover {
+		color: var(--accent, #1d2b6b);
+	}
+
+	.contact-whatsapp-link {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.45rem 0.85rem;
+		border-radius: 9999px;
+		background: #25d366;
+		border: 1px solid #1faa52;
+		color: #ffffff;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition:
+			background 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.contact-whatsapp-link:hover {
+		background: #1faa52;
+		border-color: #1a9b4b;
+		color: #ffffff;
+	}
+</style>
 
