@@ -1,4 +1,6 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import Layout from "../layouts/Layout.astro";
 
 /** Add albums below. Place files in `public/images/gallery/<folder>/`. */
@@ -13,14 +15,26 @@ type GalleryFolder = {
 	items: (GalleryImage | GalleryVideo)[];
 };
 
-const amrapaliKathak: GalleryImage[] = Array.from({ length: 16 }, (_, i) => {
-	const n = String(i + 1).padStart(2, "0");
-	return {
+function loadImagesFromFolder(folderId: string, altPrefix: string): GalleryImage[] {
+	const dir = path.join(process.cwd(), "public/images/gallery", folderId);
+	if (!fs.existsSync(dir)) return [];
+
+	const files = fs
+		.readdirSync(dir)
+		.filter((file) => /\.(png|jpe?g|webp)$/i.test(file))
+		.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+	return files.map((file, i) => ({
 		kind: "image" as const,
-		src: `/images/gallery/amrapali-kathak-world-record/${n}.png`,
-		alt: `Amrapali Kathak Dance Academy — world record performance (${i + 1} of 16)`,
-	};
-});
+		src: `/images/gallery/${folderId}/${file}`,
+		alt: `${altPrefix} (${i + 1} of ${files.length})`,
+	}));
+}
+
+const amrapaliKathak = loadImagesFromFolder(
+	"amrapali-kathak-world-record",
+	"Amrapali Kathak Dance Academy — world record performance",
+);
 
 const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
 	const n = String(i + 1).padStart(2, "0");
@@ -32,6 +46,11 @@ const ironHubFitness: GalleryImage[] = Array.from({ length: 18 }, (_, i) => {
 });
 
 const dreamersDanceAlt = [
+	"Medal presentation to Master Sam Sukant Lenka at Dreamers Dance Studio",
+	"Sam Sukant Lenka receiving world record certificate and medal",
+	"World record holder with certificate and trophy at Dreamers Dance Studio",
+	"Sam Sukant Lenka celebrating world record achievement at Dreamers Dance Studio",
+	"Adult dancer receiving world record certificate at Dreamers Dance Studio",
 	"Young dancers rehearsing Bollywood choreography at Dreamers Dance Studio",
 	"Group dance practice session at Dreamers Dance and Fitness Studio",
 	"Students performing synchronized dance moves during world record rehearsal",
@@ -41,8 +60,6 @@ const dreamersDanceAlt = [
 	"Award recipient with medal and certificate at Dreamers Dance Studio",
 	"Certificate presentation for continuous Bollywood dance world record",
 	"Young achiever holding Paramount World Records certificate at Dreamers Dance Studio",
-	"Master Sam Sukant Lenka receiving world record certificate and medal",
-	"World record holder with certificate and trophy at Dreamers Dance Studio",
 	"Medal presentation at Dreamers Dance Studio world record event",
 	"Young girl with world record certificate and medal at Dreamers Dance Studio",
 	"Certificate of World Record Holder — Dreamers Dance and Fitness Studio",
@@ -55,9 +72,6 @@ const dreamersDanceAlt = [
 	"Certificate presentation to young achiever at Dreamers Dance Studio",
 	"World record certificate ceremony at Dreamers Dance Studio",
 	"Young girl with medal and certificate at Dreamers Dance Studio event",
-	"Adult dancer receiving world record certificate at Dreamers Dance Studio",
-	"Certificate of World Record Holder presentation at Dreamers Dance Studio",
-	"Young achiever with Paramount World Records certificate and medal",
 	"Group dance rehearsal at Dreamers Dance and Fitness Studio",
 	"Students practicing synchronized Bollywood dance for world record attempt",
 ];
@@ -97,8 +111,8 @@ const mothersDayAwardCeremony: GalleryImage[] = Array.from({ length: 11 }, (_, i
 const upcomingEvents: GalleryImage[] = [
 	{
 		kind: "image" as const,
-		src: "/images/gallery/upcoming-events/mothers-day-2026-flyer.png",
-		alt: "Paramount World Records — Mother's Day Awards & Celebration 2026, flyer (Mumbai Press Club, Fort)",
+		src: "/images/gallery/upcoming-events/international-yoga-day-world-record-2026.png",
+		alt: "Paramount World Records — International Yoga Day World Record Attempt 2026, 21 June 2026, India & global participation",
 	},
 ];
 
@@ -149,8 +163,8 @@ const folders: GalleryFolder[] = [
 
 		<div class="container gallery-folders" data-reveal>
 			{
-				folders.map((folder, folderIndex) => (
-					<details class="gallery-folder panel card-gloss" open={folderIndex === 0}>
+				folders.map((folder) => (
+					<details class="gallery-folder panel card-gloss">
 						<summary class="gallery-folder-summary">
 							<span class="gallery-folder-icon" aria-hidden="true">
 								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

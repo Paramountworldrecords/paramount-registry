@@ -41,10 +41,6 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 			<details class="menu">
 				<summary>More</summary>
 				<div class="dropdown" role="menu" aria-label="More pages">
-					<a href="/dashboard" class="dropdown-dashboard" id="moreNavDashboard" hidden>Dashboard</a>
-					<a href="/register" class="dropdown-account">Register</a>
-					<a href="/login" class="dropdown-account">Login</a>
-					<hr class="dropdown-rule" />
 					<a href={links.departments}>Process</a>
 					<a href={links.vision}>Vision &amp; Mission</a>
 					<a href={links.achievers}>Achievers</a>
@@ -58,15 +54,7 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 		</nav>
 
 		<div class="header-actions">
-			<span id="authNavGuest" class="auth-nav-guest">
-				<a href="/register" class="auth-link">Register</a>
-				<a href="/login" class="auth-link">Login</a>
-			</span>
-			<span id="authNavUser" class="auth-nav-user" hidden>
-				<a href="/dashboard" class="nav-pill nav-pill-muted">Dashboard</a>
-				<span class="auth-welcome"><strong id="authDisplayName"></strong></span>
-				<button type="button" id="authLogoutBtn" class="auth-logout">Logout</button>
-			</span>
+			<a href="/register" class="auth-link">Register</a>
 		</div>
 	</div>
 </header>
@@ -113,9 +101,7 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 	.site-header-redesign .top-nav a,
 	.site-header-redesign .menu summary,
 	.site-header-redesign .auth-link,
-	.site-header-redesign .nav-pill.nav-pill-muted,
-	.site-header-redesign .auth-welcome strong,
-	.site-header-redesign .auth-logout {
+	.site-header-redesign .nav-pill.nav-pill-muted {
 		color: #1e2c43 !important;
 		-webkit-text-fill-color: #1e2c43 !important;
 		-webkit-text-stroke: 0.55px rgba(25, 33, 48, 0.62) !important;
@@ -271,59 +257,6 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 		background: var(--accent-soft, rgba(29, 43, 107, 0.1));
 	}
 
-	.nav-pill-primary {
-		color: #fff;
-		background: var(--accent, #1d2b6b);
-		border: 1px solid var(--accent, #1d2b6b);
-		box-shadow: 0 8px 24px rgba(29, 43, 107, 0.22);
-	}
-
-	.nav-pill-primary:hover {
-		background: var(--accent-hover, #162456);
-		border-color: var(--accent-hover, #162456);
-		color: #fff;
-		box-shadow: 0 10px 28px rgba(29, 43, 107, 0.28);
-	}
-
-	.auth-welcome {
-		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
-		font-size: 0.875rem;
-		letter-spacing: 0;
-		text-transform: none;
-		color: var(--text-secondary, #475569) !important;
-		background: none !important;
-		-webkit-text-stroke: 0 !important;
-		text-shadow: none;
-	}
-
-	.auth-welcome strong {
-		color: var(--text-primary, #0f172a);
-		font-weight: 600;
-		text-shadow: none;
-	}
-
-	.site-header-redesign .auth-logout {
-		padding: 0.48rem 0.95rem;
-		border-radius: 9999px;
-		font-size: 0.8125rem;
-		font-family: var(--font-label, "Plus Jakarta Sans", sans-serif);
-		border: 1px solid var(--border-subtle, #e2e8f0);
-		color: var(--text-primary, #0f172a);
-		background: var(--surface-muted, #f8fafc);
-		font-weight: 600;
-		letter-spacing: 0;
-		text-transform: none;
-		box-shadow: none;
-		cursor: pointer;
-		transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-	}
-
-	.site-header-redesign .auth-logout:hover {
-		border-color: var(--accent, #1d2b6b);
-		color: var(--accent, #1d2b6b);
-		background: var(--accent-soft, rgba(29, 43, 107, 0.1));
-	}
-
 	.site-header-redesign .menu {
 		position: relative;
 		flex-shrink: 0;
@@ -369,24 +302,6 @@ const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/index.html
 		-webkit-text-fill-color: var(--accent, #1d2b6b);
 		opacity: 1 !important;
 		text-shadow: none;
-	}
-
-	.dropdown-rule {
-		border: none;
-		border-top: 1px solid var(--border-subtle, #e2e8f0);
-		margin: 0.25rem 0;
-	}
-
-	.dropdown-account {
-		font-weight: 700;
-		color: #0f172a !important;
-		-webkit-text-fill-color: #0f172a;
-	}
-
-	.dropdown-dashboard {
-		font-weight: 700;
-		color: var(--accent, #1d2b6b) !important;
-		-webkit-text-fill-color: var(--accent, #1d2b6b);
 	}
 
 	@media (max-width: 1050px) {

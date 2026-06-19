@@ -205,40 +205,11 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 				text-transform: none;
 			}
 
-			.auth-nav-guest,
-			.auth-nav-user {
+			.auth-nav-guest {
 				display: inline-flex;
 				align-items: center;
 				flex-wrap: wrap;
 				gap: 0.65rem;
-			}
-
-			.auth-welcome {
-				color: var(--text-secondary);
-				font-size: 0.875rem;
-				white-space: nowrap;
-			}
-
-			.auth-logout {
-				cursor: pointer;
-				border: 1px solid var(--border-subtle);
-				background: var(--surface-muted);
-				color: var(--text-primary);
-				padding: 0.45rem 0.9rem;
-				font-size: 0.8125rem;
-				font-weight: 600;
-				border-radius: 9999px;
-				font-family: var(--font-label);
-				letter-spacing: 0;
-				text-transform: none;
-				box-shadow: none;
-				transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-			}
-
-			.auth-logout:hover {
-				border-color: var(--accent);
-				color: var(--accent);
-				background: var(--accent-soft);
 			}
 
 			.menu {
@@ -796,76 +767,6 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 		{showChrome ? <SiteHeader /> : null}
 		<slot />
 		{showChrome ? <SiteFooter /> : null}
-
-		<script>
-			import { getSupabase } from "../lib/supabaseBrowser";
-
-			async function bindAuthNav() {
-				const supabase = getSupabase();
-				const guest = document.getElementById("authNavGuest");
-				const userEl = document.getElementById("authNavUser");
-				const nameEl = document.getElementById("authDisplayName");
-				const btn = document.getElementById("authLogoutBtn");
-				if (!guest || !userEl) return;
-
-				function setMoreMenuAuth(show) {
-					document.querySelectorAll("a.dropdown-account").forEach((el) => {
-						if (el instanceof HTMLElement) el.hidden = !show;
-					});
-					document.querySelectorAll(".dropdown-rule").forEach((el) => {
-						if (el instanceof HTMLElement) el.hidden = !show;
-					});
-				}
-
-				async function refresh() {
-					if (!supabase) {
-						guest.hidden = false;
-						userEl.hidden = true;
-						setMoreMenuAuth(true);
-						return;
-					}
-					const {
-						data: { session },
-					} = await supabase.auth.getSession();
-					const moreDash = document.getElementById("moreNavDashboard");
-					if (session?.user) {
-						guest.hidden = true;
-						userEl.hidden = false;
-						setMoreMenuAuth(false);
-						if (moreDash) moreDash.hidden = false;
-						const meta = session.user.user_metadata ?? {};
-						if (nameEl) {
-							nameEl.textContent =
-								(meta.name || meta.username || session.user.email || "").toString();
-						}
-					} else {
-						guest.hidden = false;
-						userEl.hidden = true;
-						setMoreMenuAuth(true);
-						if (moreDash) moreDash.hidden = true;
-					}
-				}
-
-				await refresh();
-				if (supabase) {
-					supabase.auth.onAuthStateChange(() => {
-						refresh();
-					});
-				}
-				if (btn && !btn.dataset.bound) {
-					btn.dataset.bound = "1";
-					btn.addEventListener("click", async () => {
-						if (supabase) await supabase.auth.signOut();
-						await refresh();
-						if (!["/login", "/register"].includes(location.pathname)) {
-							window.location.href = "/";
-						}
-					});
-				}
-			}
-
-			document.addEventListener("DOMContentLoaded", bindAuthNav);
-		</script>
 
 		<script>
 			(() => {
