@@ -1,20 +1,130 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="About Us">
-	<main class="section">
+	<main class="section about-page">
 		<div class="container panel about-panel" data-reveal>
 			<h2>About Us</h2>
-			<p>
-				Paramount World Records is an independent Pvt. Ltd. company headquartered in Mumbai. We
-				operate with branches in Chennai, Coimbatore and Kancheepuram—and we are continuously expanding.
-			</p>
-			<p>
-				Our registry is built to support authenticity and excellence through transparent validation,
-				expert verification, and trusted certification—so that every extraordinary effort gets global recognition.
+
+			<div class="about-content">
+				<p>
+					<strong>Paramount World Records</strong> is an independent Private Limited company headquartered
+					in Mumbai, with operational presence in Chennai, Coimbatore, and Kancheepuram, and a vision to
+					expand across India and internationally.
+				</p>
+				<p>
+					Founded with the mission of recognizing excellence, celebrating achievement, and creating
+					meaningful impact, Paramount World Records provides transparent record verification, expert
+					evaluation, trusted certification, and global recognition for individuals, institutions,
+					organizations, and communities.
+				</p>
+				<p>
+					Beyond record certification, Paramount World Records has evolved into a comprehensive
+					<strong>Experiential Learning, Leadership Development, and Corporate Transformation organization</strong>,
+					helping businesses, educational institutions, clubs, associations, and communities achieve
+					measurable growth through customized learning experiences.
+				</p>
+				<p>
+					We believe that true transformation does not happen through conventional classroom training
+					alone. It happens when people experience, participate, reflect, and apply learning in
+					real-world situations. Our experiential learning programs combine activity-based workshops,
+					leadership interventions, team-building exercises, business consulting methodologies, and
+					corporate world record initiatives to create lasting behavioural change and organizational
+					impact.
+				</p>
+				<p>
+					Our team works closely with clients to understand their unique challenges, opportunities, and
+					objectives before designing customized solutions tailored to their industry and workforce.
+					From sales excellence and customer service enhancement to leadership development, employee
+					engagement, and organizational growth, our programs are designed to deliver practical outcomes
+					rather than temporary motivation.
+				</p>
+				<p>
+					What makes Paramount unique is our ability to integrate
+					<strong>Training, Transformation, Engagement, and Recognition</strong> into a single powerful
+					ecosystem. Through our signature Corporate World Record Programs, organizations can unite
+					employees around a common purpose while strengthening teamwork, culture, leadership, and brand
+					visibility.
+				</p>
+				<p>
+					Today, Paramount World Records serves educational institutions, corporate organizations, clubs,
+					associations, startups, service industries, and community groups by creating impactful
+					experiences that inspire achievement, celebrate excellence, and drive transformation.
+				</p>
+			</div>
+
+			<div class="grid two about-vision-grid">
+				<section class="panel about-vision-card" data-reveal>
+					<h3>Our Vision</h3>
+					<p>
+						To become one of the world's most trusted platforms for recognition, experiential learning,
+						and human transformation.
+					</p>
+				</section>
+
+				<section class="panel about-vision-card" data-reveal>
+					<h3>Our Mission</h3>
+					<p>
+						To inspire individuals and organizations to achieve extraordinary results through
+						recognition, learning, innovation, collaboration, and meaningful experiences.
+					</p>
+				</section>
+			</div>
+
+			<p class="about-closing">
+				<strong>Transforming Individuals. Strengthening Teams. Recognizing Excellence. Creating Impact.</strong>
 			</p>
 		</div>
 	</main>
 </Layout>
 
+<style>
+	.about-content {
+		margin-top: 0.5rem;
+		max-width: 52rem;
+	}
+
+	.about-content p {
+		margin: 0 0 1.1rem;
+		color: var(--text-secondary, #475569);
+		line-height: 1.75;
+		font-size: 0.98rem;
+	}
+
+	.about-content p:last-child {
+		margin-bottom: 0;
+	}
+
+	.about-vision-grid {
+		margin-top: 1.75rem;
+		gap: 1.25rem;
+	}
+
+	.about-vision-card {
+		background: transparent;
+		border: 1px solid rgba(196, 194, 188, 0.3);
+	}
+
+	.about-vision-card h3 {
+		margin: 0 0 0.65rem;
+		color: #c4c2bc;
+		font-size: 1.05rem;
+	}
+
+	.about-vision-card p {
+		margin: 0;
+		color: var(--text-secondary, #475569);
+		line-height: 1.7;
+	}
+
+	.about-closing {
+		margin: 1.75rem 0 0;
+		padding-top: 1.35rem;
+		border-top: 1px solid var(--border-subtle, #e2e8f0);
+		text-align: center;
+		font-size: clamp(1rem, 2vw, 1.15rem);
+		line-height: 1.55;
+		color: var(--text-primary, #0f172a);
+	}
+</style>
