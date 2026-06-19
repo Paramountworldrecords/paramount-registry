@@ -20,6 +20,12 @@ const serviceCards = [
 ];
 
 const pillars = ["Authorisation", "Adjudication", "Verification", "Certification", "Publishing"];
+
+const whatsappNumber = "917550015677";
+const whatsappMessage = encodeURIComponent(
+	"Hello Paramount World Records, I would like to enquire about a world record.",
+);
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 ---
 
 <main id="home" class="home-redesign">
@@ -44,6 +50,14 @@ const pillars = ["Authorisation", "Adjudication", "Verification", "Certification
 			<div class="hero-cta-row">
 				<a class="btn btn-primary" href="/apply">Apply for a record</a>
 				<a class="btn btn-ghost hero-btn-ghost" href="/records">Browse record ideas</a>
+				<a
+					class="btn hero-btn-whatsapp"
+					href={whatsappHref}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Chat on WhatsApp
+				</a>
 			</div>
 			<ul class="hero-metrics" aria-label="Key highlights">
 				<li><strong>200+</strong><span>Records reviewed</span></li>
@@ -277,6 +291,23 @@ const pillars = ["Authorisation", "Adjudication", "Verification", "Certification
 	.hero-btn-ghost:hover {
 		background: rgba(255, 255, 255, 0.22) !important;
 		border-color: #ffffff !important;
+	}
+
+	.hero-btn-whatsapp {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.45rem;
+		background: #25d366 !important;
+		border: 1px solid #1faa52 !important;
+		color: #ffffff !important;
+		font-weight: 600;
+		box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
+	}
+
+	.hero-btn-whatsapp:hover {
+		background: #1faa52 !important;
+		border-color: #1a9b4b !important;
 		color: #ffffff !important;
 	}
 
